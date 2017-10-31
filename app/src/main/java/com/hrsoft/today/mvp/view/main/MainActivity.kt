@@ -8,10 +8,9 @@ import com.hrsoft.today.mvp.presenter.MainActivityPresenter
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : NoBarActivity(), MainContract.View {
-    override val mPresenter: MainContract.Presenter
-        get() = MainActivityPresenter()
-    lateinit var adapter: TestAdapter
+    override var mPresenter: MainContract.Presenter? = MainActivityPresenter(this)
 
+    lateinit var adapter: TestAdapter
     override fun onDataLoadSuccess() {
     }
 

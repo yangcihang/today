@@ -209,6 +209,7 @@ public class SwipeBackLayout extends ViewGroup {
             leftOffset = getPaddingLeft();
             if (isSwipeEnabled()) {
                 if (mDirectionMode == FROM_LEFT && !Util.canViewScrollRight(innerScrollView, downX, downY, false)) {
+                    //left为当前坐标点，移动的范围是比paddingLeft大，比width小（不比getPaddingLeft大就能向左边滑出去了...,不比width小就）
                     leftOffset = Math.min(Math.max(left, getPaddingLeft()), width);
                 } else if (mDirectionMode == FROM_RIGHT && !Util.canViewScrollLeft(innerScrollView, downX, downY, false)) {
                     leftOffset = Math.min(Math.max(left, -width), getPaddingRight());
