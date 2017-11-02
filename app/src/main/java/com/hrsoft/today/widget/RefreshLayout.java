@@ -104,7 +104,7 @@ public class RefreshLayout extends LinearLayout {
     public RefreshLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         preferences = PreferenceManager.getDefaultSharedPreferences(context);
-        header = LayoutInflater.from(context).inflate(R.layout.pull_to_refresh, null, true);
+        header = LayoutInflater.from(context).inflate(R.layout.view_pull_to_refresh, null, true);
         progressBar = (ProgressBar) header.findViewById(R.id.progress_bar);
         arrow = (ImageView) header.findViewById(R.id.arrow);
         description = (TextView) header.findViewById(R.id.description);

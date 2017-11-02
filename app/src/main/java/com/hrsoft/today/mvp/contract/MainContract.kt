@@ -1,6 +1,7 @@
 package com.hrsoft.today.mvp.contract
 
 import com.hrsoft.today.base.BaseContract
+import com.hrsoft.today.mvp.model.CalendarModel
 
 /**
  * @author YangCihang
@@ -9,10 +10,11 @@ import com.hrsoft.today.base.BaseContract
  */
 interface MainContract {
     interface View : BaseContract.View<Presenter> {
-        fun onDataLoadSuccess()
+        fun onCalendarLoadSuccess(calendarList: MutableList<CalendarModel>)
+        fun onCalendarLoadFailed()
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-        fun requestModel()
+        fun requestCalendar()
     }
 }

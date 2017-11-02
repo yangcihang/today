@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp">
+
+        <ImageView
+            android:id="@+id/img_content_header"
+            android:layout_width="match_parent"
+            android:layout_height="280dp"
+            android:background="@drawable/ic_launcher_background"/>
+
+        <TextView
+            android:id="@+id/txt_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:text="Tuesday"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_secondary"/>
+
+        <TextView
+            android:id="@+id/txt_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/txt_week"
+            android:layout_alignLeft="@id/txt_week"
+            android:text="10.24"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_title"/>
+    </RelativeLayout>
+
+    <TextView
+        style="@style/TextMainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_main_good_title"
+        android:textColor="@color/text_main_good_title"/>
+
+    <!--重写RecyclerView-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_calendar_good"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        style="@style/TextMainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_main_bad_title"
+        android:textColor="@color/text_main_bad_title"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_calendar_bad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        style="@style/TextMainTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_main_recommend_title"
+        android:textColor="@color/text_main_recommend_title"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rec_calendar_recommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

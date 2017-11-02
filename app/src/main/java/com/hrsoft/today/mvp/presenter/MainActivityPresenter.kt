@@ -9,13 +9,15 @@ import com.hrsoft.today.util.ToastUtil
  * email yangcihang@hrsoft.net
  */
 class MainActivityPresenter(override var mView: MainContract.View?) : MainContract.Presenter {
+    /**
+     * 解除绑定
+     */
     override fun onDetach() {
         mView = null
     }
 
 
-    override fun requestModel() {
+    override fun requestCalendar() {
         ToastUtil.showToast("123")
-        mView!!.onDataLoadSuccess()
     }
 }
