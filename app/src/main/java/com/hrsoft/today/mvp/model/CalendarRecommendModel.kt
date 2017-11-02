@@ -4,8 +4,7 @@ import java.io.Serializable
 
 /**
  * @author YangCihang
- * @since  17/11/1.
+ * @since  17/11/2.
  * email yangcihang@hrsoft.net
  */
-class CalendarModel : Serializable {
-}
+class CalendarRecommendModel:Serializable

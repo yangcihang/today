@@ -11,11 +11,11 @@ import android.view.View
  * email yangcihang@hrsoft.net
  */
 abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
-    : RecyclerView.Adapter<BaseRecyclerAdapter<Data>.BaseViewHolder<Data>>() {
+    : RecyclerView.Adapter<BaseRecyclerAdapter.BaseViewHolder<Data>>() {
     //dataList(kotlin中的List为只读，用Mutablelist)
     var dataList: MutableList<Data> = ArrayList()
     //inflater
-    private var inflater: LayoutInflater = LayoutInflater.from(mContext)
+    var inflater: LayoutInflater = LayoutInflater.from(mContext)
     //点击事件的回调
     var onClickedListener: ((model: Data, pos: Int) -> Unit)? = null
 
@@ -75,16 +75,16 @@ abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
     /**
      * 绑定holder
      */
-    override fun onBindViewHolder(holderBase: BaseViewHolder<Data>?, position: Int) {
+    override fun onBindViewHolder(holderBase: BaseViewHolder<Data>, position: Int) {
         //ViewHolder绑定数据
         val data = dataList[position]
-        holderBase?.itemView?.setOnClickListener {
+        holderBase.itemView?.setOnClickListener {
             onClickedListener?.invoke(data, position)
         }
-        holderBase?.bind(data, position)
+        holderBase.bind(data, position)
     }
 
-    inner abstract class BaseViewHolder<Data>(itemView: View?) : RecyclerView.ViewHolder(itemView) {
+    abstract class BaseViewHolder<Data>(itemView: View) : RecyclerView.ViewHolder(itemView) {
         protected var mData: Data? = null
         protected abstract fun onBind(position: Int)
 

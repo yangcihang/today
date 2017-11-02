@@ -1,10 +1,15 @@
 package com.hrsoft.today.mvp.view.main.fragment
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.CalendarStateModel
+import com.hrsoft.today.mvp.view.main.adapter.RecommendListAdapter
+import com.hrsoft.today.mvp.view.main.adapter.StateListAdapter
+import kotlinx.android.synthetic.main.fragment_main_content.*
 
 
 /**
@@ -13,7 +18,10 @@ import com.hrsoft.today.mvp.model.CalendarModel
  * email yangcihang@hrsoft.net
  */
 class MainContentFragment : BaseFragment() {
-    var calendar: CalendarModel? = null
+    private var calendar: CalendarModel? = null
+    private lateinit var stateGoodAdapter: StateListAdapter
+    private lateinit var stateBadAdapter: StateListAdapter
+    private lateinit var recommendAdapter: RecommendListAdapter
 
     companion object {
         /**
@@ -31,12 +39,57 @@ class MainContentFragment : BaseFragment() {
     }
 
     override fun initVariable() {
-//          arguments.get(Config.KEY_CALENDAR)as CalendarModel
+        calendar = arguments.getSerializable(Config.KEY_CALENDAR) as CalendarModel?
+        stateGoodAdapter = StateListAdapter(context)
+        stateBadAdapter = StateListAdapter(context)
+        recommendAdapter = RecommendListAdapter(context)
     }
 
     override fun initView() {
+        rec_calendar_good.apply {
+            layoutManager = LinearLayoutManager(this@MainContentFragment.context)
+            adapter = stateGoodAdapter
+            isNestedScrollingEnabled = false
+        }
+        rec_calendar_bad.apply {
+            layoutManager = LinearLayoutManager(this@MainContentFragment.context)
+            adapter = stateBadAdapter
+            isNestedScrollingEnabled = false
+        }
+        rec_calendar_recommend.apply {
+            layoutManager = LinearLayoutManager(this@MainContentFragment.context)
+            adapter = recommendAdapter
+            isNestedScrollingEnabled = false
+        }
     }
 
     override fun loadData() {
+        val goodList: MutableList<CalendarStateModel> = mutableListOf()
+        val badList: MutableList<CalendarStateModel> = mutableListOf()
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        goodList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        badList.add(CalendarStateModel())
+        stateGoodAdapter.addAll(goodList)
+        stateBadAdapter.addAll(badList)
     }
 }

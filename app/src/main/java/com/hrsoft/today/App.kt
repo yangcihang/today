@@ -3,6 +3,7 @@ package com.hrsoft.today
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import com.hrsoft.today.util.CacheUtil
 
 /**
  * @author YangCihang
@@ -14,6 +15,8 @@ class App : Application() {
     companion object {
         lateinit var instance: App
             private set//实例对象
+        private lateinit var cacheUtil: CacheUtil
+
     }
 
     init {
@@ -24,6 +27,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        cacheUtil = CacheUtil.get(filesDir)
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityPaused(p0: Activity?) {
             }
@@ -52,6 +56,13 @@ class App : Application() {
     }
 
     /**
+     * 缓存初始化
+     */
+    fun getCacheUtil(): CacheUtil {
+        return cacheUtil
+    }
+
+    /**
      * 清除所有Activity
      */
     fun removeAllActivity() {
@@ -67,7 +78,6 @@ class App : Application() {
         removeAllActivity()
         // TODO: 17/8/25 退出的后续操作
     }
-
 
 
     /**
