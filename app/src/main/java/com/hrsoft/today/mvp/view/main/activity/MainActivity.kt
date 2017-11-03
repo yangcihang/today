@@ -1,5 +1,6 @@
 package com.hrsoft.today.mvp.view.main.activity
 
+import android.support.v4.view.ViewPager
 import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.mvp.contract.MainContract
@@ -23,12 +24,22 @@ class MainActivity : NoBarActivity(), MainContract.View {
     }
 
     override fun initView() {
-        vp_main.adapter = adapter
-//        User.userCalendarList.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
-        fragmentList.add(MainContentFragment.createFragment(null))
-        fragmentList.add(MainContentFragment.createFragment(null))
-        fragmentList.add(MainContentFragment.createFragment(null))
-        adapter.notifyDataSetChanged()
+        vp_main.apply {
+            adapter = this@MainActivity.adapter
+            addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                override fun onPageScrollStateChanged(state: Int) {
+                }
+
+                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+                }
+
+                override fun onPageSelected(position: Int) {
+                    txt_calendar_title.text = User.userCalendarList?.get(position)?.calendarName ?: "默认title"
+                }
+
+            })
+        }
+        User.userCalendarList?.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
     }
 
     override fun loadData() {
@@ -43,7 +54,7 @@ class MainActivity : NoBarActivity(), MainContract.View {
     /**
      * 数据获取成功时回调
      */
-    override fun onCalendarLoadSuccess(calendarList: MutableList<CalendarModel>) {
+    override fun onCalendarLoadSuccess(calendarList: List<CalendarModel>) {
         User.userCalendarList = calendarList
         fragmentList.clear()
         calendarList.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }

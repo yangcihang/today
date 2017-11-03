@@ -1,7 +1,5 @@
 package com.hrsoft.today.mvp.model
 
-import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
-
 /**
  * @author YangCihang
  * @since  17/11/1.
@@ -9,5 +7,6 @@ import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
  */
 object User {
     /**用户订阅的黄历*/
-    var userCalendarList: MutableList<CalendarModel> = emptyList<CalendarModel>() as MutableList<CalendarModel>
+    var userCalendarList: List<CalendarModel>? = null
+    var token: String? = ""
 }

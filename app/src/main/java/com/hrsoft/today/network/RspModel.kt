@@ -11,4 +11,5 @@ package com.hrsoft.today.network
 open class RspModel <T>{
     var code: Int = 0 //返回码
     var data:T? = null
+    var message:String?=null
 }

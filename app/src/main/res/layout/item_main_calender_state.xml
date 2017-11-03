@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_bottom_calendar">
     <!--文字过多问题考虑-->
-    <View
-        android:id="@+id/view_flag_icon"
+    <ImageView
+        android:id="@+id/img_flag_icon"
         android:layout_width="4dp"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/txt_calendar_title"
-        android:layout_alignTop="@id/txt_calendar_title"
+        android:layout_alignBottom="@id/txt_calendar_state_title"
+        android:layout_alignTop="@id/txt_calendar_state_title"
+        android:layout_marginLeft="@dimen/margin_left_calendar"
+        android:layout_marginStart="@dimen/margin_left_calendar"
         android:background="@color/view_good_vertical_icon"/>
 
     <TextView
-        android:id="@+id/txt_calendar_title"
+        android:id="@+id/txt_calendar_state_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_left_main"
-        android:layout_toRightOf="@id/view_flag_icon"
+        android:layout_toRightOf="@id/img_flag_icon"
         android:text="洗澡澡"
         android:textColor="@color/text_primary"
         android:textSize="@dimen/text_primary"/>
@@ -25,8 +28,9 @@
         android:id="@+id/txt_calendar_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/txt_calendar_title"
-        android:layout_below="@id/txt_calendar_title"
+        android:layout_alignLeft="@id/txt_calendar_state_title"
+        android:layout_below="@id/txt_calendar_state_title"
+        android:layout_marginTop="@dimen/margin_top_calendar"
         android:text="我草拟吗类草拟吗"
         android:textColor="@color/text_secondary"
         android:textSize="@dimen/text_secondary"/>

@@ -1,6 +1,8 @@
 package com.hrsoft.today.mvp.presenter
 
 import com.hrsoft.today.mvp.contract.MainContract
+import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.helper.MainModelHelper
 import com.hrsoft.today.util.ToastUtil
 
 /**
@@ -18,6 +20,20 @@ class MainActivityPresenter(override var mView: MainContract.View?) : MainContra
 
 
     override fun requestCalendar() {
-        ToastUtil.showToast("123")
+        MainModelHelper.requestCalendarModel(this)
     }
+
+    override fun onCalendarLoadSuccess(calendarList: List<CalendarModel>?) {
+        if (calendarList != null) {
+            ToastUtil.showToast("请求成功")
+            mView!!.onCalendarLoadSuccess(calendarList)
+        } else {
+            ToastUtil.showToast("请求失败")
+        }
+    }
+
+    override fun onCalendarLoadFailed() {
+        ToastUtil.showToast("请求失败")
+    }
+
 }

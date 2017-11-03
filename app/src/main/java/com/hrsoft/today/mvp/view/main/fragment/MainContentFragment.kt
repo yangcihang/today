@@ -6,7 +6,6 @@ import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.model.CalendarModel
-import com.hrsoft.today.mvp.model.CalendarStateModel
 import com.hrsoft.today.mvp.view.main.adapter.RecommendListAdapter
 import com.hrsoft.today.mvp.view.main.adapter.StateListAdapter
 import kotlinx.android.synthetic.main.fragment_main_content.*
@@ -40,8 +39,8 @@ class MainContentFragment : BaseFragment() {
 
     override fun initVariable() {
         calendar = arguments.getSerializable(Config.KEY_CALENDAR) as CalendarModel?
-        stateGoodAdapter = StateListAdapter(context)
-        stateBadAdapter = StateListAdapter(context)
+        stateGoodAdapter = StateListAdapter(context, true)
+        stateBadAdapter = StateListAdapter(context, false)
         recommendAdapter = RecommendListAdapter(context)
     }
 
@@ -64,32 +63,7 @@ class MainContentFragment : BaseFragment() {
     }
 
     override fun loadData() {
-        val goodList: MutableList<CalendarStateModel> = mutableListOf()
-        val badList: MutableList<CalendarStateModel> = mutableListOf()
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        goodList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        badList.add(CalendarStateModel())
-        stateGoodAdapter.addAll(goodList)
-        stateBadAdapter.addAll(badList)
+        calendar?.good?.let { stateGoodAdapter.addAll(it) }
+        calendar?.bad?.let { stateBadAdapter.addAll(it) }
     }
 }

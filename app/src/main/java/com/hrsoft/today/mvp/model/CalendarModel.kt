@@ -8,4 +8,9 @@ import java.io.Serializable
  * email yangcihang@hrsoft.net
  */
 class CalendarModel : Serializable {
+    var calendarId: Int? = null
+    var calendarName: String? = ""
+    var good: List<CalendarStateModel>? = emptyList()
+    var bad: List<CalendarStateModel>? = emptyList()
+    var recommend: List<CalendarRecommendModel>? = emptyList()
 }

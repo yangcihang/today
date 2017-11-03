@@ -1,6 +1,8 @@
 package com.hrsoft.today.network
 
 import com.hrsoft.today.common.Config
+import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.User
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,7 +10,6 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
-import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 
@@ -24,8 +25,7 @@ interface NetWork {
                 val httpClient = OkHttpClient.Builder()
                         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                         .addNetworkInterceptor { chain ->
-                            val token = "123123123"
-                            val request = chain?.request()?.newBuilder()?.addHeader("token", token)?.build()
+                            val request = chain?.request()?.newBuilder()?.addHeader("token", User.token)?.build()
                             val response: Response = chain?.proceed(request)!!
                             response
                         }
@@ -46,6 +46,6 @@ interface NetWork {
         }
     }
 
-    @GET("order/unstart")
-    fun requestUnstartList(@Query("page") page: String, @Query("size") size: String): Call<RspModel<String>>
+    @GET("calendar/subscribed/1")
+    fun requestCalendarList(): Call<RspModel<List<CalendarModel>>>
 }
