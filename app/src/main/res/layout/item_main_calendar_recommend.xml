@@ -1,7 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom_calendar">
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/img_recommend_flag_icon"
+        android:layout_width="4dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/txt_calendar_recommend_title"
+        android:layout_alignTop="@id/txt_calendar_recommend_title"
+        android:layout_marginLeft="@dimen/margin_left_calendar"
+        android:layout_marginStart="@dimen/margin_left_calendar"
+        android:background="@color/view_good_vertical_icon"/>
+
+    <TextView
+        android:id="@+id/txt_calendar_recommend_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_left_main"
+        android:layout_toRightOf="@id/img_recommend_flag_icon"
+        android:text="洗澡澡"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_primary"/>
+
+    <TextView
+        android:id="@+id/txt_calendar_recommend_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/txt_calendar_recommend_title"
+        android:layout_below="@id/txt_calendar_recommend_title"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_secondary"/>
+</RelativeLayout>

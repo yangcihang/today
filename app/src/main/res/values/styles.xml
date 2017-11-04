@@ -26,7 +26,7 @@
 
     <style name="TextMainTitle">
         <item name="android:layout_marginTop">10dp</item>
-        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
         <item name="android:textSize">@dimen/text_primary</item>
     </style>
 </resources>

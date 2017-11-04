@@ -16,4 +16,5 @@
     <color name="text_secondary">#9b9b9b</color>
     <color name="view_good_vertical_icon">#67b82b</color>
     <color name="view_bad_vertical_icon">#cc2b0f</color>
+    <color name="view_divide">#dedede</color>
 </resources>

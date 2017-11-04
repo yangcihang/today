@@ -22,6 +22,7 @@
                 android:layout_height="?attr/actionBarSize">
 
                 <ImageView
+                    android:id="@+id/img_calendar"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_alignParentLeft="true"

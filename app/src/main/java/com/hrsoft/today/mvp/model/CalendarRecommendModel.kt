@@ -7,4 +7,7 @@ import java.io.Serializable
  * @since  17/11/2.
  * email yangcihang@hrsoft.net
  */
-class CalendarRecommendModel:Serializable
+class CalendarRecommendModel : Serializable {
+    var name: String? = ""
+    var items: List<String>? = emptyList()
+}

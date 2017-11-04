@@ -8,6 +8,7 @@ import java.io.Serializable
  * email yangcihang@hrsoft.net
  */
 class CalendarModel : Serializable {
+    var calendarPicture: String? = ""
     var calendarId: Int? = null
     var calendarName: String? = ""
     var good: List<CalendarStateModel>? = emptyList()
