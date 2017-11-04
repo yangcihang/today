@@ -10,8 +10,10 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/txt_calendar_recommend_title"
         android:layout_alignTop="@id/txt_calendar_recommend_title"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="@dimen/margin_left_calendar"
         android:layout_marginStart="@dimen/margin_left_calendar"
+        android:layout_marginTop="4dp"
         android:background="@color/view_good_vertical_icon"/>
 
     <TextView

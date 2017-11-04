@@ -1,6 +1,8 @@
 package com.hrsoft.today.mvp.view.main.activity
 
+import android.content.Intent
 import android.support.v4.view.ViewPager
+import android.view.Gravity
 import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.mvp.contract.MainContract
@@ -9,6 +11,7 @@ import com.hrsoft.today.mvp.model.User
 import com.hrsoft.today.mvp.presenter.MainActivityPresenter
 import com.hrsoft.today.mvp.view.main.adapter.MainPagerAdapter
 import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
+import com.hrsoft.today.mvp.view.square.SquareActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : NoBarActivity(), MainContract.View {
@@ -24,6 +27,14 @@ class MainActivity : NoBarActivity(), MainContract.View {
     }
 
     override fun initView() {
+        img_drawer_menu.setOnClickListener { drawer_main.openDrawer(Gravity.START)}
+        nv_menu_left.setNavigationItemSelectedListener {
+            item ->
+            when (item.itemId) {
+                R.id.menu_square -> startActivity(Intent(this@MainActivity, SquareActivity::class.java))
+            }
+            return@setNavigationItemSelectedListener true
+        }
         vp_main.apply {
             adapter = this@MainActivity.adapter
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {

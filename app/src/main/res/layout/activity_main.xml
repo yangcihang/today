@@ -22,7 +22,7 @@
                 android:layout_height="?attr/actionBarSize">
 
                 <ImageView
-                    android:id="@+id/img_calendar"
+                    android:id="@+id/img_drawer_menu"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_alignParentLeft="true"
@@ -48,11 +48,16 @@
         </android.support.v4.view.ViewPager>
     </android.support.design.widget.CoordinatorLayout>
 
-    <LinearLayout
+    <android.support.design.widget.NavigationView
         android:id="@+id/nv_menu_left"
         android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:orientation="horizontal"/>
+        android:fitsSystemWindows="true"
+        android:foregroundGravity="left"
+        android:orientation="horizontal"
+        app:headerLayout="@layout/view_navigation_head"
+        app:menu="@menu/menu_navigation">
+    </android.support.design.widget.NavigationView>
 
 </android.support.v4.widget.DrawerLayout>
