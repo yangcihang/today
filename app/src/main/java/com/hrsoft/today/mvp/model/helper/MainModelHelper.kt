@@ -17,7 +17,6 @@ object MainModelHelper {
                 callback.onCalendarLoadSuccess(data)
             }
 
-
             override fun onFailed() {
                 callback.onCalendarLoadFailed()
             }

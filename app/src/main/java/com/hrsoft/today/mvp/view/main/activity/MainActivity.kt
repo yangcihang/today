@@ -11,7 +11,7 @@ import com.hrsoft.today.mvp.model.User
 import com.hrsoft.today.mvp.presenter.MainActivityPresenter
 import com.hrsoft.today.mvp.view.main.adapter.MainPagerAdapter
 import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
-import com.hrsoft.today.mvp.view.square.SquareActivity
+import com.hrsoft.today.mvp.view.square.activity.SquareActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : NoBarActivity(), MainContract.View {
@@ -27,7 +27,7 @@ class MainActivity : NoBarActivity(), MainContract.View {
     }
 
     override fun initView() {
-        img_drawer_menu.setOnClickListener { drawer_main.openDrawer(Gravity.START)}
+        img_drawer_menu.setOnClickListener { drawer_main.openDrawer(Gravity.START) }
         nv_menu_left.setNavigationItemSelectedListener {
             item ->
             when (item.itemId) {
@@ -35,7 +35,13 @@ class MainActivity : NoBarActivity(), MainContract.View {
             }
             return@setNavigationItemSelectedListener true
         }
+        User.userCalendarList?.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
+    }
+
+    override fun loadData() {
+        mPresenter!!.requestCalendar()
         vp_main.apply {
+            adapter?.notifyDataSetChanged()
             adapter = this@MainActivity.adapter
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrollStateChanged(state: Int) {
@@ -50,11 +56,6 @@ class MainActivity : NoBarActivity(), MainContract.View {
 
             })
         }
-        User.userCalendarList?.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
-    }
-
-    override fun loadData() {
-        mPresenter!!.requestCalendar()
     }
 
     override fun getLayoutId(): Int {
@@ -66,6 +67,7 @@ class MainActivity : NoBarActivity(), MainContract.View {
      * 数据获取成功时回调
      */
     override fun onCalendarLoadSuccess(calendarList: List<CalendarModel>) {
+        //TODO(没有内容时加入提示)
         User.userCalendarList = calendarList
         fragmentList.clear()
         calendarList.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
@@ -81,5 +83,10 @@ class MainActivity : NoBarActivity(), MainContract.View {
     override fun onRestart() {
         super.onRestart()
         mPresenter!!.requestCalendar()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter?.onDetach()
     }
 }

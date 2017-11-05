@@ -34,9 +34,10 @@
                     android:id="@+id/txt_calendar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
                     android:text="老黄历"
-                    android:textSize="@dimen/text_title"/>
+                    android:textSize="@dimen/text_title"
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"/>
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
 
@@ -55,6 +56,7 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         android:foregroundGravity="left"
+        android:background="@color/navigation_background"
         android:orientation="horizontal"
         app:headerLayout="@layout/view_navigation_head"
         app:menu="@menu/menu_navigation">

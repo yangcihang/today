@@ -2,6 +2,7 @@ package com.hrsoft.today.network
 
 import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.SquareCalendarModel
 import com.hrsoft.today.mvp.model.User
 import okhttp3.OkHttpClient
 import okhttp3.Response
@@ -10,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 
@@ -46,6 +48,12 @@ interface NetWork {
         }
     }
 
-    @GET("calendar/subscribed/1")
+    @GET("calendar/subscribed")
     fun requestCalendarList(): Call<RspModel<List<CalendarModel>>>
+
+    @GET("piazza/most-subscribed")
+    fun requestSquareRecommendCalendarList(): Call<RspModel<List<SquareCalendarModel>>>
+
+    @GET("piazza/all")
+    fun requestSquareAllCalendarList(@Query("page") page: Int): Call<RspModel<List<SquareCalendarModel>>>
 }

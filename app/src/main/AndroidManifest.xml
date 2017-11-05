@@ -18,7 +18,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".mvp.view.square.SquareActivity"/>
+        <activity android:name=".mvp.view.square.activity.SquareActivity"/>
+        <activity android:name=".mvp.view.square.activity.SearchActivity"/>
+        <activity android:name=".mvp.view.detail.CalendarDetailActivity"/>
     </application>
 
 </manifest>

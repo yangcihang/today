@@ -10,5 +10,7 @@ object Config {
     val EMAIL_REGEX = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$"
     val BASE_URL = "http://192.168.1.3:3003/"
     val APP_SERVER_CONNECT_TIME_OUT: Long = 15
+
     val KEY_CALENDAR = "calendar"
+    val KEY_SQUARE_CALENDAR = "square_calendar"
 }

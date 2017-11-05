@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--通用颜色-->
-    <color name="primary">#3F51B5</color>
+    <color name="primary">#5e70d1</color>
     <color name="primary_dark">#303F9F</color>
     <color name="primary_light">#b3e5fc</color>
 
@@ -14,7 +14,9 @@
     <color name="text_main_recommend_title">#fcca24</color>
     <color name="text_primary">#272727</color>
     <color name="text_secondary">#9b9b9b</color>
+    <color name="text_ternary">#cacaca</color>
     <color name="view_good_vertical_icon">#67b82b</color>
     <color name="view_bad_vertical_icon">#cc2b0f</color>
     <color name="view_divide">#dedede</color>
+    <color name="navigation_background">#e2e2e2</color>
 </resources>
