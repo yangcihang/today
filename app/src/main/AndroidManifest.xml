@@ -20,7 +20,7 @@
         </activity>
         <activity android:name=".mvp.view.square.activity.SquareActivity"/>
         <activity android:name=".mvp.view.square.activity.SearchActivity"/>
-        <activity android:name=".mvp.view.detail.CalendarDetailActivity"/>
+        <activity android:name=".mvp.view.detail.activity.CalendarDetailActivity"/>
     </application>
 
 </manifest>

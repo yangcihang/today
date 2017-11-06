@@ -1,7 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:orientation="vertical"
+                                                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-</LinearLayout>
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar_detail"
+        android:layout_width="match_parent"
+        android:layout_height="256dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:collapseIcon="@mipmap/ic_launcher"
+            app:collapsedTitleGravity="center_horizontal"
+            app:contentScrim="@color/white"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+            app:statusBarScrim="@color/black"
+            app:title="@string/app_name"
+            app:titleEnabled="false">
+
+            <ImageView
+                android:id="@+id/img_calendar_bg"
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="0.7">
+
+                <ImageView
+                    android:id="@+id/calendar_avatar"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/white">
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/txt_calendar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/calendar_avatar"
+                    android:layout_marginRight="16dp"
+                    android:layout_toRightOf="@id/calendar_avatar"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="4"
+                    android:text="N/A"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"/>
+
+                <ImageView
+                    android:id="@+id/img_user_avatar"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_alignBottom="@id/calendar_avatar"
+                    android:layout_toRightOf="@id/calendar_avatar"
+                    android:background="@drawable/bg_circle_image_view"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/ic_launcher"/>
+
+                <TextView
+                    android:id="@+id/txt_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_alignBottom="@id/img_user_avatar"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/img_user_avatar"
+                    android:gravity="center"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="4"
+                    android:text="N/A 》"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"/>
+            </RelativeLayout>
+
+            <android.support.v7.widget.Toolbar
+
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:gravity="top|center_horizontal"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/AppTheme.PopupOverlay"
+                app:layout_collapseMode="pin"
+                app:navigationIcon="@mipmap/ic_launcher"
+                app:title="详情"
+                app:titleMarginStart="8dp"
+                app:titleMarginTop="15dp"
+                app:titleTextColor="@color/white"
+                />
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_gravity="bottom"
+                app:tabMode="fixed"/>
+
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+    </android.support.design.widget.AppBarLayout>
+
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_calendar_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

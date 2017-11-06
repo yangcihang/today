@@ -9,7 +9,7 @@ import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.mvp.contract.SquareContract
 import com.hrsoft.today.mvp.model.SquareCalendarModel
 import com.hrsoft.today.mvp.presenter.SquareActivityPresenter
-import com.hrsoft.today.mvp.view.detail.CalendarDetailActivity
+import com.hrsoft.today.mvp.view.detail.activity.CalendarDetailActivity
 import com.hrsoft.today.mvp.view.square.adapter.SquareListAdapter
 import com.hrsoft.today.util.ToastUtil
 import kotlinx.android.synthetic.main.activity_square.*

@@ -7,7 +7,7 @@ import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.mvp.contract.SearchContract
 import com.hrsoft.today.mvp.model.SquareCalendarModel
 import com.hrsoft.today.mvp.presenter.SearchActivityPresenter
-import com.hrsoft.today.mvp.view.detail.CalendarDetailActivity
+import com.hrsoft.today.mvp.view.detail.activity.CalendarDetailActivity
 import com.hrsoft.today.mvp.view.square.adapter.SearchListAdapter
 import kotlinx.android.synthetic.main.activity_search.*
 

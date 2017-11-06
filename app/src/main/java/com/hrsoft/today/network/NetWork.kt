@@ -1,9 +1,7 @@
 package com.hrsoft.today.network
 
 import com.hrsoft.today.common.Config
-import com.hrsoft.today.mvp.model.CalendarModel
-import com.hrsoft.today.mvp.model.SquareCalendarModel
-import com.hrsoft.today.mvp.model.User
+import com.hrsoft.today.mvp.model.*
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,6 +9,7 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
@@ -59,4 +58,10 @@ interface NetWork {
 
     @GET("piazza/search")
     fun requestSearchModelList(@Query("keyword") key: String): Call<RspModel<List<SquareCalendarModel>>>
+
+    @GET("calendar/{calendarId}/comment")
+    fun requestCalendarCommentList(@Path("calendarId")calendarId:Int): Call<RspModel<List<CommentModel>>>
+
+    @GET("calendar/{calendarId}/detail")
+    fun requestCalendarDetail(@Path("calendarId")calendarId:Int): Call<RspModel<CalendarDetailModel>>
 }

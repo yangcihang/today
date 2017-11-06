@@ -17,10 +17,10 @@ abstract class RspCallback<T> : Callback<RspModel<T>> {
     abstract fun onFailed()
     override fun onResponse(call: Call<RspModel<T>>?, response: Response<RspModel<T>>) {
         if (response.code() <= 400) {
-            if (response.body().code == 0) {
-                response.body().data?.let { onSuccess(it) }
+            if (response.body()!!.code == 0) {
+                response.body()!!.data?.let { onSuccess(it) }
             } else {
-                GlobalAPIErrorHandler.handle(response.body().code)
+                GlobalAPIErrorHandler.handle(response.body()!!.code)
             }
         } else {
             GlobalAPIErrorHandler.handle(response.code())
