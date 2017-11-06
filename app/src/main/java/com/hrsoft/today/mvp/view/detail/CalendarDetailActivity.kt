@@ -38,4 +38,9 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
     override fun getLayoutId(): Int {
         return R.layout.activity_calendar_detail
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter?.onDetach()
+    }
 }

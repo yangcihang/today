@@ -8,5 +8,5 @@ package com.hrsoft.today.mvp.model
 object User {
     /**用户订阅的黄历*/
     var userCalendarList: List<CalendarModel>? = null
-    var token: String? = "9a1a8cb6a00a43298001ba48c4b81a57"
+    var token: String? = "99fcd263e4e749daa802c5b4c5344ece"
 }

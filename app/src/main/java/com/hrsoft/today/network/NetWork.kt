@@ -56,4 +56,7 @@ interface NetWork {
 
     @GET("piazza/all")
     fun requestSquareAllCalendarList(@Query("page") page: Int): Call<RspModel<List<SquareCalendarModel>>>
+
+    @GET("piazza/search")
+    fun requestSearchModelList(@Query("keyword") key: String): Call<RspModel<List<SquareCalendarModel>>>
 }

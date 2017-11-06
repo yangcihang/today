@@ -27,7 +27,7 @@
                     android:layout_height="16dp"
                     android:layout_alignParentLeft="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/margin_left_main"
+                    android:layout_marginLeft="@dimen/margin_top_left"
                     android:background="@color/black"/>
 
                 <TextView

@@ -5,7 +5,7 @@
     <color name="primary_dark">#303F9F</color>
     <color name="primary_light">#b3e5fc</color>
 
-    <color name="accent">#FF4081</color>
+    <color name="accent">#9c9899</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="bg_background">#F9F5F2</color>
@@ -15,6 +15,7 @@
     <color name="text_primary">#272727</color>
     <color name="text_secondary">#9b9b9b</color>
     <color name="text_ternary">#cacaca</color>
+    <color name="text_hint">#c9cccb</color>
     <color name="view_good_vertical_icon">#67b82b</color>
     <color name="view_bad_vertical_icon">#cc2b0f</color>
     <color name="view_divide">#dedede</color>

@@ -17,7 +17,7 @@
         android:id="@+id/txt_calendar_recommend_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_left_main"
+        android:layout_marginLeft="@dimen/margin_top_left"
         android:layout_toRightOf="@id/img_recommend_flag_icon"
         android:text="洗澡澡"
         android:textColor="@color/text_primary"

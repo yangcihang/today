@@ -1,5 +1,6 @@
 package com.hrsoft.today.mvp.view.square.activity
 
+import android.content.Intent
 import android.support.v4.widget.NestedScrollView
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -59,6 +60,8 @@ class SquareActivity : NoBarActivity(), SquareContract.View {
                 if (!isLastPage) mPresenter?.requestAllCalendarList(page++)
             }
         }
+        img_back.setOnClickListener { this.finish() }
+        txt_square_search.setOnClickListener { startActivity(Intent(this@SquareActivity, SearchActivity::class.java)) }
     }
 
     override fun loadData() {
