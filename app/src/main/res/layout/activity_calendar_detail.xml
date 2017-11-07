@@ -64,10 +64,11 @@
                     android:textSize="18sp"/>
 
                 <ImageView
+                    android:layout_marginTop="16dp"
                     android:id="@+id/img_user_avatar"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:layout_alignBottom="@id/calendar_avatar"
+                    android:layout_below="@id/txt_calendar_title"
                     android:layout_toRightOf="@id/calendar_avatar"
                     android:background="@drawable/bg_circle_image_view"
                     android:scaleType="fitXY"
@@ -86,6 +87,24 @@
                     android:text="N/A 》"
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
+
+                <ImageView
+                    android:src="@drawable/ic_good_white"
+                    android:id="@+id/ic_good"
+                    android:layout_toRightOf="@id/calendar_avatar"
+                    android:layout_alignBottom="@id/calendar_avatar"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"/>
+                <TextView
+                    android:gravity="center"
+                    android:shadowRadius="2"
+                    android:shadowColor="@color/black"
+                    android:id="@+id/txt_good_sum"
+                    android:layout_marginLeft="8dp"
+                    android:layout_alignBottom="@id/calendar_avatar"
+                    android:layout_toEndOf="@+id/ic_good"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"/>
             </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
@@ -118,6 +137,8 @@
 
 
     <android.support.v4.view.ViewPager
+        app:tabMode="fixed"
+        app:layout_collapseMode="pin"
         android:id="@+id/vp_calendar_detail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

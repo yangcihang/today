@@ -27,7 +27,7 @@ class DetailAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
             0-> currentFragment= descriptionFragment
             1-> {
                 currentFragment= commentFragment
-                TODO("隐藏FAB")
+
             }
         }
         return currentFragment

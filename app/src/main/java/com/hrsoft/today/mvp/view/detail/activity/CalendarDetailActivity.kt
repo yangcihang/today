@@ -33,6 +33,7 @@ import kotlinx.android.synthetic.main.activity_calendar_detail.*
 class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFragment.GetCalendarIdListener {
 
 
+
     private lateinit var calendarModel: SimpleCalendarModel
 
     companion object {
@@ -51,10 +52,10 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
     }
 
     override fun initView() {
-
+        // 获取toolbar的折叠凳状态，以修改文字颜色等
         app_bar_detail.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             when {
-                // 折叠
+                // 折叠，真实值=0，加范围以防止误触
                 (verticalOffset in 0..20) -> {
                     toolbar.setTitleTextColor(this@CalendarDetailActivity.resources.getColor(R.color.white))
                     tabs.setTabTextColors(resources.getColor(R.color.view_divide), resources.getColor(R
@@ -62,7 +63,7 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
                             .white))
                     toolbar.navigationIcon = this@CalendarDetailActivity.resources.getDrawable(R.drawable.ic_back_white)
                 }
-                // 展开
+                // 展开，真实值为appBarLayout.totalScrollRange
                 Math.abs(verticalOffset) >= appBarLayout.totalScrollRange - 20 -> {
                     toolbar.setTitleTextColor(this@CalendarDetailActivity.resources.getColor(R.color.black))
                     tabs.setTabTextColors(resources.getColor(R.color.text_primary), resources.getColor(R.color
@@ -76,6 +77,7 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         vp_calendar_detail.adapter = adapter
         tabs.setupWithViewPager(vp_calendar_detail)
 
+        // 渲染页面数据
         txt_calendar_title.text = calendarModel.title
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             Utility.runOnNewThread(Runnable {
@@ -94,6 +96,9 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         return R.layout.activity_calendar_detail
     }
 
+    /**
+     *     将ID传给fragment，以便获取评论
+     */
     override fun spreadCalendarId(): Int {
         return calendarModel.id!!
     }
@@ -103,9 +108,13 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         mPresenter?.onDetach()
     }
 
+    /**
+     * 成功获取详情后的回调
+     */
     override fun onDetailLoaded(mData: CalendarDetailModel) {
         txt_calendar_title.text = mData.title
         txt_user_name.text = mData.creatorName
+        txt_good_sum.text = mData.goodPick.toString()
         Glide.with(this).load(mData.creatorAvatar).bitmapTransform(CropCircleTransformation(this)).into(img_user_avatar)
         Glide.with(this).load(mData.picture).into(calendar_avatar)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -136,11 +145,8 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         output.copyTo(inputBmp)
         renderScript.destroy()
         runOnUiThread({
-//            Glide.with(this@CalendarDetailActivity).load(inputBmp).bitmapTransform(CropSquareTransformation(this@CalendarDetailActivity))
-//                    .into(img_calendar_bg)
             img_calendar_bg.setImageDrawable(BitmapDrawable(resources,inputBmp))
         })
     }
-
 }
 
