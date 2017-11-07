@@ -3,22 +3,19 @@ package com.hrsoft.today.mvp.view.detail.activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BlurMaskFilter
 import android.os.Build
-import android.os.WorkSource
 import android.renderscript.Allocation
 import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
 import android.support.annotation.RequiresApi
-import android.support.v7.graphics.Palette
 import com.bumptech.glide.Glide
 import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.contract.DetailContract
 import com.hrsoft.today.mvp.model.CalendarDetailModel
-import com.hrsoft.today.mvp.model.SquareCalendarModel
+import com.hrsoft.today.mvp.model.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
 import com.hrsoft.today.mvp.view.detail.adapter.DetailAdapter
 import com.hrsoft.today.mvp.view.detail.fragment.CommentFragment
@@ -36,7 +33,7 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
     private var calendarId = 0
 
     companion object {
-        fun start(context: Context, model: SquareCalendarModel) {
+        fun start(context: Context, model: SimpleCalendarModel) {
             context.startActivity(Intent(context, CalendarDetailActivity::class.java).apply {
                 putExtra(Config.KEY_SQUARE_CALENDAR, model)
             })
@@ -103,7 +100,7 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         Glide.with(this).load(mData.creatorAvatar).into(calendar_avatar)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             setBackground(Glide.with(this@CalendarDetailActivity).load(mData.creatorAvatar).asBitmap().centerCrop().into
-            (500,500).get(),23f)
+            (500, 500).get(), 23f)
         }
     }
 
@@ -116,8 +113,8 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
     private fun setBackground(source: Bitmap, radius: Float) {
         var inputBmp = source
         var renderScript = RenderScript.create(this)
-        val input = Allocation.createFromBitmap(renderScript,inputBmp)
-        val output = Allocation.createTyped(renderScript,input.type)
+        val input = Allocation.createFromBitmap(renderScript, inputBmp)
+        val output = Allocation.createTyped(renderScript, input.type)
         var scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
         scriptIntrinsicBlur.setInput(input)
         scriptIntrinsicBlur.setRadius(radius)
