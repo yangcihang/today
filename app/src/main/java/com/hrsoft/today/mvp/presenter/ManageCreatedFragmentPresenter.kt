@@ -1,6 +1,6 @@
 package com.hrsoft.today.mvp.presenter
 
-import com.hrsoft.today.mvp.contract.ManageContract
+import com.hrsoft.today.mvp.contract.ManageCreatedContract
 import com.hrsoft.today.mvp.model.SimpleCalendarModel
 import com.hrsoft.today.mvp.model.helper.ManageModelHelper
 
@@ -9,10 +9,22 @@ import com.hrsoft.today.mvp.model.helper.ManageModelHelper
  * @since  17/11/6.
  * email yangcihang@hrsoft.net
  */
-class ManageCalendarActivityPresenter(override var mView: ManageContract.View?) : ManageContract.Presenter {
+class ManageCreatedFragmentPresenter(override var mView: ManageCreatedContract.View?) : ManageCreatedContract.Presenter {
     override fun requestCreatedCalendar() {
         ManageModelHelper.requestCreatedList(this)
 
+    }
+
+    override fun deleteCreatedCalendar(id: Int) {
+        ManageModelHelper.requestDeleteCreatedModel(id,this)
+    }
+
+    fun deleteCreatedCalendarSuccess() {
+        mView?.onDeleteCalendarSuccess()
+    }
+
+    fun deleteCreatedCalendarFailed() {
+        mView?.onDeleteCalendarFailed()
     }
 
     fun onCreatedCalendarLoadSuccess(dataList: List<SimpleCalendarModel>) {
@@ -20,7 +32,6 @@ class ManageCalendarActivityPresenter(override var mView: ManageContract.View?) 
     }
 
     fun onCreatedCalendarLoadFailed() {
-
     }
 
 

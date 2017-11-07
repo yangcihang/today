@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp">
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/img_create_calendar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/txt_create_calendar_title"
+        style="@style/TextCreateTitle"
+        android:layout_below="@id/img_create_calendar"
+        android:text="日历标题"/>
+
+    <EditText
+        android:id="@+id/edit_create_calendar_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_create_calendar_title"/>
+
+    <TextView
+        android:id="@+id/txt_create_calendar_good_title"
+        style="@style/TextCreateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_create_calendar_title"
+        android:text="每日挑选宜的个数"/>
+
+
+    <TextView
+        android:id="@+id/txt_create_calendar_bad_title"
+        style="@style/TextCreateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_create_calendar_good_title"
+        android:text="每日挑选不宜个数"/>
+
+    <TextView
+        android:id="@+id/txt_create_calendar_description"
+        style="@style/TextCreateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_create_calendar_bad_title"
+        android:text="日历描述"/>
+</RelativeLayout>

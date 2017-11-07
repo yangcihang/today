@@ -15,7 +15,9 @@ import com.hrsoft.today.mvp.model.SimpleCalendarModel
  * @since  17/11/6.
  * email yangcihang@hrsoft.net
  */
-class ManageAdapter(mContext: Context) : BaseRecyclerAdapter<SimpleCalendarModel>(mContext) {
+class ManageListAdapter(mContext: Context) : BaseRecyclerAdapter<SimpleCalendarModel>(mContext) {
+    var onEditClickedListener: ((pos: Int, model: SimpleCalendarModel) -> Unit)? = null
+    var onDeleteClickedListener: ((pos: Int, model: SimpleCalendarModel) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<SimpleCalendarModel> {
         return ItemHolder(inflater.inflate(R.layout.item_manage_calendar, parent, false))
     }
@@ -28,6 +30,8 @@ class ManageAdapter(mContext: Context) : BaseRecyclerAdapter<SimpleCalendarModel
         override fun onBind(position: Int) {
             Glide.with(mContext).load(mData?.picture).placeholder(R.mipmap.ic_launcher).into(iconImg)
             titleTxt.text = mData?.title
+            editTxt.setOnClickListener { mData?.let { onEditClickedListener?.invoke(position, it) } }
+            deleteTxt.setOnClickListener { mData?.let { onDeleteClickedListener?.invoke(position, it) } }
         }
     }
 }

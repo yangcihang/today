@@ -23,4 +23,11 @@
     <dimen name="margin_search_img_left">5dp</dimen>
     <dimen name="len_fab_width">56dp</dimen>
     <dimen name="len_fab_height">56dp</dimen>
+    <dimen name="tab_height">40dp</dimen>
+    <!--dialog的参数-->
+    <integer name="dialog_button_txt_size">14</integer>
+    <integer name="dialog_title_txt_size">22</integer>
+    <integer name="dialog_input_hint_txt_size">16</integer>
+    <integer name="dialog_margin_abroad">14</integer>
+    <integer name="dialog_margin_top">14</integer>
 </resources>

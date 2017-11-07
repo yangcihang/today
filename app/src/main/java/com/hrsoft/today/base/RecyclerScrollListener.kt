@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView
  * email yangcihang@hrsoft.net
  */
 
-class RecyclerScrollListener(var onScrolledToLast: ((Int) -> Unit)) : RecyclerView.OnScrollListener() {
+class RecyclerScrollListener(private var onScrolledToLast: ((Int) -> Unit)) : RecyclerView.OnScrollListener() {
 
     override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
         super.onScrollStateChanged(recyclerView, newState)

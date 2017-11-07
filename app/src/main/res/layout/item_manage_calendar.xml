@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-    android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp">
 
     <ImageView
         android:id="@+id/img_manage_calendar"
@@ -30,10 +30,9 @@
         android:id="@+id/txt_manage_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_manage_title"
+        android:layout_alignBottom="@id/img_manage_calendar"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@id/img_manage_calendar"
-        android:layout_toRightOf="@id/img_manage_calendar"
         android:text="编辑"/>
 
     <TextView
@@ -41,10 +40,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/img_manage_calendar"
-        android:layout_below="@id/txt_manage_edit"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="10dp"
-        android:layout_toEndOf="@id/img_manage_calendar"
-        android:layout_toRightOf="@id/img_manage_calendar"
+        android:layout_toEndOf="@id/txt_manage_edit"
         android:text="删除"/>
 
 </RelativeLayout>

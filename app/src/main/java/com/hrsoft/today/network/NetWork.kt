@@ -9,9 +9,6 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 
@@ -61,10 +58,10 @@ interface NetWork {
     fun requestSearchModelList(@Query("keyword") key: String, @Query("page") page: Int): Call<RspModel<List<SimpleCalendarModel>>>
 
     @GET("calendar/{calendarId}/comment")
-    fun requestCalendarCommentList(@Path("calendarId")calendarId:Int): Call<RspModel<List<CommentModel>>>
+    fun requestCalendarCommentList(@Path("calendarId") calendarId: Int): Call<RspModel<List<CommentModel>>>
 
     @GET("calendar/{calendarId}/detail")
-    fun requestCalendarDetail(@Path("calendarId")calendarId:Int): Call<RspModel<CalendarDetailModel>>
+    fun requestCalendarDetail(@Path("calendarId") calendarId: Int): Call<RspModel<CalendarDetailModel>>
 
     @POST("custom/new")
     fun createNewCalendar(@Body model: NewCalendarModel): Call<RspModel<Long>>
@@ -77,4 +74,8 @@ interface NetWork {
 
     @GET("custom/created")
     fun getCreatedCalendar(): Call<RspModel<List<SimpleCalendarModel>>>
+
+    @DELETE("custom/{calendarId}")
+    fun requestDeleteCreatedCalendar(@Path("calendarId") id: Int): Call<RspModel<Long>>
+
 }

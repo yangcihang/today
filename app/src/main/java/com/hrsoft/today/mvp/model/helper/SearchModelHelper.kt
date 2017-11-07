@@ -13,8 +13,8 @@ import com.hrsoft.today.network.RspCallback
 object SearchModelHelper {
     fun requestSearchModelList(content: String,page:Int, callback: SearchActivityPresenter) {
         NetWork.getService().requestSearchModelList(content,page).enqueue(object : RspCallback<List<SimpleCalendarModel>>() {
-            override fun onSuccess(data: List<SimpleCalendarModel>) {
-                callback.onSearchModelListLoadSuccess(data)
+            override fun onSuccess(data: List<SimpleCalendarModel>?) {
+                callback.onSearchModelListLoadSuccess(data!!)
             }
 
             override fun onFailed() {

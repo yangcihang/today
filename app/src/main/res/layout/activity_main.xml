@@ -23,21 +23,21 @@
 
                 <ImageView
                     android:id="@+id/img_drawer_menu"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_alignParentLeft="true"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/margin_top_left"
+                    android:layout_marginStart="@dimen/margin_top_left"
                     android:background="@color/black"/>
 
                 <TextView
                     android:id="@+id/txt_calendar_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="老黄历"
-                    android:textSize="@dimen/text_title"
+                    android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"/>
+                    android:text="老黄历"
+                    android:textSize="@dimen/text_title"/>
             </RelativeLayout>
         </android.support.design.widget.AppBarLayout>
 
@@ -54,9 +54,9 @@
         android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        android:background="@color/navigation_background"
         android:fitsSystemWindows="true"
         android:foregroundGravity="left"
-        android:background="@color/navigation_background"
         android:orientation="horizontal"
         app:headerLayout="@layout/view_navigation_head"
         app:menu="@menu/menu_navigation">

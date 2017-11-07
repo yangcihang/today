@@ -1,7 +1,9 @@
 package com.hrsoft.today.mvp.view.manage.fragment
 
+import android.content.Context
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
+import com.hrsoft.today.mvp.view.manage.activity.CreateCalendarActivity
 
 /**
  * @author YangCihang
@@ -9,6 +11,8 @@ import com.hrsoft.today.base.BaseFragment
  * email yangcihang@hrsoft.net
  */
 class RecommendFragment : BaseFragment() {
+    private var mActivity: CreateCalendarActivity? = null
+
     override fun getLayoutId(): Int {
         return R.layout.fragment_recommend
     }
@@ -20,5 +24,10 @@ class RecommendFragment : BaseFragment() {
     }
 
     override fun loadData() {
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        mActivity = context as CreateCalendarActivity?
     }
 }

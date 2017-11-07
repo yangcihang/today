@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import com.hrsoft.today.util.Utility
 
 /**
  * @author YangCihang
@@ -47,6 +48,14 @@ abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
     fun remove(data: Data) {
         this.dataList.remove(data)
         refreshData()
+    }
+
+    fun remove(pos: Int) {
+        dataList.removeAt(pos)
+        notifyItemRemoved(pos)
+        Utility.runOnUiThread(Runnable {
+            refreshData()
+        }, 500)
     }
 
     /**

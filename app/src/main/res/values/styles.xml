@@ -15,9 +15,9 @@
 
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <!--toolbar style-->
     <style name="toolbar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
@@ -40,6 +40,14 @@
         <item name="android:layout_marginTop">10dp</item>
         <item name="android:layout_marginLeft">10dp</item>
         <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:textSize">@dimen/text_primary</item>
+        <item name="android:color">@color/text_primary</item>
+    </style>
+
+    <style name="TextCreateTitle">
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">@dimen/text_primary</item>
         <item name="android:color">@color/text_primary</item>
     </style>

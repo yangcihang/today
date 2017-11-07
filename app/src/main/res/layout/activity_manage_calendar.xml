@@ -4,14 +4,20 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rec_manage_calendar"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_manage"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="32dp"
-        android:paddingRight="32dp"
-        android:paddingStart="32dp">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_height="@dimen/tab_height">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_manage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tab_manage">
+
+    </android.support.v4.view.ViewPager>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_manage_create"

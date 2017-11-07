@@ -13,8 +13,8 @@ import com.hrsoft.today.network.RspCallback
 object SquareModelHelper {
     fun requestRecommendCalendar(callback: SquareActivityPresenter) {
         NetWork.getService().requestSquareRecommendCalendarList().enqueue(object : RspCallback<List<SimpleCalendarModel>>() {
-            override fun onSuccess(data: List<SimpleCalendarModel>) {
-                callback.onRecommendCalendarLoadSuccess(data)
+            override fun onSuccess(data: List<SimpleCalendarModel>?) {
+                callback.onRecommendCalendarLoadSuccess(data!!)
             }
 
             override fun onFailed() {
@@ -27,8 +27,8 @@ object SquareModelHelper {
 
     fun requestAllCalendar(page:Int,callback: SquareActivityPresenter) {
         NetWork.getService().requestSquareAllCalendarList(page).enqueue(object : RspCallback<List<SimpleCalendarModel>>() {
-            override fun onSuccess(data: List<SimpleCalendarModel>) {
-                callback.onAllCalendarLoadSuccess(data)
+            override fun onSuccess(data: List<SimpleCalendarModel>?) {
+                callback.onAllCalendarLoadSuccess(data!!)
             }
 
             override fun onFailed() {

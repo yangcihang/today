@@ -15,7 +15,7 @@ import com.hrsoft.today.network.RspCallback
 object CreateModelHelper {
     fun createNewCalendar(callback: CreateCalendarActivityPresenter, model: NewCalendarModel) {
         NetWork.getService().createNewCalendar(model).enqueue(object : RspCallback<Long>() {
-            override fun onSuccess(data: Long) {
+            override fun onSuccess(data: Long?) {
                 callback.onCreateNewCalendarSuccess()
             }
 
@@ -31,7 +31,7 @@ object CreateModelHelper {
                 callback.onCreateStateModelSuccess()
             }
 
-            override fun onSuccess(data: Long) {
+            override fun onSuccess(data: Long?) {
                 callback.onCreateStateModelFailed()
             }
 
@@ -40,7 +40,7 @@ object CreateModelHelper {
 
     fun createNewRecommendModel(callback: CreateCalendarActivityPresenter, id: Int, model: List<NewCalendarRecommendModel>) {
         NetWork.getService().createCalendarRecommend(id, model).enqueue(object : RspCallback<Long>() {
-            override fun onSuccess(data: Long) {
+            override fun onSuccess(data: Long?) {
                 callback.onCreateRecommendSuccess()
             }
 

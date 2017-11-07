@@ -4,6 +4,9 @@ import com.hrsoft.today.R
 import com.hrsoft.today.base.ToolbarActivity
 import com.hrsoft.today.mvp.contract.CreateContract
 import com.hrsoft.today.mvp.presenter.CreateCalendarActivityPresenter
+import com.hrsoft.today.mvp.view.manage.fragment.CalendarDescriptionFragment
+import com.hrsoft.today.mvp.view.manage.fragment.RecommendFragment
+import com.hrsoft.today.mvp.view.manage.fragment.StateFragment
 
 /**
  * @author YangCihang
@@ -11,9 +14,10 @@ import com.hrsoft.today.mvp.presenter.CreateCalendarActivityPresenter
  * email yangcihang@hrsoft.net
  */
 class CreateCalendarActivity : ToolbarActivity(), CreateContract.View {
-
     override var mPresenter: CreateContract.Presenter? = CreateCalendarActivityPresenter(this)
-
+    private var descriptionFragment: CalendarDescriptionFragment? = null
+    private var recommendFragment: RecommendFragment? = null
+    private var stateFragment: StateFragment? = null
     override fun initVariable() {
     }
 
@@ -38,6 +42,11 @@ class CreateCalendarActivity : ToolbarActivity(), CreateContract.View {
     }
 
     override fun onCreateStateModelFailed() {
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter?.onDetach()
     }
 
 }

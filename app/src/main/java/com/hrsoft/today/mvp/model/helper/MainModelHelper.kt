@@ -13,7 +13,7 @@ import com.hrsoft.today.network.RspCallback
 object MainModelHelper {
     fun requestCalendarModel(callback: MainActivityPresenter) {
         NetWork.getService().requestCalendarList().enqueue(object : RspCallback<List<CalendarModel>>() {
-            override fun onSuccess(data: List<CalendarModel>) {
+            override fun onSuccess(data: List<CalendarModel>?) {
                 callback.onCalendarLoadSuccess(data)
             }
 
