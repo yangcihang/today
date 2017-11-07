@@ -16,7 +16,7 @@ class CommentModel() : Parcelable {
     var userAvatar:String = ""
     var userName:String = ""
     var comment:String = ""
-    var createAt:Long = 0
+    var createdAt:Long = 0
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readInt()
@@ -25,7 +25,7 @@ class CommentModel() : Parcelable {
         userAvatar = parcel.readString()
         userName = parcel.readString()
         comment = parcel.readString()
-        createAt = parcel.readLong()
+        createdAt = parcel.readLong()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -35,7 +35,7 @@ class CommentModel() : Parcelable {
         parcel.writeString(userAvatar)
         parcel.writeString(userName)
         parcel.writeString(comment)
-        parcel.writeLong(createAt)
+        parcel.writeLong(createdAt)
     }
 
     override fun describeContents(): Int {
@@ -51,4 +51,6 @@ class CommentModel() : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
+
 }

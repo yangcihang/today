@@ -16,12 +16,12 @@ import kotlinx.android.synthetic.main.fragment_calendar_comment.*
  * @since 17/11/6 21:08.
  * email caiheng@hrsoft.net.
  */
-class CommentFragment: BaseFragment(),CommentFragmentContrat.View{
+class CommentFragment : BaseFragment(), CommentFragmentContrat.View {
 
 
     override var mPresenter: CommentFragmentContrat.Presenter? = CommentFragmentPresenter(this)
     var calendarId = 0
-    private var commentAdapter:CommentAdapter? =null
+    private var commentAdapter: CommentAdapter? = null
     override fun getLayoutId(): Int {
         return R.layout.fragment_calendar_comment
     }
@@ -33,21 +33,21 @@ class CommentFragment: BaseFragment(),CommentFragmentContrat.View{
     override fun initView() {
         rec_calendar_comment.apply {
             adapter = commentAdapter
-            layoutManager = LinearLayoutManager(this@CommentFragment.context,LinearLayoutManager.VERTICAL,false)
+            layoutManager = LinearLayoutManager(this@CommentFragment.context, LinearLayoutManager.VERTICAL, false)
         }
     }
 
     override fun loadData() {
-//        mPresenter?.getComment(calendarId)
+        mPresenter?.getComment(calendarId)
     }
 
-    interface GetCalendarIdListener{
-        fun spreadCalendarId():Int
+    interface GetCalendarIdListener {
+        fun spreadCalendarId(): Int
     }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        var getCalendarIdLister:GetCalendarIdListener = context as GetCalendarIdListener
+        var getCalendarIdLister: GetCalendarIdListener = context as GetCalendarIdListener
         calendarId = getCalendarIdLister.spreadCalendarId()
     }
 

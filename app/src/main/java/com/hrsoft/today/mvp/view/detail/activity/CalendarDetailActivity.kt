@@ -3,6 +3,7 @@ package com.hrsoft.today.mvp.view.detail.activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.renderscript.Allocation
 import android.renderscript.Element
@@ -20,6 +21,8 @@ import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
 import com.hrsoft.today.mvp.view.detail.adapter.DetailAdapter
 import com.hrsoft.today.mvp.view.detail.fragment.CommentFragment
 import com.hrsoft.today.util.ToastUtil
+import com.hrsoft.today.util.Utility
+import com.hrsoft.today.widget.CropCircleTransformation
 import kotlinx.android.synthetic.main.activity_calendar_detail.*
 
 /**
@@ -30,7 +33,7 @@ import kotlinx.android.synthetic.main.activity_calendar_detail.*
 class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFragment.GetCalendarIdListener {
 
 
-    private var calendarId = 0
+    private lateinit var calendarModel: SimpleCalendarModel
 
     companion object {
         fun start(context: Context, model: SimpleCalendarModel) {
@@ -43,28 +46,28 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
     override var mPresenter: DetailContract.Presenter? = DetailActivityPresenter(this)
 
     override fun initVariable() {
+        calendarModel = intent.getSerializableExtra(Config.KEY_SQUARE_CALENDAR) as SimpleCalendarModel
+
     }
 
     override fun initView() {
 
         app_bar_detail.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             when {
-                verticalOffset == 0 -> {
+                // 折叠
+                (verticalOffset in 0..20) -> {
                     toolbar.setTitleTextColor(this@CalendarDetailActivity.resources.getColor(R.color.white))
                     tabs.setTabTextColors(resources.getColor(R.color.view_divide), resources.getColor(R
                             .color
                             .white))
+                    toolbar.navigationIcon = this@CalendarDetailActivity.resources.getDrawable(R.drawable.ic_back_white)
                 }
-                Math.abs(verticalOffset) >= appBarLayout.totalScrollRange -> {
+                // 展开
+                Math.abs(verticalOffset) >= appBarLayout.totalScrollRange - 20 -> {
                     toolbar.setTitleTextColor(this@CalendarDetailActivity.resources.getColor(R.color.black))
                     tabs.setTabTextColors(resources.getColor(R.color.text_primary), resources.getColor(R.color
                             .black))
-                }
-                else -> {
-                    toolbar.setTitleTextColor(this@CalendarDetailActivity.resources.getColor(R.color.accent))
-                    tabs.setTabTextColors(resources.getColor(R.color.view_divide), resources.getColor(R
-                            .color
-                            .accent))
+                    toolbar.navigationIcon = this@CalendarDetailActivity.resources.getDrawable(R.drawable.ic_back_black)
                 }
             }
         }
@@ -73,11 +76,18 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         vp_calendar_detail.adapter = adapter
         tabs.setupWithViewPager(vp_calendar_detail)
 
-
+        txt_calendar_title.text = calendarModel.title
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            Utility.runOnNewThread(Runnable {
+                setBackground(Glide.with(this@CalendarDetailActivity).load(calendarModel.picture).asBitmap().centerCrop().into
+                (500, 500).get(), 23f)
+            })
+        }
+        toolbar.setNavigationOnClickListener { finish() }
     }
 
     override fun loadData() {
-//        mPresenter?.getCalendarInfo(calendarId)
+        mPresenter?.getCalendarInfo(calendarModel.id!!)
     }
 
     override fun getLayoutId(): Int {
@@ -85,7 +95,7 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
     }
 
     override fun spreadCalendarId(): Int {
-        return calendarId
+        return calendarModel.id!!
     }
 
     override fun onDestroy() {
@@ -96,19 +106,23 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
     override fun onDetailLoaded(mData: CalendarDetailModel) {
         txt_calendar_title.text = mData.title
         txt_user_name.text = mData.creatorName
-        Glide.with(this).load(mData.picture).into(img_user_avatar)
-        Glide.with(this).load(mData.creatorAvatar).into(calendar_avatar)
+        Glide.with(this).load(mData.creatorAvatar).bitmapTransform(CropCircleTransformation(this)).into(img_user_avatar)
+        Glide.with(this).load(mData.picture).into(calendar_avatar)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            setBackground(Glide.with(this@CalendarDetailActivity).load(mData.creatorAvatar).asBitmap().centerCrop().into
-            (500, 500).get(), 23f)
+            Utility.runOnNewThread(Runnable {
+                setBackground(Glide.with(this@CalendarDetailActivity).load(mData.picture).asBitmap().centerCrop().into
+                (500, 500).get(), 25f)
+            })
         }
     }
 
     override fun onDetailLoadFailed() {
         ToastUtil.showToast("信息加载失败，请稍后再试")
-
     }
 
+    /**
+     * 设置高斯模糊背景图
+     */
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private fun setBackground(source: Bitmap, radius: Float) {
         var inputBmp = source
@@ -121,7 +135,11 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         scriptIntrinsicBlur.forEach(output)
         output.copyTo(inputBmp)
         renderScript.destroy()
-        Glide.with(this).load(inputBmp).into(img_calendar_bg)
+        runOnUiThread({
+//            Glide.with(this@CalendarDetailActivity).load(inputBmp).bitmapTransform(CropSquareTransformation(this@CalendarDetailActivity))
+//                    .into(img_calendar_bg)
+            img_calendar_bg.setImageDrawable(BitmapDrawable(resources,inputBmp))
+        })
     }
 
 }

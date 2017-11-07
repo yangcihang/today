@@ -3,6 +3,7 @@ package com.hrsoft.today.mvp.view.detail.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import android.view.View
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.mvp.view.detail.fragment.CommentFragment
 import com.hrsoft.today.mvp.view.detail.fragment.DescriptionFragment
@@ -24,7 +25,10 @@ class DetailAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         when(position){
             0-> currentFragment= descriptionFragment
-            1-> currentFragment= commentFragment
+            1-> {
+                currentFragment= commentFragment
+                TODO("隐藏FAB")
+            }
         }
         return currentFragment
     }
