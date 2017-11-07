@@ -5,19 +5,15 @@ import com.hrsoft.today.mvp.model.SimpleCalendarModel
 
 /**
  * @author YangCihang
- * @since  17/11/5.
+ * @since  17/11/6.
  * email yangcihang@hrsoft.net
  */
-class SearchContract {
+interface ManageContract {
     interface View : BaseContract.View<Presenter> {
-        fun onSearchListLoadSuccess(modelList: List<SimpleCalendarModel>)
-        fun onSearchListLoadFailed()
-        fun scrollToLastPage()
-
-
+        fun onCalendarLoadSuccess(dataList: List<SimpleCalendarModel>)
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-        fun requestSearchList(content: String, page: Int)
+        fun requestCreatedCalendar()
     }
 }

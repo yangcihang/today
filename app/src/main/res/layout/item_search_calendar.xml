@@ -5,13 +5,15 @@
 
     <ImageView
         android:id="@+id/img_search_calendar"
-        android:layout_width="@dimen/len_search_item_width"
-        android:layout_height="@dimen/len_search_item_height"
-        android:layout_marginEnd="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="@dimen/len_middle_item_width"
+        android:layout_height="@dimen/len_middle_img_height"
+        android:layout_marginEnd="@dimen/margin_search_img_right"
+        android:layout_marginRight="@dimen/margin_search_img_right"
+        android:layout_marginTop="@dimen/margin_search_img_top"
+        android:layout_marginLeft="@dimen/margin_search_img_left"
         android:background="@drawable/ic_launcher_background"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:layout_marginStart="@dimen/margin_search_img_left"/>
 
     <TextView
         android:id="@+id/txt_search_calendar_title"

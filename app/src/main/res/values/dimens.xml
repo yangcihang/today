@@ -15,7 +15,12 @@
 
     <dimen name="len_square_item_height">136dp</dimen>
     <dimen name="len_square_item_width">136dp</dimen>
-    <dimen name="len_search_item_height">100dp</dimen>
-    <dimen name="len_search_item_width">100dp</dimen>
+    <dimen name="len_middle_img_height">100dp</dimen>
+    <dimen name="len_middle_item_width">100dp</dimen>
     <dimen name="margin_top_right">15dp</dimen>
+    <dimen name="margin_search_img_right">5dp</dimen>
+    <dimen name="margin_search_img_top">8dp</dimen>
+    <dimen name="margin_search_img_left">5dp</dimen>
+    <dimen name="len_fab_width">56dp</dimen>
+    <dimen name="len_fab_height">56dp</dimen>
 </resources>

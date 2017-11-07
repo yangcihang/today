@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.contract
 
 import com.hrsoft.today.base.BaseContract
-import com.hrsoft.today.mvp.model.SquareCalendarModel
+import com.hrsoft.today.mvp.model.SimpleCalendarModel
 
 /**
  * @author YangCihang
@@ -10,8 +10,8 @@ import com.hrsoft.today.mvp.model.SquareCalendarModel
  */
 interface SquareContract {
     interface View : BaseContract.View<Presenter> {
-        fun onRecommendCalendarLoadSuccess(calendarModel: List<SquareCalendarModel>)
-        fun onAllCalendarLoadSuccess(calendarModel: List<SquareCalendarModel>)
+        fun onRecommendCalendarLoadSuccess(calendarModel: List<SimpleCalendarModel>)
+        fun onAllCalendarLoadSuccess(calendarModel: List<SimpleCalendarModel>)
         fun onDateLoadFailed()
         fun scrollToLastPage()
     }

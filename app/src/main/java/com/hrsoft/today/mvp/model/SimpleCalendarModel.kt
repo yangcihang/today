@@ -7,7 +7,7 @@ import java.io.Serializable
  * @since  17/11/5.
  * email yangcihang@hrsoft.net
  */
-class SquareCalendarModel : Serializable {
+class SimpleCalendarModel : Serializable {
     var id: Int? = null
     var title: String? = ""
     var picture: String? = ""

@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".mvp.view.square.activity.SquareActivity"/>
         <activity android:name=".mvp.view.square.activity.SearchActivity"/>
+        <activity android:name=".mvp.view.manage.activity.ManageCalendarActivity"/>
+        <activity android:name=".mvp.view.manage.activity.CreateCalendarActivity"/>
         <activity android:name=".mvp.view.detail.activity.CalendarDetailActivity"/>
     </application>
 

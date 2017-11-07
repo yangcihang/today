@@ -1,4 +1,4 @@
-package com.hrsoft.today.mvp.view.square.adapter
+package com.hrsoft.today.mvp.view.manage.adapter
 
 import android.content.Context
 import android.view.View
@@ -12,20 +12,22 @@ import com.hrsoft.today.mvp.model.SimpleCalendarModel
 
 /**
  * @author YangCihang
- * @since  17/11/5.
+ * @since  17/11/6.
  * email yangcihang@hrsoft.net
  */
-class SquareListAdapter(mContext: Context) : BaseRecyclerAdapter<SimpleCalendarModel>(mContext) {
+class ManageAdapter(mContext: Context) : BaseRecyclerAdapter<SimpleCalendarModel>(mContext) {
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<SimpleCalendarModel> {
-        return ItemHolder(inflater.inflate(R.layout.item_square_content, parent, false))
+        return ItemHolder(inflater.inflate(R.layout.item_manage_calendar, parent, false))
     }
 
     inner class ItemHolder(itemView: View) : BaseRecyclerAdapter.BaseViewHolder<SimpleCalendarModel>(itemView) {
-        private var titleTxt: TextView = itemView.findViewById(R.id.txt_square_calendar_title)
-        private var calendarImg: ImageView = itemView.findViewById(R.id.img_square_calendar)
+        private var iconImg: ImageView = itemView.findViewById(R.id.img_manage_calendar)
+        private var titleTxt: TextView = itemView.findViewById(R.id.txt_manage_title)
+        private var editTxt: TextView = itemView.findViewById(R.id.txt_manage_edit)
+        private var deleteTxt: TextView = itemView.findViewById(R.id.txt_manage_delete)
         override fun onBind(position: Int) {
+            Glide.with(mContext).load(mData?.picture).placeholder(R.mipmap.ic_launcher).into(iconImg)
             titleTxt.text = mData?.title
-            Glide.with(mContext).load(mData?.picture).placeholder(R.mipmap.ic_launcher).into(calendarImg)
         }
     }
 }

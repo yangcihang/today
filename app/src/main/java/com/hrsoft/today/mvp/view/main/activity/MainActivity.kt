@@ -9,6 +9,7 @@ import com.hrsoft.today.mvp.contract.MainContract
 import com.hrsoft.today.mvp.model.CalendarModel
 import com.hrsoft.today.mvp.model.User
 import com.hrsoft.today.mvp.presenter.MainActivityPresenter
+import com.hrsoft.today.mvp.view.manage.activity.ManageCalendarActivity
 import com.hrsoft.today.mvp.view.main.adapter.MainPagerAdapter
 import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
 import com.hrsoft.today.mvp.view.square.activity.SquareActivity
@@ -32,6 +33,7 @@ class MainActivity : NoBarActivity(), MainContract.View {
             item ->
             when (item.itemId) {
                 R.id.menu_square -> startActivity(Intent(this@MainActivity, SquareActivity::class.java))
+                R.id.menu_create -> startActivity(Intent(this@MainActivity, ManageCalendarActivity::class.java))
             }
             return@setNavigationItemSelectedListener true
         }

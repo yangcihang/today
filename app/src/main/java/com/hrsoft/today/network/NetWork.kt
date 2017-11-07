@@ -8,6 +8,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -51,17 +52,29 @@ interface NetWork {
     fun requestCalendarList(): Call<RspModel<List<CalendarModel>>>
 
     @GET("piazza/most-subscribed")
-    fun requestSquareRecommendCalendarList(): Call<RspModel<List<SquareCalendarModel>>>
+    fun requestSquareRecommendCalendarList(): Call<RspModel<List<SimpleCalendarModel>>>
 
     @GET("piazza/all")
-    fun requestSquareAllCalendarList(@Query("page") page: Int): Call<RspModel<List<SquareCalendarModel>>>
+    fun requestSquareAllCalendarList(@Query("page") page: Int): Call<RspModel<List<SimpleCalendarModel>>>
 
     @GET("piazza/search")
-    fun requestSearchModelList(@Query("keyword") key: String): Call<RspModel<List<SquareCalendarModel>>>
+    fun requestSearchModelList(@Query("keyword") key: String, @Query("page") page: Int): Call<RspModel<List<SimpleCalendarModel>>>
 
     @GET("calendar/{calendarId}/comment")
     fun requestCalendarCommentList(@Path("calendarId")calendarId:Int): Call<RspModel<List<CommentModel>>>
 
     @GET("calendar/{calendarId}/detail")
     fun requestCalendarDetail(@Path("calendarId")calendarId:Int): Call<RspModel<CalendarDetailModel>>
+
+    @POST("custom/new")
+    fun createNewCalendar(@Body model: NewCalendarModel): Call<RspModel<Long>>
+
+    @POST("custom/{calendarId}/activities")
+    fun createCalendarStates(@Path("calendarId") id: Int, @Body model: List<CalendarStateItemModel>): Call<RspModel<Long>>
+
+    @POST("custom/{Id}/items")
+    fun createCalendarRecommend(@Path("Id") id: Int, @Body modelList: List<NewCalendarRecommendModel>): Call<RspModel<Long>>
+
+    @GET("custom/created")
+    fun getCreatedCalendar(): Call<RspModel<List<SimpleCalendarModel>>>
 }

@@ -8,19 +8,19 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseRecyclerAdapter
-import com.hrsoft.today.mvp.model.SquareCalendarModel
+import com.hrsoft.today.mvp.model.SimpleCalendarModel
 
 /**
  * @author YangCihang
  * @since  17/11/5.
  * email yangcihang@hrsoft.net
  */
-class SearchListAdapter(mContext: Context) : BaseRecyclerAdapter<SquareCalendarModel>(mContext) {
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<SquareCalendarModel> {
+class SearchListAdapter(mContext: Context) : BaseRecyclerAdapter<SimpleCalendarModel>(mContext) {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<SimpleCalendarModel> {
         return ItemHolder(inflater.inflate(R.layout.item_search_calendar, parent, false))
     }
 
-    inner class ItemHolder(itemView: View) : BaseRecyclerAdapter.BaseViewHolder<SquareCalendarModel>(itemView) {
+    inner class ItemHolder(itemView: View) : BaseRecyclerAdapter.BaseViewHolder<SimpleCalendarModel>(itemView) {
         private var titleTxt: TextView = itemView.findViewById(R.id.txt_search_calendar_title)
         private var subscribedTxt: TextView = itemView.findViewById(R.id.txt_search_calendar_subscribed)
         private var iconImg: ImageView = itemView.findViewById(R.id.img_search_calendar)
