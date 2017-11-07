@@ -6,6 +6,7 @@ import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.contract.DetailContract
+import com.hrsoft.today.mvp.model.CalendarDetailModel
 import com.hrsoft.today.mvp.model.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
 
@@ -15,6 +16,11 @@ import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
  * email yangcihang@hrsoft.net
  */
 class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
+    override fun onDetailLoaded(mData: CalendarDetailModel) {
+    }
+
+    override fun onDetailLoadFailed() {
+    }
 
     companion object {
         fun start(context: Context, model: SimpleCalendarModel) {
