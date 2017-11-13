@@ -8,7 +8,7 @@ import com.hrsoft.today.mvp.model.SimpleCalendarModel
  * @since  17/11/5.
  * email yangcihang@hrsoft.net
  */
-class SearchContract {
+interface SearchContract {
     interface View : BaseContract.View<Presenter> {
         fun onSearchListLoadSuccess(modelList: List<SimpleCalendarModel>)
         fun onSearchListLoadFailed()

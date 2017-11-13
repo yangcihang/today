@@ -2,7 +2,7 @@
 <resources>
     <!--通用颜色-->
     <color name="primary">#5e70d1</color>
-    <color name="primary_dark">#303F9F</color>
+    <color name="primary_dark">#272727</color>
     <color name="primary_light">#b3e5fc</color>
 
     <color name="accent">#ff3955</color>

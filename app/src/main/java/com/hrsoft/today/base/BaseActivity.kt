@@ -67,9 +67,7 @@ abstract class BaseActivity : AppCompatActivity() {
      * 取消ProgressDialog
      */
     protected fun disMissProgressDialog() {
-        if (!isDestroyed && progressDialog!!.isShowing) {
             Utility.runOnUiThread(Runnable { progressDialog!!.dismiss() }, 300)
-        }
     }
 
     override fun onDestroy() {

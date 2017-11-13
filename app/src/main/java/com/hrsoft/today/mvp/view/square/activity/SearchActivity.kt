@@ -26,8 +26,7 @@ class SearchActivity : NoBarActivity(), SearchContract.View {
     private lateinit var adapter: SearchListAdapter
     override fun initVariable() {
         adapter = SearchListAdapter(this).apply {
-            onClickedListener = {
-                model, _ ->
+            onClickedListener = { model, _ ->
                 CalendarDetailActivity.start(this@SearchActivity, model)
             }
         }
@@ -42,12 +41,16 @@ class SearchActivity : NoBarActivity(), SearchContract.View {
                     { if (!isLastPage) mPresenter?.requestSearchList(edit_search.text.toString().trim(), page++) }))
         }
         img_search.setOnClickListener {
+            isLastPage = false
             page = 1
+            adapter.dataList.clear()
             mPresenter?.requestSearchList(edit_search.text.toString().trim(), page++)
         }
         edit_search.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                isLastPage = false
                 page = 1
+                adapter.dataList.clear()
                 mPresenter?.requestSearchList(edit_search.text.toString().trim(), page++)
                 return@setOnEditorActionListener true
             }

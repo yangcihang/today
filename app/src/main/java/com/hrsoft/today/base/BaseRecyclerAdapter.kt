@@ -32,7 +32,10 @@ abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
     /**
      * 刷新数据源
      */
-    fun refreshData() = notifyDataSetChanged()
+    fun refreshData() {
+        notifyDataSetChanged()
+    }
+
 
     /**
      * 添加数据源

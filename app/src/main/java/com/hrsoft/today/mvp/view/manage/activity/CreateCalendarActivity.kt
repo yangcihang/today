@@ -1,27 +1,53 @@
 package com.hrsoft.today.mvp.view.manage.activity
 
 import com.hrsoft.today.R
-import com.hrsoft.today.base.ToolbarActivity
+import com.hrsoft.today.base.BaseFragment
+import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.mvp.contract.CreateContract
 import com.hrsoft.today.mvp.presenter.CreateCalendarActivityPresenter
 import com.hrsoft.today.mvp.view.manage.fragment.CalendarDescriptionFragment
 import com.hrsoft.today.mvp.view.manage.fragment.RecommendFragment
 import com.hrsoft.today.mvp.view.manage.fragment.StateFragment
+import com.hrsoft.today.util.FragmentUtil
+import com.hrsoft.today.util.ToastUtil
+import kotlinx.android.synthetic.main.activity_create_calendar.*
 
 /**
  * @author YangCihang
  * @since  17/11/6.
  * email yangcihang@hrsoft.net
  */
-class CreateCalendarActivity : ToolbarActivity(), CreateContract.View {
+class CreateCalendarActivity : NoBarActivity(), CreateContract.View {
+
     override var mPresenter: CreateContract.Presenter? = CreateCalendarActivityPresenter(this)
-    private var descriptionFragment: CalendarDescriptionFragment? = null
-    private var recommendFragment: RecommendFragment? = null
-    private var stateFragment: StateFragment? = null
+    private lateinit var descriptionFragment: CalendarDescriptionFragment
+    private lateinit var recommendFragment: RecommendFragment
+    private lateinit var stateFragment: StateFragment
+    private var changeFragmentListener: (() -> Unit)? = null
     override fun initVariable() {
+        descriptionFragment = CalendarDescriptionFragment()
+        recommendFragment = RecommendFragment()
+        stateFragment = StateFragment()
     }
 
     override fun initView() {
+        replaceFragment(descriptionFragment)
+        descriptionFragment.onRequestQiNiuTokenListener = { mPresenter!!.upLoadPicture(it) }
+        txt_create_next.setOnClickListener {
+            showProgressDialog(R.string.toast_wait)
+            when {
+                !descriptionFragment.isHidden -> {
+                    mPresenter?.createNewCalendar(descriptionFragment.getCalendarDescription())
+                    changeFragmentListener = { changeFragment(descriptionFragment, stateFragment) }
+                }
+                !stateFragment.isHidden -> {
+                    changeFragmentListener = { changeFragment(stateFragment, recommendFragment) }
+                }
+                !recommendFragment.isHidden -> {
+                    changeFragmentListener = { this@CreateCalendarActivity.finish() }
+                }
+            }
+        }
     }
 
     override fun loadData() {
@@ -31,17 +57,70 @@ class CreateCalendarActivity : ToolbarActivity(), CreateContract.View {
         return R.layout.activity_create_calendar
     }
 
+    /**
+     * 创建新黄历成功时回调
+     */
     override fun onCreateNewCalendarSuccess() {
-
+        disMissProgressDialog()
+        changeFragmentListener?.invoke()
     }
 
+    /**
+     * 创建好坏成功时回调
+     */
     override fun onCreateStateModelSuccess() {
+        disMissProgressDialog()
+        changeFragmentListener?.invoke()
     }
 
+    /**
+     * 创建推荐成功时回调
+     */
+    override fun onCreateRecommendSuccess() {
+        disMissProgressDialog()
+        changeFragmentListener?.invoke()
+    }
+
+    /**
+     * 创建新黄历失败时回调
+     */
     override fun onCreateNewCalendarFailed() {
+        disMissProgressDialog()
     }
 
+    /**
+     * 创建好坏失败时回调
+     */
     override fun onCreateStateModelFailed() {
+        disMissProgressDialog()
+    }
+
+    /**
+     * 创建推荐失败时回调
+     */
+    override fun onPictureUploadSuccess(path: String) {
+        descriptionFragment.netPicturePath = path
+        ToastUtil.showToast("上传成功")
+
+    }
+
+    override fun onPictureUploadFailed() {
+        disMissProgressDialog()
+        ToastUtil.showToast("上传失败")
+
+    }
+
+    override fun onCreateRecommendFailed() {
+        disMissProgressDialog()
+    }
+
+    private fun changeFragment(hideFragment: BaseFragment, showFragment: BaseFragment) {
+        FragmentUtil.hideFragment(this, hideFragment)
+        FragmentUtil.showFragment(this, showFragment)
+    }
+
+    private fun replaceFragment(fragment: BaseFragment) {
+        FragmentUtil.replace(this, R.id.frame_create, fragment, null)
     }
 
     override fun onDestroy() {

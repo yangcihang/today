@@ -1,11 +1,13 @@
 package com.hrsoft.today.mvp.model.helper
 
+import com.hrsoft.today.App
 import com.hrsoft.today.mvp.model.CalendarStateItemModel
 import com.hrsoft.today.mvp.model.NewCalendarModel
 import com.hrsoft.today.mvp.model.NewCalendarRecommendModel
 import com.hrsoft.today.mvp.presenter.CreateCalendarActivityPresenter
 import com.hrsoft.today.network.NetWork
 import com.hrsoft.today.network.RspCallback
+import java.util.*
 
 /**
  * @author YangCihang
@@ -46,6 +48,22 @@ object CreateModelHelper {
 
             override fun onFailed() {
                 callback.onCreateRecommendFailed()
+            }
+
+        })
+    }
+
+    fun getQiNiuToken(picturePath: String, callback: CreateCalendarActivityPresenter): Unit {
+        NetWork.getService().getToken().enqueue(object : RspCallback<String>() {
+            override fun onSuccess(data: String?) {
+                App.instance.uploadManager.put(picturePath, UUID.randomUUID().toString(), data
+                        , { key, info, res ->
+                    if (info.isOK) callback.onUploadPictureSuccess(key) else callback.onCreateRecommendFailed()
+                }, null)
+            }
+
+            override fun onFailed() {
+                callback.onUploadPictureFailed()
             }
 
         })

@@ -8,15 +8,16 @@ import com.hrsoft.today.mvp.model.CommentModel
  * @since 17/11/7 00:29.
  * email caiheng@hrsoft.net.
  */
-class CommentFragmentContrat:BaseContract{
+interface CommentContract : BaseContract {
     interface View : BaseContract.View<Presenter> {
-        fun onCommentListLoaded(dataList:List<CommentModel>)
+        fun onCommentListLoaded(dataList: List<CommentModel>)
         fun onCommentListLoadFailed()
+        fun onToTheLastPage()
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-        fun getComment(calendarId:Int)
-        fun onCommentListLoaded(dataList:List<CommentModel>)
+        fun getComment(page: Int, calendarId: Int)
+        fun onCommentListLoadSuccess(dataList: List<CommentModel>)
         fun onCommentListLoadFailed()
     }
 }

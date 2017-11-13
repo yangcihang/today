@@ -3,7 +3,6 @@ package com.hrsoft.today.mvp.view.detail.adapter
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.view.View
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.mvp.view.detail.fragment.CommentFragment
 import com.hrsoft.today.mvp.view.detail.fragment.DescriptionFragment
@@ -13,7 +12,7 @@ import com.hrsoft.today.mvp.view.detail.fragment.DescriptionFragment
  * @since 17/11/6 21:14.
  * email caiheng@hrsoft.net.
  */
-class DetailAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
+class DetailPagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm) {
 
 
 

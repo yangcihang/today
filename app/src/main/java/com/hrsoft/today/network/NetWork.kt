@@ -58,7 +58,7 @@ interface NetWork {
     fun requestSearchModelList(@Query("keyword") key: String, @Query("page") page: Int): Call<RspModel<List<SimpleCalendarModel>>>
 
     @GET("calendar/{calendarId}/comment")
-    fun requestCalendarCommentList(@Path("calendarId") calendarId: Int): Call<RspModel<List<CommentModel>>>
+    fun requestCalendarCommentList(@Path("calendarId") calendarId: Int, @Query("page") page: Int): Call<RspModel<List<CommentModel>>>
 
     @GET("calendar/{calendarId}/detail")
     fun requestCalendarDetail(@Path("calendarId") calendarId: Int): Call<RspModel<CalendarDetailModel>>
@@ -77,5 +77,8 @@ interface NetWork {
 
     @DELETE("custom/{calendarId}")
     fun requestDeleteCreatedCalendar(@Path("calendarId") id: Int): Call<RspModel<Long>>
+
+    @GET("custom/upload/token")
+    fun getToken(): Call<RspModel<String>>
 
 }

@@ -37,7 +37,7 @@ class UserCreatedFragment : BaseFragment(), ManageCreatedContract.View {
                     ->
                     CalendarDetailActivity.start(context, model)
                 }
-                onEditClickedListener = { pos, model -> ToastUtil.showToast("点击了修改" + pos) }
+                onEditClickedListener = { pos, _ -> ToastUtil.showToast("点击了修改" + pos) }
                 onDeleteClickedListener = { pos, model ->
                     deletePos = pos
                     DialogUtils(context)

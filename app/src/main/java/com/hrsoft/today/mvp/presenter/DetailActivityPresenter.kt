@@ -11,8 +11,6 @@ import com.hrsoft.today.mvp.model.helper.DetailModelHelper
  */
 class DetailActivityPresenter(override var mView: DetailContract.View?) : DetailContract.Presenter {
 
-
-
     override fun onDetach() {
         mView = null
     }

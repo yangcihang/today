@@ -7,12 +7,18 @@ import java.io.Serializable
  * @since  17/11/6.
  * email yangcihang@hrsoft.net
  */
-class NewCalendarModel : Serializable {
-    var title: String? = ""
-    var description: String? = ""
-    var picture: String? = ""
-    var isPublic: Int? = null
-    var password: String? = ""
-    var goodPick: Int? = null
-    var badPick: Int? = null
+class NewCalendarModel(var title: String? = "",
+                       var description: String? = "",
+                       var picture: String? = "",
+                       var isPublic: Int? = null,
+                       var password: String? = null,
+                       var goodPick: Int?,
+                       var badPick: Int?) : Serializable {
+//    var title: String? = ""
+//    var description: String? = ""
+//    var picture: String? = ""
+//    var isPublic: Int? = null
+//    var password: String? = ""
+//    var goodPick: Int? = null
+//    var badPick: Int? = null
 }

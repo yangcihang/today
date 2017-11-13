@@ -5,7 +5,7 @@
 
     <ImageView
         android:id="@+id/img_search_calendar"
-        android:layout_width="@dimen/len_middle_item_width"
+        android:layout_width="@dimen/len_middle_img_width"
         android:layout_height="@dimen/len_middle_img_height"
         android:layout_marginEnd="@dimen/margin_search_img_right"
         android:layout_marginRight="@dimen/margin_search_img_right"

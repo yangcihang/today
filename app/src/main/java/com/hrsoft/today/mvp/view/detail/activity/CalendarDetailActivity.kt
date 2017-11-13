@@ -9,7 +9,6 @@ import android.renderscript.Allocation
 import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
-import android.support.annotation.RequiresApi
 import com.bumptech.glide.Glide
 import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
@@ -18,7 +17,7 @@ import com.hrsoft.today.mvp.contract.DetailContract
 import com.hrsoft.today.mvp.model.CalendarDetailModel
 import com.hrsoft.today.mvp.model.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
-import com.hrsoft.today.mvp.view.detail.adapter.DetailAdapter
+import com.hrsoft.today.mvp.view.detail.adapter.DetailPagerAdapter
 import com.hrsoft.today.mvp.view.detail.fragment.CommentFragment
 import com.hrsoft.today.util.ToastUtil
 import com.hrsoft.today.util.Utility
@@ -31,7 +30,6 @@ import kotlinx.android.synthetic.main.activity_calendar_detail.*
  * email yangcihang@hrsoft.net
  */
 class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFragment.GetCalendarIdListener {
-
 
 
     private lateinit var calendarModel: SimpleCalendarModel
@@ -55,26 +53,20 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         // 获取toolbar的折叠凳状态，以修改文字颜色等
         app_bar_detail.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             when {
-                // 折叠，真实值=0，加范围以防止误触
+            // 折叠，真实值=0，加范围以防止误触
                 (verticalOffset in 0..20) -> {
                     toolbar.setTitleTextColor(this@CalendarDetailActivity.resources.getColor(R.color.white))
-                    tabs.setTabTextColors(resources.getColor(R.color.view_divide), resources.getColor(R
-                            .color
-                            .white))
                     toolbar.navigationIcon = this@CalendarDetailActivity.resources.getDrawable(R.drawable.ic_back_white)
                 }
-                // 展开，真实值为appBarLayout.totalScrollRange
+            // 展开，真实值为appBarLayout.totalScrollRange
                 Math.abs(verticalOffset) >= appBarLayout.totalScrollRange - 20 -> {
                     toolbar.setTitleTextColor(this@CalendarDetailActivity.resources.getColor(R.color.black))
-                    tabs.setTabTextColors(resources.getColor(R.color.text_primary), resources.getColor(R.color
-                            .black))
                     toolbar.navigationIcon = this@CalendarDetailActivity.resources.getDrawable(R.drawable.ic_back_black)
                 }
             }
         }
-
-        val adapter = DetailAdapter(supportFragmentManager)
-        vp_calendar_detail.adapter = adapter
+        tabs.setTabTextColors(resources.getColor(R.color.text_ternary), resources.getColor(R.color.black))
+        vp_calendar_detail.adapter = DetailPagerAdapter(supportFragmentManager)
         tabs.setupWithViewPager(vp_calendar_detail)
 
         // 渲染页面数据
@@ -132,21 +124,21 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
     /**
      * 设置高斯模糊背景图
      */
-    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private fun setBackground(source: Bitmap, radius: Float) {
-        var inputBmp = source
-        var renderScript = RenderScript.create(this)
+        val inputBmp = source
+        val renderScript = RenderScript.create(this)
         val input = Allocation.createFromBitmap(renderScript, inputBmp)
         val output = Allocation.createTyped(renderScript, input.type)
-        var scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
+        val scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
         scriptIntrinsicBlur.setInput(input)
         scriptIntrinsicBlur.setRadius(radius)
         scriptIntrinsicBlur.forEach(output)
         output.copyTo(inputBmp)
         renderScript.destroy()
-        runOnUiThread({
-            img_calendar_bg.setImageDrawable(BitmapDrawable(resources,inputBmp))
+        Utility.runOnUiThread(Runnable {
+            img_calendar_bg.setImageDrawable(BitmapDrawable(resources, inputBmp))
         })
+
     }
 }
 

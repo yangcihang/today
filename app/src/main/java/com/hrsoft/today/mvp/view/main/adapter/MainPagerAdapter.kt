@@ -10,7 +10,7 @@ import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
  * @since  17/10/31.
  * email yangcihang@hrsoft.net
  */
-class MainPagerAdapter(fragmentManager: FragmentManager, var fragmentList: MutableList<MainContentFragment>) :
+class MainPagerAdapter(fragmentManager: FragmentManager, private var fragmentList: MutableList<MainContentFragment>) :
         FragmentPagerAdapter(fragmentManager) {
 
     override fun getItem(position: Int): Fragment {

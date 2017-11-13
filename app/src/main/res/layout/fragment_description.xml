@@ -1,50 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingLeft="40dp"
-                android:paddingRight="40dp">
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/img_create_calendar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"/>
-
-    <TextView
-        android:id="@+id/txt_create_calendar_title"
-        style="@style/TextCreateTitle"
-        android:layout_below="@id/img_create_calendar"
-        android:text="日历标题"/>
-
-    <EditText
-        android:id="@+id/edit_create_calendar_title"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/txt_create_calendar_title"/>
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="40dp">
 
-    <TextView
-        android:id="@+id/txt_create_calendar_good_title"
-        style="@style/TextCreateTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/edit_create_calendar_title"
-        android:text="每日挑选宜的个数"/>
+        <ImageView
+            android:id="@+id/img_create_calendar"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:background="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/txt_create_calendar_title"
+            style="@style/TextCreateTitle"
+            android:layout_below="@id/img_create_calendar"
+            android:text="@string/text_title_create_calendar"/>
+
+        <EditText
+            android:id="@+id/edit_create_calendar_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_create_calendar_title"
+            android:hint="@string/hint_create_calendar_title"
+            android:maxLength="20"
+            android:maxLines="1"/>
+
+        <TextView
+            android:id="@+id/txt_create_calendar_good_title"
+            style="@style/TextCreateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_create_calendar_title"
+            android:text="每日挑选宜的个数"/>
+
+        <RelativeLayout
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/txt_create_calendar_good_title"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@id/txt_create_calendar_good_title">
+
+            <ImageButton
+                android:id="@+id/img_good_sub"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/txt_good_pick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/text_secondary"
+                android:textSize="16dp"/>
+
+            <ImageButton
+                android:id="@+id/img_good_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
 
 
-    <TextView
-        android:id="@+id/txt_create_calendar_bad_title"
-        style="@style/TextCreateTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_create_calendar_good_title"
-        android:text="每日挑选不宜个数"/>
+        <TextView
+            android:id="@+id/txt_create_calendar_bad_title"
+            style="@style/TextCreateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_create_calendar_good_title"
+            android:text="每日挑选不宜个数"/>
 
-    <TextView
-        android:id="@+id/txt_create_calendar_description"
-        style="@style/TextCreateTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/txt_create_calendar_bad_title"
-        android:text="日历描述"/>
-</RelativeLayout>
+        <RelativeLayout
+            android:layout_width="56dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@id/txt_create_calendar_bad_title">
+
+            <ImageButton
+                android:id="@+id/img_bad_sub"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:padding="9dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/txt_bad_pick"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="2"
+                android:textColor="@color/text_secondary"
+                android:textSize="16dp"/>
+
+            <ImageButton
+                android:id="@+id/img_bad_add"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/txt_create_calendar_description"
+            style="@style/TextCreateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_create_calendar_bad_title"
+            android:text="日历描述"/>
+
+        <EditText
+            android:id="@+id/edit_create_calendar_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_create_calendar_description"
+            android:hint="请输入日历的简介,500字以内"
+            android:textSize="@dimen/text_secondary"/>
+
+    </RelativeLayout>
+</ScrollView>

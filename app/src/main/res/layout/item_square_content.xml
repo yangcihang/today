@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/img_square_calendar"
-        android:layout_width="@dimen/len_square_item_width"
-        android:layout_height="@dimen/len_square_item_height"
+        android:layout_width="@dimen/img_normal_width"
+        android:layout_height="@dimen/img_normal_height"
         android:layout_gravity="center"
         android:background="@drawable/ic_launcher_background"
         android:scaleType="fitXY"/>

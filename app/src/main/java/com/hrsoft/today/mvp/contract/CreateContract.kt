@@ -14,13 +14,18 @@ interface CreateContract {
     interface View : BaseContract.View<Presenter> {
         fun onCreateNewCalendarSuccess()
         fun onCreateStateModelSuccess()
+        fun onCreateRecommendSuccess()
+        fun onCreateRecommendFailed()
         fun onCreateNewCalendarFailed()
         fun onCreateStateModelFailed()
+        fun onPictureUploadSuccess(path: String)
+        fun onPictureUploadFailed()
     }
 
     interface Presenter : BaseContract.Presenter<View> {
         fun createNewCalendar(newCalendarModel: NewCalendarModel)
         fun createStateModel(id: Int, stateList: List<CalendarStateItemModel>)
         fun createRecommendModel(id: Int, recommendList: List<NewCalendarRecommendModel>)
+        fun upLoadPicture(picturePath: String)
     }
 }

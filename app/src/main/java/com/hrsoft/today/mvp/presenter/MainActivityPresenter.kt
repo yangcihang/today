@@ -18,7 +18,6 @@ class MainActivityPresenter(override var mView: MainContract.View?) : MainContra
         mView = null
     }
 
-
     override fun requestCalendar() {
         MainModelHelper.requestCalendarModel(this)
     }
@@ -26,7 +25,7 @@ class MainActivityPresenter(override var mView: MainContract.View?) : MainContra
     override fun onCalendarLoadSuccess(calendarList: List<CalendarModel>?) {
         if (calendarList != null) {
             ToastUtil.showToast("请求成功")
-            mView!!.onCalendarLoadSuccess(calendarList)
+            mView?.onCalendarLoadSuccess(calendarList)
         } else {
             ToastUtil.showToast("请求失败")
         }
