@@ -3,6 +3,9 @@ package com.hrsoft.today
 import android.app.Activity
 import android.app.Application
 import android.os.Bundle
+import com.hrsoft.today.common.Config
+import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.User
 import com.hrsoft.today.util.CacheUtil
 import com.qiniu.android.common.FixedZone
 import com.qiniu.android.storage.Configuration
@@ -61,6 +64,7 @@ class App : Application() {
             }
 
         })
+        initUserInfo()
         val config = Configuration.Builder()
                 .chunkSize(512 * 1024)        // 分片上传时，每片的大小。 默认256K
                 .putThreshhold(1024 * 1024)   // 启用分片上传阀值。默认512K
@@ -70,6 +74,10 @@ class App : Application() {
                 .zone(FixedZone.zone1)        // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
                 .build()
         uploadManager = UploadManager(config)
+    }
+
+    private fun initUserInfo() {
+        getCacheUtil().getSerializableObj(Config.KEY_CALENDAR)?.let { User.userCalendarList = it as MutableList<CalendarModel> }
     }
 
     /**

@@ -7,7 +7,7 @@ import com.hrsoft.today.mvp.contract.ManageCreatedContract
 import com.hrsoft.today.mvp.model.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.ManageCreatedFragmentPresenter
 import com.hrsoft.today.mvp.view.detail.activity.CalendarDetailActivity
-import com.hrsoft.today.mvp.view.manage.adapter.ManageListAdapter
+import com.hrsoft.today.mvp.view.manage.adapter.CreatedListAdapter
 import com.hrsoft.today.util.DialogUtils
 import com.hrsoft.today.util.ToastUtil
 import kotlinx.android.synthetic.main.fragment_created.*
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_created.*
  * email yangcihang@hrsoft.net
  */
 class UserCreatedFragment : BaseFragment(), ManageCreatedContract.View {
-    private lateinit var listAdapter: ManageListAdapter
+    private lateinit var listAdapter: CreatedListAdapter
     override var mPresenter: ManageCreatedContract.Presenter? = ManageCreatedFragmentPresenter(this)
     private var deletePos: Int? = null
     override fun getLayoutId(): Int {
@@ -26,15 +26,14 @@ class UserCreatedFragment : BaseFragment(), ManageCreatedContract.View {
     }
 
     override fun initVariable() {
-        listAdapter = ManageListAdapter(context)
+        listAdapter = CreatedListAdapter(context)
     }
 
     override fun initView() {
         rec_created_calendar.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = this@UserCreatedFragment.listAdapter.apply {
-                onClickedListener = { model, _
-                    ->
+                onClickedListener = { model, _ ->
                     CalendarDetailActivity.start(context, model)
                 }
                 onEditClickedListener = { pos, _ -> ToastUtil.showToast("点击了修改" + pos) }

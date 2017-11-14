@@ -51,11 +51,25 @@
         <item name="android:textSize">@dimen/text_primary</item>
         <item name="android:color">@color/text_primary</item>
     </style>
-
+    <!--一般小图标的大小-->
     <style name="ImageIcon">
         <item name="android:layout_width">4dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
+    </style>
+    <!--EditText普通的提示文字格式-->
+    <style name="TextHint">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">@color/text_ternary</item>
+    </style>
+
+    <!--创建黄历状态页面TextTitle-->
+    <style name="TextStateTitle">
+        <item name="android:color">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_primary</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
     </style>
 </resources>

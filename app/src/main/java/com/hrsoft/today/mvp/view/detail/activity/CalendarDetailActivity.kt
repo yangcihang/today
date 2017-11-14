@@ -22,6 +22,7 @@ import com.hrsoft.today.mvp.view.detail.fragment.CommentFragment
 import com.hrsoft.today.util.ToastUtil
 import com.hrsoft.today.util.Utility
 import com.hrsoft.today.widget.CropCircleTransformation
+import jp.wasabeef.glide.transformations.BlurTransformation
 import kotlinx.android.synthetic.main.activity_calendar_detail.*
 
 /**
@@ -71,12 +72,11 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
 
         // 渲染页面数据
         txt_calendar_title.text = calendarModel.title
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            Utility.runOnNewThread(Runnable {
-                setBackground(Glide.with(this@CalendarDetailActivity).load(calendarModel.picture).asBitmap().centerCrop().into
-                (500, 500).get(), 23f)
-            })
-        }
+        Glide.with(this).load(calendarModel.picture)
+                .bitmapTransform(BlurTransformation(this, 14, 3))
+                .dontAnimate()
+                .error(R.mipmap.ic_launcher)
+                .into(img_calendar_bg)
         toolbar.setNavigationOnClickListener { finish() }
     }
 
@@ -109,36 +109,30 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         txt_good_sum.text = mData.goodPick.toString()
         Glide.with(this).load(mData.creatorAvatar).bitmapTransform(CropCircleTransformation(this)).into(img_user_avatar)
         Glide.with(this).load(mData.picture).into(calendar_avatar)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            Utility.runOnNewThread(Runnable {
-                setBackground(Glide.with(this@CalendarDetailActivity).load(mData.picture).asBitmap().centerCrop().into
-                (500, 500).get(), 25f)
-            })
-        }
     }
 
     override fun onDetailLoadFailed() {
         ToastUtil.showToast("信息加载失败，请稍后再试")
     }
 
-    /**
-     * 设置高斯模糊背景图
-     */
-    private fun setBackground(source: Bitmap, radius: Float) {
-        val inputBmp = source
-        val renderScript = RenderScript.create(this)
-        val input = Allocation.createFromBitmap(renderScript, inputBmp)
-        val output = Allocation.createTyped(renderScript, input.type)
-        val scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
-        scriptIntrinsicBlur.setInput(input)
-        scriptIntrinsicBlur.setRadius(radius)
-        scriptIntrinsicBlur.forEach(output)
-        output.copyTo(inputBmp)
-        renderScript.destroy()
-        Utility.runOnUiThread(Runnable {
-            img_calendar_bg.setImageDrawable(BitmapDrawable(resources, inputBmp))
-        })
-
-    }
+//    /**
+//     * 设置高斯模糊背景图
+//     */
+//    private fun setBackground(source: Bitmap, radius: Float) {
+//        val inputBmp = source
+//        val renderScript = RenderScript.create(this)
+//        val input = Allocation.createFromBitmap(renderScript, inputBmp)
+//        val output = Allocation.createTyped(renderScript, input.type)
+//        val scriptIntrinsicBlur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript))
+//        scriptIntrinsicBlur.setInput(input)
+//        scriptIntrinsicBlur.setRadius(radius)
+//        scriptIntrinsicBlur.forEach(output)
+//        output.copyTo(inputBmp)
+//        renderScript.destroy()
+//        Utility.runOnUiThread(Runnable {
+//            img_calendar_bg.setImageDrawable(BitmapDrawable(resources, inputBmp))
+//        })
+//
+//    }
 }
 

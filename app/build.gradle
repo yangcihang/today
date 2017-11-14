@@ -44,12 +44,13 @@ dependencies {
     compile 'com.squareup.okio:okio:1.13.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'de.hdodenhof:circleimageview:2.1.0'
     //权限管理
     compile 'io.reactivex.rxjava2:rxjava:2.0.5'
     compile 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
     //图片加载
     compile "com.github.bumptech.glide:glide:$rootProject.ext.glideVersion"
+    //glide图片转换
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile project(':imagepicker')

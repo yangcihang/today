@@ -16,7 +16,7 @@ import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
 import com.hrsoft.today.mvp.view.manage.activity.ManageCalendarActivity
 import com.hrsoft.today.mvp.view.square.activity.SquareActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.*
+import kotlin.collections.ArrayList
 
 class MainActivity : NoBarActivity(), MainContract.View {
 
@@ -28,7 +28,6 @@ class MainActivity : NoBarActivity(), MainContract.View {
     private var adapter: MainPagerAdapter = MainPagerAdapter(supportFragmentManager, fragmentList)
 
     override fun initVariable() {
-        User.userCalendarList = App.instance.getCacheUtil().getSerializableObj(Config.KEY_CALENDAR) as List<CalendarModel>?
     }
 
     override fun initView() {
@@ -40,7 +39,7 @@ class MainActivity : NoBarActivity(), MainContract.View {
             }
             return@setNavigationItemSelectedListener true
         }
-        User.userCalendarList?.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
+        User.userCalendarList.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
     }
 
     override fun loadData() {
@@ -56,7 +55,7 @@ class MainActivity : NoBarActivity(), MainContract.View {
                 }
 
                 override fun onPageSelected(position: Int) {
-                    txt_calendar_title.text = User.userCalendarList?.get(position)?.calendarName ?: "默认title"
+                    txt_calendar_title.text = User.userCalendarList[position].calendarName ?: "默认title"
                 }
             })
         }
@@ -72,10 +71,10 @@ class MainActivity : NoBarActivity(), MainContract.View {
      */
     override fun onCalendarLoadSuccess(calendarList: List<CalendarModel>) {
         //TODO(没有内容时加入提示)
-        User.userCalendarList = calendarList
+        User.userCalendarList = calendarList as MutableList<CalendarModel>
+        App.instance.getCacheUtil().putSerializableObj(Config.KEY_CALENDAR, User.userCalendarList as ArrayList)
         fragmentList.clear()
-        App.instance.getCacheUtil().putSerializableObj(Config.KEY_CALENDAR, calendarList as ArrayList<*>)
-        calendarList.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
+        User.userCalendarList.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
         adapter.notifyDataSetChanged()
     }
 
