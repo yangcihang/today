@@ -30,7 +30,7 @@ class MainContentFragment : BaseFragment() {
          * 静态启动
          */
         fun createFragment(calendar: CalendarModel?): MainContentFragment {
-            val bundle: Bundle = Bundle()
+            val bundle = Bundle()
             bundle.putSerializable(Config.KEY_CALENDAR, calendar)
             return MainContentFragment().apply { arguments = bundle }
         }

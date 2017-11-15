@@ -26,6 +26,7 @@
     <dimen name="tab_height">40dp</dimen>
 
     <!--spacing between two view-->
+    <dimen name="spacing_huge">24dp</dimen>
     <dimen name="spacing_large">18dp</dimen>
     <dimen name="spacing_normal">14dp</dimen>
     <dimen name="spacing_small">10dp</dimen>
@@ -36,6 +37,8 @@
     <dimen name="len_middle_img_width">100dp</dimen>
     <dimen name="len_small_img_height">20dp</dimen>
     <dimen name="len_small_img_width">20dp</dimen>
+    <dimen name="len_tiny_img_height">16dp</dimen>
+    <dimen name="len_tiny_img_width">16dp</dimen>
 
     <!--dialog的参数-->
     <integer name="dialog_button_txt_size">14</integer>

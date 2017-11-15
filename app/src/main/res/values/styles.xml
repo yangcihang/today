@@ -62,14 +62,19 @@
     <style name="TextHint">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:textSize">@dimen/text_ternary</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_small</item>
         <item name="android:textColorHint">@color/text_ternary</item>
     </style>
 
     <!--创建黄历状态页面TextTitle-->
     <style name="TextStateTitle">
+        <item name="android:layout_marginLeft">@dimen/spacing_small</item>
         <item name="android:color">@color/text_primary</item>
-        <item name="android:textSize">@dimen/text_primary</item>
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:gravity">left</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">50dp</item>
     </style>
 </resources>

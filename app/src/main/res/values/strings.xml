@@ -25,4 +25,5 @@
     <string name="toast_calendar_description_error">描述超过了500字</string>
     <string name="toast_image_load_success">上传成功</string>
     <string name="text_cancel_subscribed">取消订阅</string>
+    <string name="toast_calendar_picture_error">请选择图片</string>
 </resources>

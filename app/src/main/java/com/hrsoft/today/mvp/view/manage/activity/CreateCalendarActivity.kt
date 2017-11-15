@@ -1,5 +1,6 @@
 package com.hrsoft.today.mvp.view.manage.activity
 
+import android.widget.Toast
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.base.NoBarActivity
@@ -24,6 +25,7 @@ class CreateCalendarActivity : NoBarActivity(), CreateContract.View {
     private lateinit var recommendFragment: RecommendFragment
     private lateinit var stateFragment: StateFragment
     private var changeFragmentListener: (() -> Unit)? = null
+    private var calendarId: Long = 0
     override fun initVariable() {
         descriptionFragment = CalendarDescriptionFragment()
         recommendFragment = RecommendFragment()
@@ -36,14 +38,23 @@ class CreateCalendarActivity : NoBarActivity(), CreateContract.View {
         txt_create_next.setOnClickListener {
             showProgressDialog(R.string.toast_wait)
             when {
-                !descriptionFragment.isHidden -> {
+                descriptionFragment.isResumed -> {
                     mPresenter?.createNewCalendar(descriptionFragment.getCalendarDescription())
-                    changeFragmentListener = { changeFragment(descriptionFragment, stateFragment) }
+                    changeFragmentListener = {
+                        FragmentUtil.hideFragment(this, descriptionFragment)
+                        replaceFragment(stateFragment)
+                    }
                 }
-                !stateFragment.isHidden -> {
-                    changeFragmentListener = { changeFragment(stateFragment, recommendFragment) }
+
+                stateFragment.isResumed -> {
+                    mPresenter?.createStateModel(calendarId, stateFragment.stateList)
+                    changeFragmentListener = {
+                        FragmentUtil.hideFragment(this, stateFragment)
+                        replaceFragment(recommendFragment)
+                    }
                 }
-                !recommendFragment.isHidden -> {
+
+                recommendFragment.isResumed -> {
                     changeFragmentListener = { this@CreateCalendarActivity.finish() }
                 }
             }
@@ -60,8 +71,9 @@ class CreateCalendarActivity : NoBarActivity(), CreateContract.View {
     /**
      * 创建新黄历成功时回调
      */
-    override fun onCreateNewCalendarSuccess() {
+    override fun onCreateNewCalendarSuccess(id: Long) {
         disMissProgressDialog()
+        calendarId = id
         changeFragmentListener?.invoke()
     }
 
@@ -112,11 +124,6 @@ class CreateCalendarActivity : NoBarActivity(), CreateContract.View {
 
     override fun onCreateRecommendFailed() {
         disMissProgressDialog()
-    }
-
-    private fun changeFragment(hideFragment: BaseFragment, showFragment: BaseFragment) {
-        FragmentUtil.hideFragment(this, hideFragment)
-        FragmentUtil.showFragment(this, showFragment)
     }
 
     private fun replaceFragment(fragment: BaseFragment) {

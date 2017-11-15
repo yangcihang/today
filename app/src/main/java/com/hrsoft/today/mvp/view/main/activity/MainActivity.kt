@@ -76,6 +76,8 @@ class MainActivity : NoBarActivity(), MainContract.View {
         fragmentList.clear()
         User.userCalendarList.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
         adapter.notifyDataSetChanged()
+        txt_calendar_title.text = User.userCalendarList[0].calendarName ?: "默认title"
+
     }
 
     /**

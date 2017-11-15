@@ -67,7 +67,7 @@ interface NetWork {
     fun createNewCalendar(@Body model: NewCalendarModel): Call<RspModel<Long>>
 
     @POST("custom/{calendarId}/activities")
-    fun createCalendarStates(@Path("calendarId") id: Int, @Body model: List<CalendarStateItemModel>): Call<RspModel<Long>>
+    fun createCalendarStates(@Path("calendarId") id: Long, @Body model: List<CalendarStateItemModel>): Call<RspModel<Long>>
 
     @POST("custom/{Id}/items")
     fun createCalendarRecommend(@Path("Id") id: Int, @Body modelList: List<NewCalendarRecommendModel>): Call<RspModel<Long>>

@@ -12,7 +12,7 @@ import com.hrsoft.today.mvp.model.NewCalendarRecommendModel
  */
 interface CreateContract {
     interface View : BaseContract.View<Presenter> {
-        fun onCreateNewCalendarSuccess()
+        fun onCreateNewCalendarSuccess(id: Long)
         fun onCreateStateModelSuccess()
         fun onCreateRecommendSuccess()
         fun onCreateRecommendFailed()
@@ -24,7 +24,7 @@ interface CreateContract {
 
     interface Presenter : BaseContract.Presenter<View> {
         fun createNewCalendar(newCalendarModel: NewCalendarModel)
-        fun createStateModel(id: Int, stateList: List<CalendarStateItemModel>)
+        fun createStateModel(id: Long, stateList: List<CalendarStateItemModel>)
         fun createRecommendModel(id: Int, recommendList: List<NewCalendarRecommendModel>)
         fun upLoadPicture(picturePath: String)
     }

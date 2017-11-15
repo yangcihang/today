@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:paddingEnd="@dimen/spacing_small"
+                android:paddingStart="@dimen/spacing_small">
+
+    <RelativeLayout
+        android:id="@+id/rl_create_state_expand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txt_title"
+            style="@style/TextStateTitle"
+            android:layout_toEndOf="@id/img_state_title"
+            android:text="Title"/>
+
+        <ImageView
+            android:id="@+id/img_state_title"
+            android:layout_width="@dimen/len_small_img_width"
+            android:layout_height="@dimen/len_small_img_height"
+            android:layout_alignBottom="@id/txt_title"
+            android:layout_alignParentStart="true"
+            android:background="@color/black"/>
+
+
+        <TextView
+            android:id="@+id/txt_state_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/txt_title"
+            android:layout_marginLeft="@dimen/spacing_normal"
+            android:layout_toEndOf="@id/txt_title"
+            android:gravity="center"
+            android:text="写代码"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_primary"/>
+
+
+        <ImageView
+            android:id="@+id/img_state_icon_expand"
+            android:layout_width="@dimen/len_small_img_width"
+            android:layout_height="@dimen/len_small_img_height"
+            android:layout_alignBottom="@id/txt_title"
+            android:layout_alignParentEnd="true"
+            android:background="@color/black"/>
+
+        <ImageView
+            android:id="@+id/img_state_icon_delete"
+            android:layout_width="@dimen/len_small_img_width"
+            android:layout_height="@dimen/len_small_img_height"
+            android:layout_alignBottom="@id/txt_title"
+            android:layout_marginEnd="@dimen/spacing_small"
+            android:layout_toStartOf="@id/img_state_icon_expand"
+            android:background="@color/black"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view_div"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/rl_create_state_expand"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:layout_toEndOf="@id/rl_create_state_expand"
+        android:background="@color/view_divide"/>
+
+
+    <LinearLayout
+        android:id="@+id/ll_state_item_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/view_div"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_small"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/img_green_icon"
+                android:layout_width="@dimen/len_tiny_img_width"
+                android:layout_height="@dimen/len_tiny_img_height"
+                android:layout_centerVertical="true"
+                android:background="@color/green"/>
+
+            <TextView
+                android:id="@+id/txt_state_good_title"
+                style="@style/TextStateTitle"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/img_green_icon"
+                android:text="Good"
+                android:textSize="@dimen/text_primary"/>
+
+            <TextView
+                android:id="@+id/txt_state_good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/txt_state_good_title"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_toEndOf="@id/txt_state_good_title"
+                android:text="别想了总得写"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_secondary"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img_red_icon"
+                android:layout_width="@dimen/len_tiny_img_width"
+                android:layout_height="@dimen/len_tiny_img_height"
+                android:layout_centerVertical="true"
+                android:background="@color/red"/>
+
+            <TextView
+                android:id="@+id/txt_state_bad_title"
+                style="@style/TextStateTitle"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/img_red_icon"
+                android:text="Bad"
+                android:textSize="@dimen/text_primary"/>
+
+
+            <TextView
+                android:id="@+id/txt_state_bad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/txt_state_bad_title"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/spacing_normal"
+                android:layout_toEndOf="@id/txt_state_bad_title"
+                android:text="别想了总得写"
+                android:textColor="@color/text_secondary"
+                android:textSize="@dimen/text_secondary"/>
+        </RelativeLayout>
+    </LinearLayout>
+</RelativeLayout>

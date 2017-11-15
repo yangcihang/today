@@ -18,7 +18,7 @@ object CreateModelHelper {
     fun createNewCalendar(callback: CreateCalendarActivityPresenter, model: NewCalendarModel) {
         NetWork.getService().createNewCalendar(model).enqueue(object : RspCallback<Long>() {
             override fun onSuccess(data: Long?) {
-                callback.onCreateNewCalendarSuccess()
+                callback.onCreateNewCalendarSuccess(data!!)
             }
 
             override fun onFailed() {
@@ -27,7 +27,7 @@ object CreateModelHelper {
         })
     }
 
-    fun createStateModel(callback: CreateCalendarActivityPresenter, id: Int, model: List<CalendarStateItemModel>) {
+    fun createStateModel(callback: CreateCalendarActivityPresenter, id: Long, model: List<CalendarStateItemModel>) {
         NetWork.getService().createCalendarStates(id, model).enqueue(object : RspCallback<Long>() {
             override fun onFailed() {
                 callback.onCreateStateModelSuccess()

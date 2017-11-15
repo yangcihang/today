@@ -40,7 +40,7 @@ abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
     /**
      * 添加数据源
      */
-    fun add(data: Data) {
+    open fun add(data: Data) {
         this.dataList.add(data)
         refreshData()
     }
@@ -64,7 +64,7 @@ abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
     /**
      * 添加多条数据
      */
-    fun addAll(data: Collection<Data>) {
+    open fun addAll(data: Collection<Data>) {
         this.dataList.addAll(data)
         refreshData()
     }
