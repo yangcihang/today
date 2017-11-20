@@ -70,7 +70,6 @@
                     android:layout_below="@id/txt_calendar_title"
                     android:layout_marginTop="16dp"
                     android:layout_toRightOf="@id/calendar_avatar"
-                    android:background="@drawable/bg_circle_image_view"
                     android:scaleType="fitXY"
                     android:src="@mipmap/ic_launcher"/>
 
@@ -79,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:layout_alignBottom="@id/img_user_avatar"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="@dimen/spacing_small"
                     android:layout_toRightOf="@id/img_user_avatar"
                     android:gravity="center"
                     android:shadowColor="@color/black"
@@ -90,22 +89,45 @@
 
                 <ImageView
                     android:id="@+id/ic_good"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="@dimen/len_small_img_width"
+                    android:layout_height="@dimen/len_small_img_height"
                     android:layout_alignBottom="@id/calendar_avatar"
-                    android:layout_toRightOf="@id/calendar_avatar"
+                    android:layout_toEndOf="@id/calendar_avatar"
                     android:src="@drawable/ic_good_white"/>
 
                 <TextView
                     android:id="@+id/txt_good_sum"
                     android:layout_width="wrap_content"
-                    android:layout_height="16dp"
+                    android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/calendar_avatar"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginStart="@dimen/spacing_small"
                     android:layout_toEndOf="@+id/ic_good"
                     android:gravity="center"
                     android:shadowColor="@color/black"
-                    android:shadowRadius="2"/>
+                    android:shadowRadius="2"
+                    android:text="0"/>
+
+                <ImageView
+                    android:id="@+id/img_subscribe"
+                    android:layout_width="@dimen/len_small_img_width"
+                    android:layout_height="@dimen/len_small_img_height"
+
+                    android:layout_alignBottom="@id/calendar_avatar"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_toEndOf="@id/txt_good_sum"
+                    android:background="@drawable/bg_subscribed_selector"/>
+
+                <TextView
+                    android:id="@+id/txt_subscribe"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/calendar_avatar"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_toEndOf="@id/img_subscribe"
+                    android:shadowColor="@color/black"
+                    android:shadowRadius="2"
+                    android:text="@string/text_subscribed"/>
+
             </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
@@ -131,6 +153,7 @@
 
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
+
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_calendar_detail"
         android:layout_width="match_parent"

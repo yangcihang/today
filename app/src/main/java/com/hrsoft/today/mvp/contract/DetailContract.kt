@@ -10,13 +10,21 @@ import com.hrsoft.today.mvp.model.CalendarDetailModel
  */
 interface DetailContract {
     interface View : BaseContract.View<Presenter> {
-        fun onDetailLoaded(mData:CalendarDetailModel)
+        fun onDetailLoaded(mData: CalendarDetailModel)
         fun onDetailLoadFailed()
+
+        fun onSubscribeSuccess()
+        fun onSubscribeFailed()
+        fun onUnsubscribeSuccess()
+        fun onUnsubscribeFailed()
     }
 
     interface Presenter : BaseContract.Presenter<View> {
         fun getCalendarInfo(calendarId: Int)
-        fun onDetailLoaded(mData:CalendarDetailModel)
+        fun onDetailLoaded(mData: CalendarDetailModel)
         fun onDetailLoadFailed()
+
+        fun subscribeCalendar(id: Int)
+        fun unSubscribeCalendar(id: Int)
     }
 }

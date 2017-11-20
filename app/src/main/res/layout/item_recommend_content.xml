@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_tiny">
+
+    <ImageView
+        android:id="@+id/icon_title"
+        android:layout_width="@dimen/len_small_img_width"
+        android:layout_height="@dimen/len_small_img_height"
+        android:layout_alignBottom="@id/txt_recommend_content_title"
+        android:background="@color/red"/>
+
+    <TextView
+        android:id="@+id/txt_recommend_content_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/spacing_small"
+        android:layout_toRightOf="@id/icon_title"
+        android:text="今日gay源"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/text_primary"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginStart="@dimen/spacing_huge"
+        android:id="@+id/rec_content_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txt_recommend_content_title"
+        android:layout_marginTop="@dimen/spacing_small"
+        android:visibility="gone">
+    </android.support.v7.widget.RecyclerView>
+</RelativeLayout>

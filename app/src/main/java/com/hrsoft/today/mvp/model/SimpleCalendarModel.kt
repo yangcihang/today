@@ -11,5 +11,6 @@ class SimpleCalendarModel : Serializable {
     var id: Int? = null
     var title: String? = ""
     var picture: String? = ""
-    var subscribed:Int? = null
+    var subscribed: Int? = null
+    var isSubscribed: Boolean = false
 }

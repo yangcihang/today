@@ -20,7 +20,7 @@ import com.hrsoft.today.widget.CropCircleTransformation
 class CommentAdapter(mContext: Context): BaseRecyclerAdapter<CommentModel>(mContext) {
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<CommentModel> {
-        var view:View = inflater.inflate(R.layout.item_comment,parent,false)
+        val view: View = inflater.inflate(R.layout.item_comment, parent, false)
         return ItemHolder(view)
     }
 

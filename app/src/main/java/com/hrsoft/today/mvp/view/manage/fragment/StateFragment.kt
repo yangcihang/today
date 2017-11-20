@@ -17,10 +17,8 @@ import kotlinx.android.synthetic.main.fragment_state.*
  */
 class StateFragment : BaseFragment() {
     private lateinit var adapter: CreatedStateAdapter
-    var stateList: MutableList<CalendarStateItemModel> = mutableListOf()
     override fun initVariable() {
         adapter = CreatedStateAdapter(context)
-        adapter.addAll(stateList)
     }
 
     override fun initView() {
@@ -33,6 +31,7 @@ class StateFragment : BaseFragment() {
             if (isExpand) rec_create_state.visibility = View.GONE
             else rec_create_state.visibility = View.VISIBLE
             isExpand = !isExpand
+            img_state_arrow.isSelected = !isExpand
         }
         btn_state_save.setOnClickListener {
             val titleContent = edit_state_title.text.toString().trim()
@@ -40,26 +39,27 @@ class StateFragment : BaseFragment() {
             val goodContent = edit_state_good.text.toString().trim()
             when {
                 (TextUtils.isEmpty(titleContent) || titleContent.length < 4 || titleContent.length > 20) -> {
-                    ToastUtil.showToast("请输入4-20位的标题")
+                    ToastUtil.showToast(R.string.toast_state_title_error)
                     return@setOnClickListener
                 }
                 (TextUtils.isEmpty(goodContent)) -> {
-                    ToastUtil.showToast("请输入Good内容")
+                    ToastUtil.showToast(R.string.toast_state_good_empty)
                     return@setOnClickListener
                 }
                 (TextUtils.isEmpty(badContent)) -> {
-                    ToastUtil.showToast("请输入Bad内容")
+                    ToastUtil.showToast(R.string.toast_state_bad_empty)
                     return@setOnClickListener
                 }
             }
-            ToastUtil.showToast("保存成功")
-            stateList.add(CalendarStateItemModel(name = titleContent, good = goodContent, bad = badContent))
+            ToastUtil.showToast(R.string.toast_save_success)
             adapter.add(CalendarStateItemModel(name = titleContent, good = goodContent, bad = badContent))
         }
     }
 
     override fun loadData() {
     }
+
+    fun getStateData(): MutableList<CalendarStateItemModel> = adapter.dataList
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_state

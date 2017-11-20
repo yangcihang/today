@@ -1,9 +1,9 @@
 package com.hrsoft.today.mvp.contract
 
 import com.hrsoft.today.base.BaseContract
+import com.hrsoft.today.mvp.model.CalendarRecommendModel
 import com.hrsoft.today.mvp.model.CalendarStateItemModel
 import com.hrsoft.today.mvp.model.NewCalendarModel
-import com.hrsoft.today.mvp.model.NewCalendarRecommendModel
 
 /**
  * @author YangCihang
@@ -25,7 +25,7 @@ interface CreateContract {
     interface Presenter : BaseContract.Presenter<View> {
         fun createNewCalendar(newCalendarModel: NewCalendarModel)
         fun createStateModel(id: Long, stateList: List<CalendarStateItemModel>)
-        fun createRecommendModel(id: Int, recommendList: List<NewCalendarRecommendModel>)
+        fun createRecommendModel(id: Int, recommendList: List<CalendarRecommendModel>)
         fun upLoadPicture(picturePath: String)
     }
 }

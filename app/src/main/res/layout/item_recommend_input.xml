@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/spacing_small">
+
+    <ImageView
+        android:id="@+id/img_delete"
+        android:layout_width="@dimen/len_tiny_img_width"
+        android:layout_height="@dimen/len_tiny_img_height"
+        android:layout_centerVertical="true"
+        android:background="@color/red"/>
+
+    <EditText
+        android:id="@+id/edit_recommend_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/spacing_huge"
+        android:background="@null"
+        android:gravity="left|bottom"
+        android:hint="请输入推荐的内容(披萨)"
+        android:maxLines="1"
+        android:textSize="@dimen/text_primary"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/edit_recommend_content"
+        android:layout_toEndOf="@id/img_delete"
+        android:background="@color/view_divide"/>
+</RelativeLayout>

@@ -9,10 +9,11 @@ import com.hrsoft.today.base.BaseContract
  */
 interface ManageSubscribedContract {
     interface View : BaseContract.View<Presenter> {
-
+        fun onUnsubscribeSuccess()
+        fun onUnsubscribeFailed()
     }
 
     interface Presenter : BaseContract.Presenter<View> {
-
+        fun unSubscribeCalendar(id: Int)
     }
 }

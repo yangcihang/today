@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.activity_square.*
  * email yangcihang@hrsoft.net
  */
 class SquareActivity : NoBarActivity(), SquareContract.View {
+    //TODO(第一次登录后判断，不能让其返回)
     override var mPresenter: SquareContract.Presenter? = SquareActivityPresenter(this)
     private var recommendAdapter: SquareListAdapter? = null
     private var allAdapter: SquareListAdapter? = null
@@ -28,14 +29,12 @@ class SquareActivity : NoBarActivity(), SquareContract.View {
 
     override fun initVariable() {
         recommendAdapter = SquareListAdapter(this).apply {
-            onClickedListener = {
-                model, _ ->
+            onClickedListener = { model, _ ->
                 CalendarDetailActivity.start(this@SquareActivity, model)
             }
         }
         allAdapter = SquareListAdapter(this).apply {
-            onClickedListener = {
-                model, _ ->
+            onClickedListener = { model, _ ->
                 CalendarDetailActivity.start(this@SquareActivity, model)
             }
         }
@@ -54,8 +53,7 @@ class SquareActivity : NoBarActivity(), SquareContract.View {
             layoutManager = GridLayoutManager(this@SquareActivity, 3)
         }
         //监听scrollView的下滑事件
-        nest_scroll_square.setOnScrollChangeListener {
-            v: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
+        nest_scroll_square.setOnScrollChangeListener { v: NestedScrollView?, _: Int, scrollY: Int, _: Int, _: Int ->
             if (scrollY == (v!!.getChildAt(0).measuredHeight - v.measuredHeight)) {
                 if (!isLastPage) mPresenter?.requestAllCalendarList(page++)
             }

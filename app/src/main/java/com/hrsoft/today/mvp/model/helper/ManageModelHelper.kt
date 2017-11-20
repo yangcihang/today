@@ -1,7 +1,9 @@
 package com.hrsoft.today.mvp.model.helper
 
 import com.hrsoft.today.mvp.model.SimpleCalendarModel
+import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
 import com.hrsoft.today.mvp.presenter.ManageCreatedFragmentPresenter
+import com.hrsoft.today.mvp.presenter.ManageSubscribedPresenter
 import com.hrsoft.today.network.NetWork
 import com.hrsoft.today.network.RspCallback
 
@@ -31,6 +33,19 @@ object ManageModelHelper {
 
             override fun onFailed() {
                 callback.deleteCreatedCalendarFailed()
+            }
+
+        })
+    }
+
+    fun unSubscribedCalendar(callback: ManageSubscribedPresenter, id: Int) {
+        NetWork.getService().unsubscribeCalendar(id).enqueue(object : RspCallback<Unit>() {
+            override fun onSuccess(data: Unit?) {
+                callback.onUnsubscribeSuccess()
+            }
+
+            override fun onFailed() {
+                callback.onUnsubscribeFailed()
             }
 
         })

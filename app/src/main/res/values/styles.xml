@@ -77,4 +77,23 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">50dp</item>
     </style>
+
+    <style name="LayoutAccount">
+        <item name="android:layout_height">@dimen/len_account_tab_height</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">@dimen/spacing_normal</item>
+        <item name="android:background">@drawable/bg_account_edit_normal</item>
+    </style>
+
+    <style name="EditAccount">
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginStart">@dimen/spacing_small</item>
+        <item name="android:textSize">@dimen/text_ternary</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>

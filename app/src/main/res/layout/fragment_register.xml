@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_nickname"
+        style="@style/LayoutAccount">
+
+        <ImageView
+            android:layout_width="@dimen/len_small_img_width"
+            android:layout_height="@dimen/len_small_img_height"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_account"/>
+
+        <EditText
+            android:id="@+id/edit_register_nickname"
+            style="@style/EditAccount"
+            android:hint="昵称"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_psw"
+        style="@style/LayoutAccount"
+        android:layout_below="@id/ll_nickname"
+        android:layout_marginTop="@dimen/spacing_normal">
+
+        <ImageView
+            android:layout_width="@dimen/len_small_img_width"
+            android:layout_height="@dimen/len_small_img_height"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_psw"/>
+
+        <EditText
+            android:id="@+id/edit_register_psw"
+            style="@style/EditAccount"
+            android:hint="@string/hint_psw"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:maxLines="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll__confirm_psw"
+        style="@style/LayoutAccount"
+        android:layout_below="@id/ll_psw"
+        android:layout_marginTop="@dimen/spacing_normal">
+
+        <ImageView
+            android:layout_width="@dimen/len_small_img_width"
+            android:layout_height="@dimen/len_small_img_height"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_psw"/>
+
+        <EditText
+            android:id="@+id/edit_register_confirm_psw"
+            style="@style/EditAccount"
+            android:hint="@string/hint_confirm_psw"
+            android:inputType="textPassword"
+            android:maxLength="20"
+            android:maxLines="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sign"
+        style="@style/LayoutAccount"
+        android:layout_below="@id/ll__confirm_psw"
+        android:layout_marginTop="@dimen/spacing_normal">
+
+        <ImageView
+            android:layout_width="@dimen/len_small_img_width"
+            android:layout_height="@dimen/len_small_img_height"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_psw"/>
+
+        <EditText
+            android:id="@+id/edit_register_sign"
+            style="@style/EditAccount"
+            android:hint="@string/hint_sign"
+            android:maxLength="20"
+            android:maxLines="1"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_account_button_height"
+        android:layout_below="@id/ll_sign"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:background="@drawable/bg_account_btn_normal"
+        android:text="@string/text_register"
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_primary"/>
+
+</RelativeLayout>

@@ -12,9 +12,9 @@ import com.hrsoft.today.mvp.view.manage.adapter.SubscribedListAdapter
 import kotlinx.android.synthetic.main.fragment_subscribed.*
 import android.support.v7.widget.GridLayoutManager
 import com.hrsoft.today.mvp.model.User
+import com.hrsoft.today.mvp.view.manage.activity.CreateCalendarActivity
 import com.hrsoft.today.util.ToastUtil
 import java.util.*
-
 
 /**
  * @author YangCihang
@@ -41,14 +41,30 @@ class SubscribedFragment : BaseFragment(), ManageSubscribedContract.View {
         itemTouchHelper.attachToRecyclerView(rec_subscribed_calendar.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = this@SubscribedFragment.adapter.apply {
-                onClickedListener = { model, pos ->
-                    ToastUtil.showToast("" + pos)
+                onDeleteClickedListener = { pos, model ->
+                    run {
+                        showProgressDialog(R.string.dialog_wait)
+                        mPresenter?.unSubscribeCalendar(model.calendarId!!)
+                        deletePos = pos
+                    }
                 }
+                onEditClickedListener = { model -> CreateCalendarActivity.start(context, model) }
             }
         })
     }
 
     override fun loadData() {
+    }
+
+    override fun onUnsubscribeSuccess() {
+        disMissProgressDialog()
+        ToastUtil.showToast(R.string.toast_unsubscribe_success)
+        adapter.remove(deletePos!!)
+    }
+
+    override fun onUnsubscribeFailed() {
+        disMissProgressDialog()
+        ToastUtil.showToast(R.string.toast_unsubscribe_failed)
     }
 
     /**
@@ -109,4 +125,6 @@ class SubscribedFragment : BaseFragment(), ManageSubscribedContract.View {
             viewHolder!!.itemView.setBackgroundColor(0)
         }
     }
+
+
 }

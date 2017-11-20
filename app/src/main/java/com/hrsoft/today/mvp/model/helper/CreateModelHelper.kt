@@ -1,9 +1,9 @@
 package com.hrsoft.today.mvp.model.helper
 
 import com.hrsoft.today.App
+import com.hrsoft.today.mvp.model.CalendarRecommendModel
 import com.hrsoft.today.mvp.model.CalendarStateItemModel
 import com.hrsoft.today.mvp.model.NewCalendarModel
-import com.hrsoft.today.mvp.model.NewCalendarRecommendModel
 import com.hrsoft.today.mvp.presenter.CreateCalendarActivityPresenter
 import com.hrsoft.today.network.NetWork
 import com.hrsoft.today.network.RspCallback
@@ -29,18 +29,19 @@ object CreateModelHelper {
 
     fun createStateModel(callback: CreateCalendarActivityPresenter, id: Long, model: List<CalendarStateItemModel>) {
         NetWork.getService().createCalendarStates(id, model).enqueue(object : RspCallback<Long>() {
-            override fun onFailed() {
+            override fun onSuccess(data: Long?) {
                 callback.onCreateStateModelSuccess()
             }
 
-            override fun onSuccess(data: Long?) {
+            override fun onFailed() {
                 callback.onCreateStateModelFailed()
             }
+
 
         })
     }
 
-    fun createNewRecommendModel(callback: CreateCalendarActivityPresenter, id: Int, model: List<NewCalendarRecommendModel>) {
+    fun createNewRecommendModel(callback: CreateCalendarActivityPresenter, id: Int, model: List<CalendarRecommendModel>) {
         NetWork.getService().createCalendarRecommend(id, model).enqueue(object : RspCallback<Long>() {
             override fun onSuccess(data: Long?) {
                 callback.onCreateRecommendSuccess()

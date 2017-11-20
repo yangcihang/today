@@ -21,7 +21,6 @@ import com.hrsoft.today.util.Utility
  */
 class CreatedStateAdapter(mContext: Context) : BaseRecyclerAdapter<CalendarStateItemModel>(mContext) {
     private var flagList: MutableList<Boolean> = mutableListOf()
-    var onDataRemoveListener: ((CalendarStateItemModel?, Int) -> Int)? = null
     override fun addAll(data: Collection<CalendarStateItemModel>) {
         super.addAll(data)
         for (i in 0 until dataList.size) flagList.add(false)
@@ -33,7 +32,7 @@ class CreatedStateAdapter(mContext: Context) : BaseRecyclerAdapter<CalendarState
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<CalendarStateItemModel> {
-        return ItemHolder(inflater.inflate(R.layout.item_create_calendar_state, null, false))
+        return ItemHolder(inflater.inflate(R.layout.item_create_calendar_state, parent, false))
     }
 
     inner class ItemHolder(itemView: View) : BaseRecyclerAdapter.BaseViewHolder<CalendarStateItemModel>(itemView) {
@@ -45,7 +44,10 @@ class CreatedStateAdapter(mContext: Context) : BaseRecyclerAdapter<CalendarState
         private var badTxt: TextView = itemView.findViewById(R.id.txt_state_bad)
         override fun onBind(position: Int) {
             if (flagList[position]) expandLl.visibility = View.VISIBLE else expandLl.visibility = View.GONE
-            deleteImg.setOnClickListener { onDataRemoveListener?.invoke(mData, position) }
+            deleteImg.setOnClickListener {
+                flagList.removeAt(position)
+                remove(mData!!)
+            }
             expandRl.setOnClickListener {
                 Utility.runOnUiThread(Runnable {
                     flagList[position] = !flagList[position]

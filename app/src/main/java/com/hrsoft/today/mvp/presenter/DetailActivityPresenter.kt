@@ -10,13 +10,21 @@ import com.hrsoft.today.mvp.model.helper.DetailModelHelper
  * email yangcihang@hrsoft.net
  */
 class DetailActivityPresenter(override var mView: DetailContract.View?) : DetailContract.Presenter {
-
     override fun onDetach() {
         mView = null
     }
 
     override fun getCalendarInfo(calendarId: Int) {
-        DetailModelHelper.requestCalendarInfo(calendarId,this)
+        DetailModelHelper.requestCalendarInfo(calendarId, this)
+    }
+
+
+    override fun subscribeCalendar(id: Int) {
+        DetailModelHelper.subscribedCalendar(this, id)
+    }
+
+    override fun unSubscribeCalendar(id: Int) {
+        DetailModelHelper.unSubscribedCalendar(this, id)
     }
 
     override fun onDetailLoaded(mData: CalendarDetailModel) {
@@ -27,7 +35,19 @@ class DetailActivityPresenter(override var mView: DetailContract.View?) : Detail
         mView?.onDetailLoadFailed()
     }
 
+    fun onSubscribeSuccess() {
+        mView?.onSubscribeSuccess()
+    }
 
+    fun onSubscribeFailed() {
+        mView?.onSubscribeFailed()
+    }
 
+    fun onUnsubscribeSuccess() {
+        mView?.onUnsubscribeSuccess()
+    }
 
+    fun onUnsubscribeFailed() {
+        mView?.onUnsubscribeFailed()
+    }
 }

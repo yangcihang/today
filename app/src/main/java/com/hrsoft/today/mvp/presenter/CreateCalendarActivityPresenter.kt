@@ -3,9 +3,9 @@ package com.hrsoft.today.mvp.presenter
 import android.text.TextUtils
 import com.hrsoft.today.R
 import com.hrsoft.today.mvp.contract.CreateContract
+import com.hrsoft.today.mvp.model.CalendarRecommendModel
 import com.hrsoft.today.mvp.model.CalendarStateItemModel
 import com.hrsoft.today.mvp.model.NewCalendarModel
-import com.hrsoft.today.mvp.model.NewCalendarRecommendModel
 import com.hrsoft.today.mvp.model.helper.CreateModelHelper
 import com.hrsoft.today.util.ToastUtil
 
@@ -62,7 +62,12 @@ class CreateCalendarActivityPresenter(override var mView: CreateContract.View?) 
     /**
      * 创建每日推荐
      */
-    override fun createRecommendModel(id: Int, recommendList: List<NewCalendarRecommendModel>) {
+    override fun createRecommendModel(id: Int, recommendList: List<CalendarRecommendModel>) {
+        if (recommendList.isEmpty()) {
+            ToastUtil.showToast(R.string.toast_recommend_item_empty)
+            mView?.onCreateRecommendFailed()
+            return
+        }
         CreateModelHelper.createNewRecommendModel(this, id, recommendList)
     }
 
@@ -75,7 +80,7 @@ class CreateCalendarActivityPresenter(override var mView: CreateContract.View?) 
     }
 
     fun onUploadPictureFailed() {
-        mView?.onCreateRecommendFailed()
+        mView?.onCreateNewCalendarFailed()
         ToastUtil.showToast("上传失败")
     }
 
@@ -84,7 +89,7 @@ class CreateCalendarActivityPresenter(override var mView: CreateContract.View?) 
     }
 
     fun onCreateStateModelSuccess() {
-        mView?.onCreateStateModelFailed()
+        mView?.onCreateStateModelSuccess()
     }
 
     fun onCreateNewCalendarFailed() {

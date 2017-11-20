@@ -22,6 +22,7 @@ abstract class RspCallback<T> : Callback<RspModel<T>> {
             } else {
                 response.body().message?.let { ToastUtil.showToast(it) }
                 GlobalAPIErrorHandler.handle(response.body()!!.code)
+                onFailed()
             }
         } else {
             GlobalAPIErrorHandler.handle(response.code())

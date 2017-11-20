@@ -70,15 +70,44 @@ interface NetWork {
     fun createCalendarStates(@Path("calendarId") id: Long, @Body model: List<CalendarStateItemModel>): Call<RspModel<Long>>
 
     @POST("custom/{Id}/items")
-    fun createCalendarRecommend(@Path("Id") id: Int, @Body modelList: List<NewCalendarRecommendModel>): Call<RspModel<Long>>
+    fun createCalendarRecommend(@Path("Id") id: Int, @Body modelList: List<CalendarRecommendModel>): Call<RspModel<Long>>
 
     @GET("custom/created")
     fun getCreatedCalendar(): Call<RspModel<List<SimpleCalendarModel>>>
 
+    /**
+     * 删除用户创建的黄历
+     */
     @DELETE("custom/{calendarId}")
     fun requestDeleteCreatedCalendar(@Path("calendarId") id: Int): Call<RspModel<Long>>
 
+    /**
+     * 七牛Token
+     */
     @GET("custom/upload/token")
     fun getToken(): Call<RspModel<String>>
 
+    /**
+     * 注册
+     */
+    @POST("user/register")
+    fun register(@Body requestModel: RegisterRequestModel): Call<RspModel<Long>>
+
+    /**
+     * 登录
+     */
+    @POST("user/login")
+    fun login(@Body loginRequestModel: LoginRequestModel): Call<RspModel<LoginResponseModel>>
+
+    /**
+     * 订阅
+     */
+    @GET("calendar/{calendarId}/subscribe")
+    fun subscribeCalendar(@Path("calendarId") id: Int): Call<RspModel<Unit>>
+
+    /**
+     * 取消订阅
+     */
+    @GET("calendar/{calendarId}/unsubscribe")
+    fun unsubscribeCalendar(@Path("calendarId") id: Int): Call<RspModel<Unit>>
 }

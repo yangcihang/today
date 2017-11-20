@@ -2,10 +2,11 @@ package com.hrsoft.today
 
 import android.app.Activity
 import android.app.Application
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.os.Bundle
-import com.hrsoft.today.common.Config
-import com.hrsoft.today.mvp.model.CalendarModel
 import com.hrsoft.today.mvp.model.User
+import com.hrsoft.today.mvp.view.account.activity.AccountActivity
 import com.hrsoft.today.util.CacheUtil
 import com.qiniu.android.common.FixedZone
 import com.qiniu.android.storage.Configuration
@@ -64,7 +65,6 @@ class App : Application() {
             }
 
         })
-        initUserInfo()
         val config = Configuration.Builder()
                 .chunkSize(512 * 1024)        // 分片上传时，每片的大小。 默认256K
                 .putThreshhold(1024 * 1024)   // 启用分片上传阀值。默认512K
@@ -73,11 +73,10 @@ class App : Application() {
                 .responseTimeout(60)          // 服务器响应超时。默认60秒
                 .zone(FixedZone.zone1)        // 设置区域，指定不同区域的上传域名、备用域名、备用IP。
                 .build()
-        uploadManager = UploadManager(config)
-    }
 
-    private fun initUserInfo() {
-        getCacheUtil().getSerializableObj(Config.KEY_CALENDAR)?.let { User.userCalendarList = it as MutableList<CalendarModel> }
+        uploadManager = UploadManager(config)
+        //加载用户数据
+        User.loadUserInfo()
     }
 
     /**
@@ -104,6 +103,11 @@ class App : Application() {
         // TODO: 17/8/25 退出的后续操作
     }
 
+    fun toLogin() {
+        removeAllActivity()
+        User.clear()
+        startActivity(Intent(this, AccountActivity::class.java).apply { flags = FLAG_ACTIVITY_NEW_TASK })
+    }
 
     /**
      * 移除Activity

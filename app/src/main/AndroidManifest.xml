@@ -12,17 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".mvp.view.main.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN"/>-->
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+            <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".mvp.view.square.activity.SquareActivity"/>
         <activity android:name=".mvp.view.square.activity.SearchActivity"/>
         <activity android:name=".mvp.view.manage.activity.ManageCalendarActivity"/>
         <activity android:name=".mvp.view.manage.activity.CreateCalendarActivity"/>
         <activity android:name=".mvp.view.detail.activity.CalendarDetailActivity"/>
+        <activity android:name=".mvp.view.account.activity.AccountActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

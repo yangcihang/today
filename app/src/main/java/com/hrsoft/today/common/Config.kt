@@ -10,7 +10,10 @@ object Config {
     val EMAIL_REGEX = "^\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*$"
     val BASE_URL = "http://tdapi.marklux.cn/"
     val APP_SERVER_CONNECT_TIME_OUT: Long = 15
+    val MINI_CREATE_RECOMMEND_NUM = 2
 
     val KEY_CALENDAR = "calendar"
-    val KEY_SQUARE_CALENDAR = "square_calendar"
+    val KEY_SQUARE_CALENDAR = "squareCalendar"
+    val KEY_USER_INFO = "userInfo"
+    val KEY_CALENDAR_DETAIL = "calendarDetail"
 }

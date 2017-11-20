@@ -46,6 +46,17 @@ abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
     }
 
     /**
+     * 带动画的添加
+     */
+    fun add(data: Data, position: Int) {
+        this.dataList.add(data)
+        notifyItemInserted(position)
+        Utility.runOnUiThread(Runnable {
+            refreshData()
+        }, 500)
+    }
+
+    /**
      * 移除数据源
      */
     fun remove(data: Data) {

@@ -106,7 +106,7 @@ abstract class BaseFragment : Fragment() {
      */
     protected fun disMissProgressDialog() {
         Utility.runOnUiThread(Runnable {
-            if (!activity.isDestroyed && progressDialog.isShowing) {
+            if (progressDialog.isShowing) {
                 progressDialog.dismiss()
             }
         }, 300)

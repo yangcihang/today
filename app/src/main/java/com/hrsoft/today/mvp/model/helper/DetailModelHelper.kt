@@ -35,8 +35,32 @@ object DetailModelHelper {
             override fun onFailed() {
                 callback.onDetailLoadFailed()
             }
+        })
+    }
+
+    fun subscribedCalendar(callback: DetailActivityPresenter, id: Int) {
+        NetWork.getService().subscribeCalendar(id).enqueue(object : RspCallback<Unit>() {
+            override fun onSuccess(data: Unit?) {
+                callback.onSubscribeSuccess()
+            }
+
+            override fun onFailed() {
+                callback.onSubscribeFailed()
+            }
 
         })
+    }
 
+    fun unSubscribedCalendar(callback: DetailActivityPresenter, id: Int) {
+        NetWork.getService().unsubscribeCalendar(id).enqueue(object : RspCallback<Unit>() {
+            override fun onSuccess(data: Unit?) {
+                callback.onUnsubscribeSuccess()
+            }
+
+            override fun onFailed() {
+                callback.onUnsubscribeFailed()
+            }
+
+        })
     }
 }

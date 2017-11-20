@@ -18,12 +18,42 @@
     <string name="text_manage_calendar">管理黄历</string>
     <string name="text_title_create_calendar">日历标题</string>
     <string name="hint_create_calendar_title">请输入日历的标题</string>
-    <string name="toast_wait">请稍等</string>
-    <string name="toast_image_load_error">图片加载失败</string>
+    <string name="dialog_wait">请稍等</string>
     <string name="text_get_token_error">获取token失败</string>
+
+    <string name="text_cancel_subscribed">取消订阅</string>
+
+    <string name="text_login">登录</string>
+    <string name="text_forget_psw">忘记密码？</string>
+    <string name="text_to_register">新用户注册</string>
+    <string name="hint_psw">密码</string>
+    <string name="hint_confirm_psw">确认密码</string>
+    <string name="hint_sign">请输入签名(可选)</string>
+    <string name="text_account_title">你的专属日历</string>
+    <string name="text_register">注册</string>
+
+    <string name="toast_image_load_error">图片加载失败</string>
+    <string name="toast_calendar_picture_error">请选择图片</string>
     <string name="toast_calendar_title_error">请输入5-20位的标题</string>
     <string name="toast_calendar_description_error">描述超过了500字</string>
     <string name="toast_image_load_success">上传成功</string>
-    <string name="text_cancel_subscribed">取消订阅</string>
-    <string name="toast_calendar_picture_error">请选择图片</string>
+    <string name="toast_nickname_error">请输入3~20位的昵称</string>
+    <string name="toast_password_error">请输入6~20位密码</string>
+    <string name="toast_password_confirm_error">两次输入密码不一致</string>
+    <string name="toast_login_name_empty">请输入账号</string>
+    <string name="toast_calendar_empty">您还没有订阅黄历，请订阅黄历</string>
+    <string name="text_subscribed">订阅</string>
+    <string name="toast_state_good_empty">请输入Good内容</string>
+    <string name="toast_state_title_error">请输入4~20位的标题</string>
+    <string name="toast_state_bad_empty">请输入Bad内容</string>
+    <string name="toast_save_success">保存成功</string>
+    <string name="text_recommend_num_title">自定义标签展示个数</string>
+    <string name="toast_subscribe_success">订阅成功</string>
+    <string name="toast_subscribe_failed">订阅失败，请稍后再试</string>
+    <string name="toast_unsubscribe_success">取消订阅</string>
+    <string name="toast_unsubscribe_failed">取消订阅失败，请稍后再试</string>
+    <string name="toast_recommend_content_empty">有未填入的推荐字段</string>
+    <string name="toast_recommend_content_num_error">自定义的个数不能小于展示的个数</string>
+    <string name="toast_recommend_title_name_error">请输入3-20字的标签名称</string>
+    <string name="toast_recommend_item_empty">您还没有创建推荐项</string>
 </resources>

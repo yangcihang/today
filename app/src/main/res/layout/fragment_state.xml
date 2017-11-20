@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingTop="@dimen/spacing_small">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="@dimen/spacing_small">
 
     <ImageView
         android:id="@+id/img_state_title"
@@ -10,7 +11,8 @@
         android:layout_height="@dimen/len_small_img_height"
         android:layout_alignParentStart="true"
         android:layout_marginStart="@dimen/spacing_normal"
-        android:background="@color/black"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:src="@drawable/ic_label_red"
         />
 
     <TextView
@@ -42,13 +44,14 @@
         android:layout_below="@id/img_state_title"
         android:layout_marginStart="@dimen/spacing_normal"
         android:layout_marginTop="@dimen/spacing_huge"
-        android:background="@color/black"/>
+        android:src="@drawable/ic_green_point"/>
 
     <TextView
         android:id="@+id/txt_state_good"
         style="@style/TextStateTitle"
         android:layout_alignBottom="@id/img_state_good"
-        android:layout_toEndOf="@id/img_state_good"
+        android:layout_alignLeft="@id/txt_state_title"
+        android:layout_marginStart="0dp"
         android:text="Good"/>
 
     <EditText
@@ -75,13 +78,14 @@
         android:layout_below="@id/img_state_good"
         android:layout_marginStart="@dimen/spacing_normal"
         android:layout_marginTop="@dimen/spacing_huge"
-        android:background="@color/black"/>
+        android:src="@drawable/ic_red_point"/>
 
     <TextView
         android:id="@+id/txt_state_bad"
         style="@style/TextStateTitle"
         android:layout_alignBottom="@id/img_state_bad"
-        android:layout_toEndOf="@id/img_state_bad"
+        android:layout_alignStart="@id/txt_state_title"
+        android:layout_marginStart="0dp"
         android:text="Bad"/>
 
     <EditText
@@ -103,14 +107,16 @@
 
     <Button
         android:id="@+id/btn_state_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/len_btn_state_save_width"
+        android:layout_height="@dimen/len_btn_state_save_height"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/edit_state_bad"
         android:layout_marginRight="@dimen/spacing_normal"
         android:layout_marginTop="@dimen/spacing_large"
+        android:background="@drawable/bg_account_btn_normal"
         android:text="保存"
-        android:textColor="@color/white"/>
+        android:textColor="@color/text_white"
+        android:textSize="@dimen/text_secondary"/>
 
     <LinearLayout
         android:id="@+id/ll_expand_layout"
@@ -133,11 +139,12 @@
 
 
         <ImageView
+            android:id="@+id/img_state_arrow"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_gravity="center"
             android:layout_marginEnd="@dimen/spacing_small"
-            android:background="@color/black"/>
+            android:background="@drawable/bg_arrow_selector"/>
 
     </LinearLayout>
 

@@ -20,6 +20,7 @@ import com.hrsoft.today.mvp.model.SimpleCalendarModel
  */
 class SubscribedListAdapter(mContext: Context) : BaseRecyclerAdapter<CalendarModel>(mContext) {
     var onDeleteClickedListener: ((pos: Int, model: CalendarModel) -> Unit)? = null
+    var onEditClickedListener: ((model: CalendarModel) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BaseViewHolder<CalendarModel> {
         return ItemHolder(inflater.inflate(R.layout.item_manage_calendar, parent, false))
     }
@@ -35,6 +36,7 @@ class SubscribedListAdapter(mContext: Context) : BaseRecyclerAdapter<CalendarMod
             titleTxt.text = mData?.calendarName
             Glide.with(mContext).load(mData?.calendarPicture).placeholder(R.mipmap.ic_launcher).into(iconImg)
             deleteTxt.setOnClickListener { mData?.let { onDeleteClickedListener?.invoke(position, it) } }
+            editTxt.setOnClickListener { onEditClickedListener?.invoke(mData!!) }
         }
 
     }

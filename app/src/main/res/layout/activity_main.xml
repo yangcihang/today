@@ -59,7 +59,6 @@
         android:fitsSystemWindows="true"
         android:foregroundGravity="left"
         android:orientation="horizontal"
-        app:headerLayout="@layout/view_navigation_head"
         app:menu="@menu/menu_navigation">
     </android.support.design.widget.NavigationView>
 

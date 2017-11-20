@@ -2,13 +2,6 @@ package com.hrsoft.today.mvp.view.detail.activity
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
-import android.os.Build
-import android.renderscript.Allocation
-import android.renderscript.Element
-import android.renderscript.RenderScript
-import android.renderscript.ScriptIntrinsicBlur
 import com.bumptech.glide.Glide
 import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
@@ -18,7 +11,6 @@ import com.hrsoft.today.mvp.model.CalendarDetailModel
 import com.hrsoft.today.mvp.model.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
 import com.hrsoft.today.mvp.view.detail.adapter.DetailPagerAdapter
-import com.hrsoft.today.mvp.view.detail.fragment.CommentFragment
 import com.hrsoft.today.util.ToastUtil
 import com.hrsoft.today.util.Utility
 import com.hrsoft.today.widget.CropCircleTransformation
@@ -30,10 +22,11 @@ import kotlinx.android.synthetic.main.activity_calendar_detail.*
  * @since  17/11/5.
  * email yangcihang@hrsoft.net
  */
-class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFragment.GetCalendarIdListener {
-
+class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
 
     private lateinit var calendarModel: SimpleCalendarModel
+    private var isSubscribed: Boolean = false
+    override var mPresenter: DetailContract.Presenter? = DetailActivityPresenter(this)
 
     companion object {
         fun start(context: Context, model: SimpleCalendarModel) {
@@ -43,14 +36,54 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         }
     }
 
-    override var mPresenter: DetailContract.Presenter? = DetailActivityPresenter(this)
 
     override fun initVariable() {
         calendarModel = intent.getSerializableExtra(Config.KEY_SQUARE_CALENDAR) as SimpleCalendarModel
-
     }
 
     override fun initView() {
+        initToolbar()
+        // 渲染页面数据
+        isSubscribed = calendarModel.isSubscribed
+        img_subscribe.isSelected = isSubscribed
+        txt_calendar_title.text = calendarModel.title
+        Glide.with(this).load(calendarModel.picture)
+                .bitmapTransform(BlurTransformation(this, 14, 3))
+                .dontAnimate()
+                .error(R.mipmap.ic_launcher)
+                .into(img_calendar_bg)
+        toolbar.setNavigationOnClickListener { finish() }
+        txt_subscribe.setOnClickListener {
+            if (!isSubscribed) {
+                mPresenter?.subscribeCalendar(calendarModel.id!!)
+            } else {
+                mPresenter?.unSubscribeCalendar(calendarModel.id!!)
+            }
+        }
+    }
+
+
+    override fun loadData() {
+        mPresenter?.getCalendarInfo(calendarModel.id!!)
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_calendar_detail
+    }
+
+    /**
+     * 初始化ViewPager
+     */
+    private fun initViewPager(mData: CalendarDetailModel) {
+        tabs.setTabTextColors(resources.getColor(R.color.text_ternary), resources.getColor(R.color.black))
+        vp_calendar_detail.adapter = DetailPagerAdapter(supportFragmentManager, mData)
+        tabs.setupWithViewPager(vp_calendar_detail)
+    }
+
+    /**
+     * 初始化toolbar
+     */
+    private fun initToolbar() {
         // 获取toolbar的折叠凳状态，以修改文字颜色等
         app_bar_detail.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
             when {
@@ -66,38 +99,6 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
                 }
             }
         }
-        tabs.setTabTextColors(resources.getColor(R.color.text_ternary), resources.getColor(R.color.black))
-        vp_calendar_detail.adapter = DetailPagerAdapter(supportFragmentManager)
-        tabs.setupWithViewPager(vp_calendar_detail)
-
-        // 渲染页面数据
-        txt_calendar_title.text = calendarModel.title
-        Glide.with(this).load(calendarModel.picture)
-                .bitmapTransform(BlurTransformation(this, 14, 3))
-                .dontAnimate()
-                .error(R.mipmap.ic_launcher)
-                .into(img_calendar_bg)
-        toolbar.setNavigationOnClickListener { finish() }
-    }
-
-    override fun loadData() {
-        mPresenter?.getCalendarInfo(calendarModel.id!!)
-    }
-
-    override fun getLayoutId(): Int {
-        return R.layout.activity_calendar_detail
-    }
-
-    /**
-     *     将ID传给fragment，以便获取评论
-     */
-    override fun spreadCalendarId(): Int {
-        return calendarModel.id!!
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        mPresenter?.onDetach()
     }
 
     /**
@@ -109,12 +110,49 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View, CommentFrag
         txt_good_sum.text = mData.goodPick.toString()
         Glide.with(this).load(mData.creatorAvatar).bitmapTransform(CropCircleTransformation(this)).into(img_user_avatar)
         Glide.with(this).load(mData.picture).into(calendar_avatar)
+        initViewPager(mData)
     }
+
 
     override fun onDetailLoadFailed() {
         ToastUtil.showToast("信息加载失败，请稍后再试")
     }
 
+    override fun onSubscribeSuccess() {
+        Utility.runOnUiThread(Runnable {
+            ToastUtil.showToast(R.string.toast_subscribe_success)
+            isSubscribed = true
+            img_subscribe.isSelected = true
+        })
+    }
+
+    override fun onSubscribeFailed() {
+        Utility.runOnUiThread(Runnable {
+            isSubscribed = false
+            ToastUtil.showToast(R.string.toast_subscribe_failed)
+        })
+    }
+
+    override fun onUnsubscribeSuccess() {
+        Utility.runOnUiThread(Runnable {
+            ToastUtil.showToast(R.string.toast_unsubscribe_success)
+            isSubscribed = false
+            img_subscribe.isSelected = false
+        })
+    }
+
+    override fun onUnsubscribeFailed() {
+        Utility.runOnUiThread(Runnable {
+            ToastUtil.showToast(R.string.toast_unsubscribe_failed)
+            isSubscribed = true
+            img_subscribe.isSelected = true
+        })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mPresenter?.onDetach()
+    }
 //    /**
 //     * 设置高斯模糊背景图
 //     */

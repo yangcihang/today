@@ -1,11 +1,14 @@
 package com.hrsoft.today.mvp.view.detail.fragment
 
 import android.content.Context
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.base.RecyclerScrollListener
+import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.contract.CommentContract
+import com.hrsoft.today.mvp.model.CalendarDetailModel
 import com.hrsoft.today.mvp.model.CommentModel
 import com.hrsoft.today.mvp.presenter.CommentFragmentPresenter
 import com.hrsoft.today.mvp.view.detail.adapter.CommentAdapter
@@ -23,11 +26,24 @@ class CommentFragment : BaseFragment(), CommentContract.View {
     private var page = 1
     private var isLastPage = false
     private var commentAdapter: CommentAdapter? = null
+
+    companion object {
+        /**
+         * 静态启动
+         */
+        fun createFragment(calendar: CalendarDetailModel?): CommentFragment {
+            val bundle = Bundle()
+            bundle.putParcelable(Config.KEY_CALENDAR_DETAIL, calendar)
+            return CommentFragment().apply { arguments = bundle }
+        }
+    }
+
     override fun getLayoutId(): Int {
         return R.layout.fragment_calendar_comment
     }
 
     override fun initVariable() {
+        calendarId = arguments.getParcelable<CalendarDetailModel>(Config.KEY_CALENDAR_DETAIL).id
         commentAdapter = CommentAdapter(activity)
     }
 
@@ -41,16 +57,6 @@ class CommentFragment : BaseFragment(), CommentContract.View {
 
     override fun loadData() {
         mPresenter?.getComment(page++, calendarId!!)
-    }
-
-    interface GetCalendarIdListener {
-        fun spreadCalendarId(): Int
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        val getCalendarIdLister: GetCalendarIdListener = context as GetCalendarIdListener
-        calendarId = getCalendarIdLister.spreadCalendarId()
     }
 
     override fun onCommentListLoaded(dataList: List<CommentModel>) {
