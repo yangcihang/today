@@ -20,6 +20,7 @@
     <color name="text_white">#ffffff</color>
     <color name="text_ternary">#cacaca</color>
     <color name="text_hint">#c9cccb</color>
+    <color name="bg_input_panel">#FFFFFF</color>
     <color name="green">#67b82b</color>
     <color name="red">#cc2b0f</color>
     <color name="view_divide">#dedede</color>

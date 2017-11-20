@@ -57,4 +57,6 @@
     <integer name="dialog_input_hint_txt_size">16</integer>
     <integer name="dialog_margin_abroad">14</integer>
     <integer name="dialog_margin_top">14</integer>
+
+    <dimen name="input_panel_img_size">32dp</dimen>
 </resources>

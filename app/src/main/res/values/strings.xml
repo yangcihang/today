@@ -56,4 +56,5 @@
     <string name="toast_recommend_content_num_error">自定义的个数不能小于展示的个数</string>
     <string name="toast_recommend_title_name_error">请输入3-20字的标签名称</string>
     <string name="toast_recommend_item_empty">您还没有创建推荐项</string>
+    <string name="btn_send">发送</string>
 </resources>

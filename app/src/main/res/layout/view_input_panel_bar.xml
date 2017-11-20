@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/rl_input_panel_toolbar_root_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/bg_input_panel"
+                android:orientation="vertical"
+                android:paddingBottom="8dp"
+                android:paddingTop="10dp">
+
+
+    <FrameLayout
+        android:id="@+id/fl_audio_btn_or_input_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/edit_input_panel_toolbar_edit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web|email|phone"
+                android:background="@drawable/bg_input_panel_edit_text_box"
+                android:hint="发表评论"
+                android:maxHeight="72dp"
+                android:maxLines="4"
+                android:minHeight="@dimen/input_panel_img_size"
+                android:textCursorDrawable="@drawable/shape_edit_text_cursor"
+                android:textSize="16sp"/>
+        </ScrollView>
+
+
+    </FrameLayout>
+    <FrameLayout
+        android:id="@+id/fl_send_or_input_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/fl_audio_btn_or_input_edit"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp">
+
+        <TextView
+            android:id="@+id/txt_input_panel_toolbar_send"
+            android:layout_width="50dp"
+            android:layout_height="@dimen/input_panel_img_size"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_shape_send_btn"
+            android:gravity="center"
+            android:minWidth="@dimen/input_panel_img_size"
+            android:text="@string/btn_send"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+    </FrameLayout>
+</RelativeLayout>
