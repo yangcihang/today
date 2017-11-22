@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.fragment_main_content.*
  * email yangcihang@hrsoft.net
  */
 class MainContentFragment : BaseFragment() {
-    private var calendar: CalendarModel? = null
+    var calendar: CalendarModel? = null
     private lateinit var stateGoodAdapter: StateListAdapter
     private lateinit var stateBadAdapter: StateListAdapter
     private lateinit var recommendAdapter: RecommendListAdapter
@@ -70,6 +70,22 @@ class MainContentFragment : BaseFragment() {
             it.scaleType = ImageView.ScaleType.FIT_XY
             Glide.with(this).load(calendar?.calendarPicture).placeholder(R.mipmap.ic_launcher).into(it)
         }
+    }
+
+    fun refreshData(calendar: CalendarModel?) {
+        calendar?.bad?.let { stateBadAdapter.refreshData(it) }
+        calendar?.recommend?.let { recommendAdapter.refreshData(it) }
+        Glide.with(this).load(calendar?.calendarPicture).placeholder(R.mipmap.ic_launcher).into(img_content_header)
+        this@MainContentFragment.calendar = calendar
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        calendar?.good?.let { stateGoodAdapter.refreshData(it) }
+        calendar?.bad?.let { stateBadAdapter.refreshData(it) }
+        calendar?.recommend?.let { recommendAdapter.refreshData(it) }
+        Glide.with(this).load(calendar?.calendarPicture).placeholder(R.mipmap.ic_launcher).into(img_content_header)
     }
 
     override fun loadData() {

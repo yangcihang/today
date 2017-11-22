@@ -57,4 +57,9 @@
     <string name="toast_recommend_title_name_error">请输入3-20字的标签名称</string>
     <string name="toast_recommend_item_empty">您还没有创建推荐项</string>
     <string name="btn_send">发送</string>
+    <string name="txt_sort">点击可排序</string>
+    <string name="txt_finish_order">完成</string>
+    <string name="toast_order_success">排序成功</string>
+    <string name="toast_order_failed">排序失败</string>
+    <string name="toast_refresh_failed">刷新失败</string>
 </resources>

@@ -31,6 +31,7 @@ class MainActivityPresenter(override var mView: MainContract.View?) : MainContra
     }
 
     override fun onCalendarLoadFailed() {
+        mView?.onCalendarLoadFailed()
         ToastUtil.showToast("请求失败")
     }
 

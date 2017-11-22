@@ -24,7 +24,6 @@ class ManageCalendarActivity : ToolbarActivity() {
     override fun initView() {
         setActivityTitle(getString(R.string.text_manage_calendar))
         tab_manage.setupWithViewPager(vp_manage.apply { adapter = this@ManageCalendarActivity.adapter })
-        fab_manage_create.setOnClickListener { startActivity(Intent(this@ManageCalendarActivity, CreateCalendarActivity::class.java)) }
     }
 
 

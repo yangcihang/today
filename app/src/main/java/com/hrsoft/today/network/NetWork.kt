@@ -5,6 +5,7 @@ import com.hrsoft.today.mvp.model.*
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
+import org.w3c.dom.Comment
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -110,4 +111,16 @@ interface NetWork {
      */
     @GET("calendar/{calendarId}/unsubscribe")
     fun unsubscribeCalendar(@Path("calendarId") id: Int): Call<RspModel<Unit>>
+
+    /**
+     * 评论
+     */
+    @POST("calendar/{calendarId}/comment")
+    fun comment(@Path("calendarId") id: Int, @Body comment: CommentModel): Call<RspModel<Unit>>
+
+    /**
+     * 排序
+     */
+    @PUT("calendar/subscribe")
+    fun orderCalendar(@Body calendarList: List<CalendarModel>): Call<RspModel<Unit>>
 }

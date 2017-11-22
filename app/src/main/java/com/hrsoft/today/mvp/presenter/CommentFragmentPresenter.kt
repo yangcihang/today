@@ -1,8 +1,11 @@
 package com.hrsoft.today.mvp.presenter
 
+import android.text.TextUtils
+import android.widget.Toast
 import com.hrsoft.today.mvp.contract.CommentContract
 import com.hrsoft.today.mvp.model.CommentModel
 import com.hrsoft.today.mvp.model.helper.DetailModelHelper
+import com.hrsoft.today.util.ToastUtil
 
 /**
  * @author abtion.
@@ -10,6 +13,14 @@ import com.hrsoft.today.mvp.model.helper.DetailModelHelper
  * email caiheng@hrsoft.net.
  */
 class CommentFragmentPresenter(override var mView: CommentContract.View?) : CommentContract.Presenter {
+    override fun sendComment(id: Int, content: String) {
+        if (TextUtils.isEmpty(content)) {
+            return
+        } else {
+            DetailModelHelper.sendComment(this, id, content)
+        }
+    }
+
     override fun onDetach() {
         mView = null
     }
@@ -25,5 +36,13 @@ class CommentFragmentPresenter(override var mView: CommentContract.View?) : Comm
 
     override fun getComment(page: Int, calendarId: Int) {
         DetailModelHelper.requestCalendarCommentList(page, calendarId, this)
+    }
+
+    fun onSendCommentSuccess() {
+        mView?.onSendCommentSuccess()
+    }
+
+    fun onSendCommentFailed() {
+        mView?.onSendCommentFailed()
     }
 }

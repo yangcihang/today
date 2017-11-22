@@ -1,5 +1,6 @@
 package com.hrsoft.today.mvp.view.manage.fragment
 
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
@@ -7,9 +8,11 @@ import com.hrsoft.today.mvp.contract.ManageCreatedContract
 import com.hrsoft.today.mvp.model.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.ManageCreatedFragmentPresenter
 import com.hrsoft.today.mvp.view.detail.activity.CalendarDetailActivity
+import com.hrsoft.today.mvp.view.manage.activity.CreateCalendarActivity
 import com.hrsoft.today.mvp.view.manage.adapter.CreatedListAdapter
 import com.hrsoft.today.util.DialogUtils
 import com.hrsoft.today.util.ToastUtil
+import kotlinx.android.synthetic.main.activity_manage_calendar.*
 import kotlinx.android.synthetic.main.fragment_created.*
 
 /**
@@ -30,6 +33,7 @@ class UserCreatedFragment : BaseFragment(), ManageCreatedContract.View {
     }
 
     override fun initView() {
+        fab_manage_create.setOnClickListener { startActivity(Intent(context, CreateCalendarActivity::class.java)) }
         rec_created_calendar.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = this@UserCreatedFragment.listAdapter.apply {
@@ -51,7 +55,6 @@ class UserCreatedFragment : BaseFragment(), ManageCreatedContract.View {
                 }
             }
         }
-
 
     }
 

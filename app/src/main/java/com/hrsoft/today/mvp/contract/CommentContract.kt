@@ -12,6 +12,8 @@ interface CommentContract : BaseContract {
     interface View : BaseContract.View<Presenter> {
         fun onCommentListLoaded(dataList: List<CommentModel>)
         fun onCommentListLoadFailed()
+        fun onSendCommentSuccess()
+        fun onSendCommentFailed()
         fun onToTheLastPage()
     }
 
@@ -19,5 +21,6 @@ interface CommentContract : BaseContract {
         fun getComment(page: Int, calendarId: Int)
         fun onCommentListLoadSuccess(dataList: List<CommentModel>)
         fun onCommentListLoadFailed()
+        fun sendComment(id: Int, content: String)
     }
 }

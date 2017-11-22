@@ -60,7 +60,18 @@ object DetailModelHelper {
             override fun onFailed() {
                 callback.onUnsubscribeFailed()
             }
+        })
+    }
 
+    fun sendComment(callback: CommentFragmentPresenter, id: Int, content: String) {
+        NetWork.getService().comment(id, CommentModel().apply { comment = content }).enqueue(object : RspCallback<Unit>() {
+            override fun onSuccess(data: Unit?) {
+                callback.onSendCommentSuccess()
+            }
+
+            override fun onFailed() {
+                callback.onSendCommentFailed()
+            }
         })
     }
 }

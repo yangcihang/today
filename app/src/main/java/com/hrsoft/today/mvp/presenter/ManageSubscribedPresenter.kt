@@ -1,7 +1,9 @@
 package com.hrsoft.today.mvp.presenter
 
 import com.hrsoft.today.mvp.contract.ManageSubscribedContract
+import com.hrsoft.today.mvp.model.CalendarModel
 import com.hrsoft.today.mvp.model.helper.ManageModelHelper
+import com.hrsoft.today.util.ToastUtil
 
 /**
  * @author YangCihang
@@ -9,6 +11,14 @@ import com.hrsoft.today.mvp.model.helper.ManageModelHelper
  * email yangcihang@hrsoft.net
  */
 class ManageSubscribedPresenter(override var mView: ManageSubscribedContract.View?) : ManageSubscribedContract.Presenter {
+    override fun requestCalendarList() {
+        ManageModelHelper.requestCalendarModel(this)
+    }
+
+    override fun orderCalendar(calendarList: List<CalendarModel>) {
+        ManageModelHelper.orderCalendar(this, calendarList)
+    }
+
     override fun unSubscribeCalendar(id: Int) {
         ManageModelHelper.unSubscribedCalendar(this, id)
     }
@@ -24,4 +34,25 @@ class ManageSubscribedPresenter(override var mView: ManageSubscribedContract.Vie
     fun onUnsubscribeFailed() {
         mView?.onUnsubscribeFailed()
     }
+
+    fun onOrderSuccess() {
+        mView?.onOrderSuccess()
+    }
+
+    fun onOrderFailed() {
+        mView?.onOrderFailed()
+    }
+
+    fun onCalendarLoadSuccess(calendarList: List<CalendarModel>?) {
+        if (calendarList != null) {
+            mView?.getCalendarListSuccess(calendarList)
+        } else {
+            ToastUtil.showToast("请求失败")
+        }
+    }
+
+    fun onCalendarLoadFailed() {
+        ToastUtil.showToast("请求失败")
+    }
+
 }

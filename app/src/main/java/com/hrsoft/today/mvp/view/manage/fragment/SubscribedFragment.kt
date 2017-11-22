@@ -11,9 +11,12 @@ import com.hrsoft.today.mvp.presenter.ManageSubscribedPresenter
 import com.hrsoft.today.mvp.view.manage.adapter.SubscribedListAdapter
 import kotlinx.android.synthetic.main.fragment_subscribed.*
 import android.support.v7.widget.GridLayoutManager
+import com.hrsoft.today.mvp.model.CalendarModel
 import com.hrsoft.today.mvp.model.User
 import com.hrsoft.today.mvp.view.manage.activity.CreateCalendarActivity
 import com.hrsoft.today.util.ToastUtil
+import java.lang.reflect.Field
+import java.lang.reflect.Method
 import java.util.*
 
 /**
@@ -25,6 +28,7 @@ class SubscribedFragment : BaseFragment(), ManageSubscribedContract.View {
     override var mPresenter: ManageSubscribedContract.Presenter? = ManageSubscribedPresenter(this)
     private var deletePos: Int? = null
     private lateinit var adapter: SubscribedListAdapter
+    private var moveFlag: Boolean = false
     private lateinit var itemTouchHelper: ItemTouchHelper
     override fun initVariable() {
         adapter = SubscribedListAdapter(context)
@@ -38,6 +42,14 @@ class SubscribedFragment : BaseFragment(), ManageSubscribedContract.View {
 
 
     override fun initView() {
+        initRecyclerView()
+        initOrderText()
+    }
+
+    /**
+     * 初始化recyclerView
+     */
+    private fun initRecyclerView() {
         itemTouchHelper.attachToRecyclerView(rec_subscribed_calendar.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = this@SubscribedFragment.adapter.apply {
@@ -51,6 +63,39 @@ class SubscribedFragment : BaseFragment(), ManageSubscribedContract.View {
                 onEditClickedListener = { model -> CreateCalendarActivity.start(context, model) }
             }
         })
+        refresh_subscribed.setOnRefreshListener {
+            mPresenter?.requestCalendarList()
+        }
+    }
+
+    /**
+     * 初始化排序提示文字
+     */
+    private fun initOrderText() {
+        //反射获取销毁方法
+        //TODO(使用反射改变itemTouch属性)
+        val method: Method = ItemTouchHelper::class.java.getDeclaredMethod("destroyCallbacks")
+        val filed: Field = ItemTouchHelper::class.java.getDeclaredField("mRecyclerView")
+        filed.isAccessible = true
+        method.isAccessible = true
+        method.invoke(itemTouchHelper)
+        //排序请求
+        txt_order.setOnClickListener {
+            if (moveFlag) {
+                method.invoke(itemTouchHelper)
+                txt_order.text = getString(R.string.txt_sort)
+                mPresenter?.orderCalendar(User.userCalendarList.apply {
+                    for ((pos, i) in User.userCalendarList.withIndex()) {
+                        i.order = pos
+                    }
+                })
+            } else {
+                filed.set(itemTouchHelper, null)
+                itemTouchHelper.attachToRecyclerView(rec_subscribed_calendar)
+                txt_order.text = getString(R.string.txt_finish_order)
+            }
+            moveFlag = !moveFlag
+        }
     }
 
     override fun loadData() {
@@ -66,6 +111,27 @@ class SubscribedFragment : BaseFragment(), ManageSubscribedContract.View {
         disMissProgressDialog()
         ToastUtil.showToast(R.string.toast_unsubscribe_failed)
     }
+
+    override fun onOrderSuccess() {
+        ToastUtil.showToast(R.string.toast_order_success)
+    }
+
+    override fun onOrderFailed() {
+        ToastUtil.showToast(R.string.toast_order_failed)
+
+    }
+
+    override fun getCalendarListSuccess(calendarList: List<CalendarModel>) {
+        adapter.refreshData(calendarList)
+        refresh_subscribed.isRefreshing = false
+        ToastUtil.showToast(R.string.toast_refresh_success)
+    }
+
+    override fun getCalendarListFailed() {
+        refresh_subscribed.isRefreshing = false
+        ToastUtil.showToast(R.string.toast_refresh_failed)
+    }
+
 
     /**
      * RecyclerView实现拖动的辅助类
@@ -96,6 +162,7 @@ class SubscribedFragment : BaseFragment(), ManageSubscribedContract.View {
             if (fromPosition!! < toPosition!!) {
                 for (i in fromPosition until toPosition) {
                     Collections.swap(User.userCalendarList, i, i + 1)
+
                 }
             } else {
                 //降序

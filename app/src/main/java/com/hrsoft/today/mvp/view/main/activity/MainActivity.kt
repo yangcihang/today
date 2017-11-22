@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v4.view.ViewPager
 import android.text.TextUtils
 import android.view.Gravity
-import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.hrsoft.today.App
@@ -20,6 +19,7 @@ import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
 import com.hrsoft.today.mvp.view.manage.activity.ManageCalendarActivity
 import com.hrsoft.today.mvp.view.square.activity.SquareActivity
 import com.hrsoft.today.util.ToastUtil
+import com.hrsoft.today.util.Utility
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.collections.ArrayList
@@ -28,10 +28,8 @@ class MainActivity : NoBarActivity(), MainContract.View {
 
     /**presenter*/
     override var mPresenter: MainContract.Presenter? = MainActivityPresenter(this)
-    /**fragmentList*/
-    private var fragmentList: MutableList<MainContentFragment> = mutableListOf()
     /**adapter*/
-    private var adapter: MainPagerAdapter = MainPagerAdapter(supportFragmentManager, fragmentList)
+    private var adapter: MainPagerAdapter = MainPagerAdapter(supportFragmentManager, User.userCalendarList)
 
     override fun initVariable() {
     }
@@ -39,13 +37,11 @@ class MainActivity : NoBarActivity(), MainContract.View {
     override fun initView() {
         img_drawer_menu.setOnClickListener { drawer_main.openDrawer(Gravity.START) }
         initNavigation()
-        User.userCalendarList.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
     }
 
     override fun loadData() {
         mPresenter!!.requestCalendar()
         vp_main.apply {
-            adapter?.notifyDataSetChanged()
             adapter = this@MainActivity.adapter
             addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
                 override fun onPageScrollStateChanged(state: Int) {
@@ -77,9 +73,21 @@ class MainActivity : NoBarActivity(), MainContract.View {
         }
         User.userCalendarList = calendarList as MutableList<CalendarModel>
         App.instance.getCacheUtil().putSerializableObj(Config.KEY_CALENDAR, User.userCalendarList as ArrayList)
-        fragmentList.clear()
-        User.userCalendarList.forEach { fragmentList.add(MainContentFragment.createFragment(it)) }
-        adapter.notifyDataSetChanged()
+//        逻辑得改
+//        if (fragmentList.size < User.userCalendarList.size) {
+//            for (i in 0..User.userCalendarList.size - fragmentList.size) {
+//                fragmentList.add(MainContentFragment())
+//            }
+//        } else if (fragmentList.size > User.userCalendarList.size) {
+//            for (i in 0..fragmentList.size - User.userCalendarList.size) {
+//                fragmentList.removeAt(i)
+//            }
+//        }
+        Utility.runOnUiThread(Runnable {
+            adapter.dataList = calendarList
+            adapter.notifyDataSetChanged()
+        }, 300)
+
         txt_calendar_title.text = User.userCalendarList[0].calendarName ?: "默认title"
     }
 
@@ -119,6 +127,7 @@ class MainActivity : NoBarActivity(), MainContract.View {
 
     override fun onRestart() {
         super.onRestart()
+        vp_main.currentItem = 0
         mPresenter!!.requestCalendar()
     }
 

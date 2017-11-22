@@ -1,6 +1,7 @@
 package com.hrsoft.today.base
 
 import android.app.ProgressDialog
+import android.content.Context
 import android.os.Bundle
 import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
@@ -36,6 +37,7 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         init()
     }
+
 
     /**
      * 页面初始化操作.

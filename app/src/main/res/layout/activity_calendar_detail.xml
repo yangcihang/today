@@ -159,12 +159,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_add_comment"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="24dp"/>
 </android.support.design.widget.CoordinatorLayout>

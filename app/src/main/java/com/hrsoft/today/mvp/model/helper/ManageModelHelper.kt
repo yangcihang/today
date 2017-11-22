@@ -1,7 +1,9 @@
 package com.hrsoft.today.mvp.model.helper
 
+import com.hrsoft.today.mvp.model.CalendarModel
 import com.hrsoft.today.mvp.model.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
+import com.hrsoft.today.mvp.presenter.MainActivityPresenter
 import com.hrsoft.today.mvp.presenter.ManageCreatedFragmentPresenter
 import com.hrsoft.today.mvp.presenter.ManageSubscribedPresenter
 import com.hrsoft.today.network.NetWork
@@ -18,6 +20,7 @@ object ManageModelHelper {
             override fun onSuccess(data: List<SimpleCalendarModel>?) {
                 callback.onCreatedCalendarLoadSuccess(data!!)
             }
+
             override fun onFailed() {
                 callback.onCreatedCalendarLoadFailed()
             }
@@ -46,6 +49,38 @@ object ManageModelHelper {
 
             override fun onFailed() {
                 callback.onUnsubscribeFailed()
+            }
+
+        })
+    }
+
+    /**
+     * 黄历排序
+     */
+    fun orderCalendar(callback: ManageSubscribedPresenter, calendarList: List<CalendarModel>) {
+        NetWork.getService().orderCalendar(calendarList).enqueue(object : RspCallback<Unit>() {
+            override fun onSuccess(data: Unit?) {
+                callback.onOrderSuccess()
+            }
+
+            override fun onFailed() {
+                callback.onOrderFailed()
+            }
+
+        })
+    }
+
+    /**
+     * 获取列表
+     */
+    fun requestCalendarModel(callback: ManageSubscribedPresenter) {
+        NetWork.getService().requestCalendarList().enqueue(object : RspCallback<List<CalendarModel>>() {
+            override fun onSuccess(data: List<CalendarModel>?) {
+                callback.onCalendarLoadSuccess(data)
+            }
+
+            override fun onFailed() {
+                callback.onCalendarLoadFailed()
             }
 
         })

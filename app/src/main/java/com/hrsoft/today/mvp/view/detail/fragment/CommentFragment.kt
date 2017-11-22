@@ -3,6 +3,7 @@ package com.hrsoft.today.mvp.view.detail.fragment
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.widget.Toast
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.base.RecyclerScrollListener
@@ -10,8 +11,10 @@ import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.contract.CommentContract
 import com.hrsoft.today.mvp.model.CalendarDetailModel
 import com.hrsoft.today.mvp.model.CommentModel
+import com.hrsoft.today.mvp.model.User
 import com.hrsoft.today.mvp.presenter.CommentFragmentPresenter
 import com.hrsoft.today.mvp.view.detail.adapter.CommentAdapter
+import com.hrsoft.today.util.TimeUtil
 import com.hrsoft.today.util.ToastUtil
 import kotlinx.android.synthetic.main.fragment_calendar_comment.*
 
@@ -25,6 +28,7 @@ class CommentFragment : BaseFragment(), CommentContract.View {
     private var calendarId: Int? = null
     private var page = 1
     private var isLastPage = false
+    private var sendCommentContent: String? = null
     private var commentAdapter: CommentAdapter? = null
 
     companion object {
@@ -53,14 +57,16 @@ class CommentFragment : BaseFragment(), CommentContract.View {
             layoutManager = LinearLayoutManager(this@CommentFragment.context)
             addOnScrollListener(RecyclerScrollListener({ if (!isLastPage) mPresenter?.getComment(page++, calendarId!!) }))
         }
+        input_panel.onSendListener = { s ->
+            run {
+                mPresenter?.sendComment(calendarId!!, s)
+                sendCommentContent = s
+            }
+        }
     }
 
     override fun loadData() {
         mPresenter?.getComment(page++, calendarId!!)
-    }
-
-    override fun onCommentListLoaded(dataList: List<CommentModel>) {
-        commentAdapter?.refreshData(dataList)
     }
 
     override fun onToTheLastPage() {
@@ -68,7 +74,29 @@ class CommentFragment : BaseFragment(), CommentContract.View {
         isLastPage = true
     }
 
+    override fun onCommentListLoaded(dataList: List<CommentModel>) {
+        commentAdapter?.addAll(dataList)
+    }
+
+
     override fun onCommentListLoadFailed() {
         ToastUtil.showToast("评论获取失败，请稍后再试")
     }
+
+
+    override fun onSendCommentSuccess() {
+        commentAdapter?.apply {
+            add(CommentModel().apply {
+                userName = User.name!!
+                createdAt = System.currentTimeMillis()
+                comment = sendCommentContent!!
+            })
+            refreshData()
+        }
+        ToastUtil.showToast("评论成功")
+    }
+
+    override fun onSendCommentFailed() {
+    }
+
 }

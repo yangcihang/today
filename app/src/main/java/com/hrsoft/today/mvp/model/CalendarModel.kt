@@ -14,4 +14,5 @@ class CalendarModel : Serializable {
     var good: List<CalendarStateModel>? = emptyList()
     var bad: List<CalendarStateModel>? = emptyList()
     var recommend: List<CalendarRecommendModel>? = emptyList()
+    var order: Int = 0
 }

@@ -18,15 +18,4 @@
         android:layout_below="@id/tab_manage">
 
     </android.support.v4.view.ViewPager>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_manage_create"
-        android:layout_width="@dimen/len_fab_width"
-        android:layout_height="@dimen/len_fab_height"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginBottom="56dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"/>
 </RelativeLayout>

@@ -11,6 +11,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.hrsoft.today.R
 import com.hrsoft.today.util.Utility
 
@@ -21,10 +22,10 @@ import com.hrsoft.today.util.Utility
  */
 class InputPanel : RelativeLayout {
     private lateinit var inputPanelEdit: EditText
-    private lateinit var sendBtn:FrameLayout
+    private lateinit var sendBtn: TextView
     private var isKeyboardShowed: Boolean = false
     private var delayTime: Long = 300
-    var onSendListener:((String)->Unit)? = null
+    var onSendListener: ((String) -> Unit)? = null
 
     constructor(context: Context) : super(context) {
         LayoutInflater.from(context).inflate(R.layout.view_input_panel_bar, this, true)
@@ -76,8 +77,9 @@ class InputPanel : RelativeLayout {
         if (isShowInput) {
             Utility.runOnUiThread(Runnable { showInputMethod() }, delayTime)
         } else {
-            hideInputMethod()
-            Utility.runOnUiThread(Runnable { }, delayTime)
+            Utility.runOnUiThread(Runnable {
+                hideInputMethod()
+            }, delayTime)
         }
     }
 
