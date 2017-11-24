@@ -62,4 +62,18 @@
     <string name="toast_order_success">排序成功</string>
     <string name="toast_order_failed">排序失败</string>
     <string name="toast_refresh_failed">刷新失败</string>
+    <string name="text_back">返回</string>
+    <string name="text_user_sign">修改签名</string>
+    <string name="text_user_psw">更改密码</string>
+    <string name="text_logout">退出登录</string>
+    <string name="toast_update_avatar_success">更新图像成功</string>
+    <string name="toast_update_avatar_failed">更新图像失败</string>
+    <string name="toast_update_sign_failed">修改签名失败</string>
+    <string name="toast_update_sign_success">更新签名成功</string>
+    <string name="hint_input_old_psw">请输入旧密码</string>
+    <string name="hint_new_psw">请输入密码</string>
+    <string name="hint_nickname">昵称</string>
+    <string name="text_confirm">确认</string>
+    <string name="toast_old_psw_error">旧密码输入错误</string>
+    <string name="dialog_input_user_sign">请输入签名(20字以内)</string>
 </resources>

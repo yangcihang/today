@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.PagerAdapter
 import android.view.ViewGroup
+import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.mvp.model.CalendarModel
 import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
 
@@ -16,9 +17,13 @@ import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
  */
 class MainPagerAdapter(private var fragmentManager: FragmentManager, var dataList: MutableList<CalendarModel>) :
         FragmentPagerAdapter(fragmentManager) {
+    //TODO 十分傻逼的方法，因为如果获取fragmentManager的所有fragment清除的话，会导致侧栏的Image无法渲染，因此用这个list保存所有的Pager里面的fragment
+    private var fragmentList: MutableList<BaseFragment> = mutableListOf()
 
     override fun getItem(position: Int): Fragment {
-        return MainContentFragment.createFragment(dataList[position])
+        val fragment = MainContentFragment.createFragment(dataList[position])
+        fragmentList.add(fragment)
+        return fragmentList[position]
     }
 
     override fun getCount(): Int {
@@ -40,7 +45,6 @@ class MainPagerAdapter(private var fragmentManager: FragmentManager, var dataLis
      * 不作处理，否则manager里面只保存当前的fragment和左右两边的
      */
     override fun destroyItem(container: ViewGroup?, position: Int, `object`: Any?) {
-
     }
 
     override fun notifyDataSetChanged() {
@@ -48,10 +52,13 @@ class MainPagerAdapter(private var fragmentManager: FragmentManager, var dataLis
         super.notifyDataSetChanged()
     }
 
+    //每次notify的时候执行
     private fun removeFragment() {
         val mCurTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentManager.fragments.forEach { mCurTransaction.remove(it) }
-        mCurTransaction.commit()
+        fragmentList.forEach { mCurTransaction.remove(it) }
+        fragmentList.clear()
+        //这样commit就不会在activity销毁时报错
+        mCurTransaction.commitAllowingStateLoss()
         fragmentManager.executePendingTransactions()
     }
 }

@@ -17,7 +17,7 @@
         <EditText
             android:id="@+id/edit_login_nickname"
             style="@style/EditAccount"
-            android:hint="昵称"/>
+            android:hint="@string/hint_nickname"/>
     </LinearLayout>
 
     <LinearLayout

@@ -86,10 +86,11 @@ class CommentFragment : BaseFragment(), CommentContract.View {
 
     override fun onSendCommentSuccess() {
         commentAdapter?.apply {
-            add(CommentModel().apply {
+            dataList.add(0, CommentModel().apply {
                 userName = User.name!!
                 createdAt = System.currentTimeMillis()
                 comment = sendCommentContent!!
+                userAvatar = User.avatar!!
             })
             refreshData()
         }

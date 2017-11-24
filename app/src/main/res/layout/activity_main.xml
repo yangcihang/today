@@ -55,10 +55,7 @@
         android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/navigation_background"
-        android:fitsSystemWindows="true"
         android:foregroundGravity="left"
-        android:orientation="horizontal"
         app:menu="@menu/menu_navigation">
     </android.support.design.widget.NavigationView>
 

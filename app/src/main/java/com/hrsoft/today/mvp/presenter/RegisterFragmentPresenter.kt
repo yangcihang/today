@@ -20,12 +20,12 @@ class RegisterFragmentPresenter(override var mView: RegisterContract.View?) : Re
     override fun register(registerModel: RegisterRequestModel) {
         AccountHelper.register(this, registerModel.apply {
             when {
-                (name.length > 20 || name.length < 2) -> {
+                (name.length !in 3..20) -> {
                     ToastUtil.showToast(R.string.toast_nickname_error)
                     mView?.registerFailed()
                     return
                 }
-                (password.length > 20 || password.length < 6) -> {
+                (password.length !in 6..20) -> {
                     ToastUtil.showToast(R.string.toast_password_error)
                     mView?.registerFailed()
                     return

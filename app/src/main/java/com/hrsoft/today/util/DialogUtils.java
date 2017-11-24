@@ -152,7 +152,8 @@ public class DialogUtils {
         int marginTop = sp2px(mContext.getResources().getInteger(R.integer.dialog_margin_top));
         int marginRight = sp2px(mContext.getResources().getInteger(R.integer.dialog_margin_abroad));
         layout.setPadding(marginLeft, marginTop, marginRight, 0);
-        layout.setOrientation(LinearLayout.VERTICAL); //设置布局走向
+        //设置布局走向
+        layout.setOrientation(LinearLayout.VERTICAL);
         if (titleTxt != null) {
             layout.addView(titleTxt, titleTextViewParams);
         }

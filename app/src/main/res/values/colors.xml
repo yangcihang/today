@@ -18,6 +18,7 @@
     <color name="text_primary">#272727</color>
     <color name="text_secondary">#9b9b9b</color>
     <color name="text_white">#ffffff</color>
+    <color name="text_red">#cd0a2d</color>
     <color name="text_ternary">#cacaca</color>
     <color name="text_hint">#c9cccb</color>
     <color name="bg_input_panel">#FFFFFF</color>

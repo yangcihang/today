@@ -54,12 +54,12 @@ object CreateModelHelper {
         })
     }
 
-    fun getQiNiuToken(picturePath: String, callback: CreateCalendarActivityPresenter): Unit {
+    fun getQiNiuToken(picturePath: String, callback: CreateCalendarActivityPresenter) {
         NetWork.getService().getToken().enqueue(object : RspCallback<String>() {
             override fun onSuccess(data: String?) {
                 App.instance.uploadManager.put(picturePath, UUID.randomUUID().toString(), data
                         , { key, info, res ->
-                    if (info.isOK) callback.onUploadPictureSuccess(key) else callback.onCreateRecommendFailed()
+                    if (info.isOK) callback.onUploadPictureSuccess(key) else callback.onUploadPictureFailed()
                 }, null)
             }
 

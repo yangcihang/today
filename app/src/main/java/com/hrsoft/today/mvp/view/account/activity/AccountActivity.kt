@@ -52,4 +52,5 @@ class AccountActivity : NoBarActivity() {
     override fun getLayoutId(): Int {
         return R.layout.activity_account
     }
+
 }

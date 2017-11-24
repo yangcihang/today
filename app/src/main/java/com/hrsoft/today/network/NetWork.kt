@@ -123,4 +123,23 @@ interface NetWork {
      */
     @PUT("calendar/subscribe")
     fun orderCalendar(@Body calendarList: List<CalendarModel>): Call<RspModel<Unit>>
+
+    /**
+     * 更改用户图像
+     */
+    @PUT("user/avatar")
+    fun updateAvatar(@Body model: MineUserModel): Call<RspModel<String>>
+
+    /**
+     * 修改用户签名
+     */
+    @PUT("user/signature")
+    fun updateSignature(@Body model: MineUserModel): Call<RspModel<Unit>>
+
+    /**
+     * 修改用户密码
+     */
+    @PUT("user/password")
+    fun updatePsw(@Body model: MineUserModel): Call<RspModel<Unit>>
+
 }

@@ -6,7 +6,7 @@
                 android:padding="@dimen/spacing_large">
 
     <ImageView
-        android:id="@+id/img_user_avatar"
+        android:id="@+id/img_drawer_user_avatar"
         android:layout_width="@dimen/len_normal_img_width"
         android:layout_height="@dimen/len_normal_img_height"
         android:layout_above="@id/txt_user_name"/>

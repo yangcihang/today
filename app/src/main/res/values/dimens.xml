@@ -59,4 +59,5 @@
     <integer name="dialog_margin_top">14</integer>
 
     <dimen name="input_panel_img_size">38dp</dimen>
+    <dimen name="mine_item_height">56dp</dimen>
 </resources>

@@ -26,7 +26,7 @@ class LoginFragmentPresenter(override var mView: LoginContract.View?) : LoginCon
                     mView?.loginFailed()
                     return
                 }
-                (password.length > 20 || password.length < 6) -> {
+                (password.length !in 6..20) -> {
                     ToastUtil.showToast(R.string.toast_password_error)
                     mView?.loginFailed()
                     return
