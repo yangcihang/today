@@ -3,7 +3,7 @@ package com.hrsoft.today.mvp.view.account.fragment
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.mvp.contract.LoginContract
-import com.hrsoft.today.mvp.model.LoginRequestModel
+import com.hrsoft.today.mvp.model.models.LoginRequestModel
 import com.hrsoft.today.mvp.presenter.LoginFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_login.*
 

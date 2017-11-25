@@ -1,9 +1,9 @@
 package com.hrsoft.today.mvp.contract
 
 import com.hrsoft.today.base.BaseContract
-import com.hrsoft.today.mvp.model.CalendarRecommendModel
-import com.hrsoft.today.mvp.model.CalendarStateItemModel
-import com.hrsoft.today.mvp.model.NewCalendarModel
+import com.hrsoft.today.mvp.model.models.CalendarRecommendModel
+import com.hrsoft.today.mvp.model.models.CalendarStateItemModel
+import com.hrsoft.today.mvp.model.models.NewCalendarModel
 
 /**
  * @author YangCihang

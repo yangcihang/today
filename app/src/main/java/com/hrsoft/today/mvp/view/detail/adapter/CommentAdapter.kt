@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseRecyclerAdapter
-import com.hrsoft.today.mvp.model.CommentModel
+import com.hrsoft.today.mvp.model.models.CommentModel
 import com.hrsoft.today.util.TimeUtil
 import com.hrsoft.today.widget.CropCircleTransformation
 

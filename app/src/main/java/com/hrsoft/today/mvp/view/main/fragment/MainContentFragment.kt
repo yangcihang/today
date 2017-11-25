@@ -7,7 +7,7 @@ import com.bumptech.glide.Glide
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.common.Config
-import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.models.CalendarModel
 import com.hrsoft.today.mvp.view.main.adapter.RecommendListAdapter
 import com.hrsoft.today.mvp.view.main.adapter.StateListAdapter
 import com.hrsoft.today.util.TimeUtil

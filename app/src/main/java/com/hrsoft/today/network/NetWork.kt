@@ -2,10 +2,10 @@ package com.hrsoft.today.network
 
 import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.model.*
+import com.hrsoft.today.mvp.model.models.*
 import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
-import org.w3c.dom.Comment
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -61,6 +61,9 @@ interface NetWork {
     @GET("calendar/{calendarId}/comment")
     fun requestCalendarCommentList(@Path("calendarId") calendarId: Int, @Query("page") page: Int): Call<RspModel<List<CommentModel>>>
 
+    /**
+     * 获取黄历详情信息
+     */
     @GET("calendar/{calendarId}/detail")
     fun requestCalendarDetail(@Path("calendarId") calendarId: Int): Call<RspModel<CalendarDetailModel>>
 
@@ -68,10 +71,10 @@ interface NetWork {
     fun createNewCalendar(@Body model: NewCalendarModel): Call<RspModel<Long>>
 
     @POST("custom/{calendarId}/activities")
-    fun createCalendarStates(@Path("calendarId") id: Long, @Body model: List<CalendarStateItemModel>): Call<RspModel<Long>>
+    fun updateCalendarStates(@Path("calendarId") id: Long, @Body model: List<CalendarStateItemModel>): Call<RspModel<Long>>
 
     @POST("custom/{Id}/items")
-    fun createCalendarRecommend(@Path("Id") id: Int, @Body modelList: List<CalendarRecommendModel>): Call<RspModel<Long>>
+    fun updateCalendarRecommend(@Path("Id") id: Int, @Body modelList: List<CalendarRecommendModel>): Call<RspModel<Long>>
 
     @GET("custom/created")
     fun getCreatedCalendar(): Call<RspModel<List<SimpleCalendarModel>>>
@@ -141,5 +144,23 @@ interface NetWork {
      */
     @PUT("user/password")
     fun updatePsw(@Body model: MineUserModel): Call<RspModel<Unit>>
+
+    /**
+     * 更新黄历详情
+     */
+    @PUT("custom/{calendarId}")
+    fun updateCalendarDescription(@Path("calendarId") id: Int, @Body model: NewCalendarModel): Call<RspModel<Unit>>
+
+    /**
+     * 获取黄历state项
+     */
+    @GET("custom/{calendarId}/activities")
+    fun getCalendarStateInfo(@Path("calendarId") id: Int): Call<RspModel<List<CalendarStateItemModel>>>
+
+    /**
+     * 获取黄历recommend项目
+     */
+    @GET("custom/{calendarId}/items")
+    fun getCalendarRecommendInfo(@Path("calendarId") id: Int): Call<RspModel<List<CalendarRecommendModel>>>
 
 }

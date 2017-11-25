@@ -2,7 +2,7 @@ package com.hrsoft.today.mvp.presenter
 
 import com.hrsoft.today.R
 import com.hrsoft.today.mvp.contract.RegisterContract
-import com.hrsoft.today.mvp.model.RegisterRequestModel
+import com.hrsoft.today.mvp.model.models.RegisterRequestModel
 import com.hrsoft.today.mvp.model.helper.AccountHelper
 import com.hrsoft.today.util.ToastUtil
 

@@ -1,12 +1,10 @@
 package com.hrsoft.today.mvp.presenter
 
 import android.text.TextUtils
-import com.hrsoft.today.App
 import com.hrsoft.today.R
-import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.contract.LoginContract
-import com.hrsoft.today.mvp.model.LoginRequestModel
-import com.hrsoft.today.mvp.model.LoginResponseModel
+import com.hrsoft.today.mvp.model.models.LoginRequestModel
+import com.hrsoft.today.mvp.model.models.LoginResponseModel
 import com.hrsoft.today.mvp.model.User
 import com.hrsoft.today.mvp.model.helper.AccountHelper
 import com.hrsoft.today.util.ToastUtil

@@ -1,20 +1,17 @@
 package com.hrsoft.today.mvp.view.detail.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.base.RecyclerScrollListener
 import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.contract.CommentContract
-import com.hrsoft.today.mvp.model.CalendarDetailModel
-import com.hrsoft.today.mvp.model.CommentModel
+import com.hrsoft.today.mvp.model.models.CalendarDetailModel
+import com.hrsoft.today.mvp.model.models.CommentModel
 import com.hrsoft.today.mvp.model.User
 import com.hrsoft.today.mvp.presenter.CommentFragmentPresenter
 import com.hrsoft.today.mvp.view.detail.adapter.CommentAdapter
-import com.hrsoft.today.util.TimeUtil
 import com.hrsoft.today.util.ToastUtil
 import kotlinx.android.synthetic.main.fragment_calendar_comment.*
 

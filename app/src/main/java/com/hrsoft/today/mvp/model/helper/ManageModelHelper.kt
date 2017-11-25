@@ -1,9 +1,7 @@
 package com.hrsoft.today.mvp.model.helper
 
-import com.hrsoft.today.mvp.model.CalendarModel
-import com.hrsoft.today.mvp.model.SimpleCalendarModel
-import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
-import com.hrsoft.today.mvp.presenter.MainActivityPresenter
+import com.hrsoft.today.mvp.model.models.CalendarModel
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.ManageCreatedFragmentPresenter
 import com.hrsoft.today.mvp.presenter.ManageSubscribedPresenter
 import com.hrsoft.today.network.NetWork

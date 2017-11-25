@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.contract
 
 import com.hrsoft.today.base.BaseContract
-import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.models.CalendarModel
 
 /**
  * @author YangCihang

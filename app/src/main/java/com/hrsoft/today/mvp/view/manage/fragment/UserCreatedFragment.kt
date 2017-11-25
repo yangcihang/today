@@ -5,15 +5,15 @@ import android.support.v7.widget.LinearLayoutManager
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.mvp.contract.ManageCreatedContract
-import com.hrsoft.today.mvp.model.SimpleCalendarModel
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.ManageCreatedFragmentPresenter
 import com.hrsoft.today.mvp.view.detail.activity.CalendarDetailActivity
 import com.hrsoft.today.mvp.view.manage.activity.CreateCalendarActivity
 import com.hrsoft.today.mvp.view.manage.adapter.CreatedListAdapter
 import com.hrsoft.today.util.DialogUtils
 import com.hrsoft.today.util.ToastUtil
-import kotlinx.android.synthetic.main.activity_manage_calendar.*
 import kotlinx.android.synthetic.main.fragment_created.*
+import kotlinx.android.synthetic.main.view_dialog_edit_calendar.view.*
 
 /**
  * @author YangCihang
@@ -33,14 +33,48 @@ class UserCreatedFragment : BaseFragment(), ManageCreatedContract.View {
     }
 
     override fun initView() {
-        fab_manage_create.setOnClickListener { startActivity(Intent(context, CreateCalendarActivity::class.java)) }
-        rec_created_calendar.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = this@UserCreatedFragment.listAdapter.apply {
+        initRecyclerView()
+        fab_manage_create.setOnClickListener {
+            CreateCalendarActivity.start(context, CreateCalendarActivity.DEFAULT_ID,
+                    CreateCalendarActivity
+                            .TYPE_CREATE)
+        }
+    }
+
+    private fun initRecyclerView() {
+        rec_created_calendar.let {
+            it.layoutManager = LinearLayoutManager(context)
+            it.adapter = this@UserCreatedFragment.listAdapter.apply {
                 onClickedListener = { model, _ ->
                     CalendarDetailActivity.start(context, model)
                 }
-                onEditClickedListener = { pos, _ -> ToastUtil.showToast("点击了修改" + pos) }
+                onEditClickedListener = { _, model ->
+                    run {
+                        DialogUtils(context)
+                                .setCustomView(R.layout.view_dialog_edit_calendar, { view ->
+                                    run {
+                                        view.txt_dialog_edit_description.setOnClickListener {
+                                            CreateCalendarActivity
+                                                    .start(context, model.id!!, CreateCalendarActivity
+                                                            .TYPE_EDIT_DESCRIPTION)
+                                        }
+                                        view.txt_dialog_edit_state.setOnClickListener {
+                                            CreateCalendarActivity
+                                                    .start(context, model.id!!, CreateCalendarActivity
+                                                            .TYPE_EDIT_STATE)
+                                        }
+                                        view.txt_dialog_edit_recommend.setOnClickListener {
+                                            CreateCalendarActivity
+                                                    .start(context, model.id!!, CreateCalendarActivity
+                                                            .TYPE_EDIT_RECOMMEND)
+                                        }
+                                    }
+                                })
+                                .setCancelable(true)
+                                .showAlertDialog()
+                    }
+                }
+
                 onDeleteClickedListener = { pos, model ->
                     deletePos = pos
                     DialogUtils(context)
@@ -55,7 +89,6 @@ class UserCreatedFragment : BaseFragment(), ManageCreatedContract.View {
                 }
             }
         }
-
     }
 
     override fun loadData() {

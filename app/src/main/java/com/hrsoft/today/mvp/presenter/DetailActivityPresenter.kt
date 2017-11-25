@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.presenter
 
 import com.hrsoft.today.mvp.contract.DetailContract
-import com.hrsoft.today.mvp.model.CalendarDetailModel
+import com.hrsoft.today.mvp.model.models.CalendarDetailModel
 import com.hrsoft.today.mvp.model.helper.DetailModelHelper
 
 /**

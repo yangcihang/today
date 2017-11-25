@@ -1,6 +1,6 @@
 package com.hrsoft.today.mvp.model.helper
 
-import com.hrsoft.today.mvp.model.SimpleCalendarModel
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.SquareActivityPresenter
 import com.hrsoft.today.network.NetWork
 import com.hrsoft.today.network.RspCallback

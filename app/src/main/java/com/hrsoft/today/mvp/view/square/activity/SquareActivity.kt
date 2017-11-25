@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager
 import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.mvp.contract.SquareContract
-import com.hrsoft.today.mvp.model.SimpleCalendarModel
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.SquareActivityPresenter
 import com.hrsoft.today.mvp.view.detail.activity.CalendarDetailActivity
 import com.hrsoft.today.mvp.view.square.adapter.SquareListAdapter

@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseRecyclerAdapter
-import com.hrsoft.today.mvp.model.CalendarRecommendModel
+import com.hrsoft.today.mvp.model.models.CalendarRecommendModel
 
 /**
  * @author YangCihang.

@@ -1,8 +1,7 @@
-package com.hrsoft.today.mvp.model
+package com.hrsoft.today.mvp.model.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.io.Serializable
 
 /**
  * @author abtion.

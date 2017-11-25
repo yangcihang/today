@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.contract
 
 import com.hrsoft.today.base.BaseContract
-import com.hrsoft.today.mvp.model.CalendarDetailModel
+import com.hrsoft.today.mvp.model.models.CalendarDetailModel
 
 /**
  * @author YangCihang
@@ -21,9 +21,9 @@ interface DetailContract {
 
     interface Presenter : BaseContract.Presenter<View> {
         fun getCalendarInfo(calendarId: Int)
+
         fun onDetailLoaded(mData: CalendarDetailModel)
         fun onDetailLoadFailed()
-
         fun subscribeCalendar(id: Int)
         fun unSubscribeCalendar(id: Int)
     }

@@ -1,8 +1,8 @@
 package com.hrsoft.today.mvp.model.helper
 
-import com.hrsoft.today.mvp.model.LoginRequestModel
-import com.hrsoft.today.mvp.model.LoginResponseModel
-import com.hrsoft.today.mvp.model.RegisterRequestModel
+import com.hrsoft.today.mvp.model.models.LoginRequestModel
+import com.hrsoft.today.mvp.model.models.LoginResponseModel
+import com.hrsoft.today.mvp.model.models.RegisterRequestModel
 import com.hrsoft.today.mvp.presenter.LoginFragmentPresenter
 import com.hrsoft.today.mvp.presenter.RegisterFragmentPresenter
 import com.hrsoft.today.network.NetWork

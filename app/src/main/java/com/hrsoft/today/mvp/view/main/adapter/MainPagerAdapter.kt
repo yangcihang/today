@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentTransaction
 import android.support.v4.view.PagerAdapter
 import android.view.ViewGroup
 import com.hrsoft.today.base.BaseFragment
-import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.models.CalendarModel
 import com.hrsoft.today.mvp.view.main.fragment.MainContentFragment
 
 /**
@@ -23,7 +23,7 @@ class MainPagerAdapter(private var fragmentManager: FragmentManager, var dataLis
     override fun getItem(position: Int): Fragment {
         val fragment = MainContentFragment.createFragment(dataList[position])
         fragmentList.add(fragment)
-        return fragmentList[position]
+        return fragment
     }
 
     override fun getCount(): Int {

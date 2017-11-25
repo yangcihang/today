@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.hrsoft.today.base.BaseFragment
-import com.hrsoft.today.mvp.model.CalendarDetailModel
+import com.hrsoft.today.mvp.model.models.CalendarDetailModel
 import com.hrsoft.today.mvp.view.detail.fragment.CommentFragment
 import com.hrsoft.today.mvp.view.detail.fragment.DescriptionFragment
 

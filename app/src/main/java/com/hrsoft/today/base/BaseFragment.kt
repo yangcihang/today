@@ -114,4 +114,9 @@ abstract class BaseFragment : Fragment() {
         }, 300)
 
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        disMissProgressDialog()
+    }
 }

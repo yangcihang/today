@@ -3,7 +3,7 @@ package com.hrsoft.today.mvp.view.account.fragment
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.mvp.contract.RegisterContract
-import com.hrsoft.today.mvp.model.RegisterRequestModel
+import com.hrsoft.today.mvp.model.models.RegisterRequestModel
 import com.hrsoft.today.mvp.presenter.RegisterFragmentPresenter
 import kotlinx.android.synthetic.main.fragment_register.*
 

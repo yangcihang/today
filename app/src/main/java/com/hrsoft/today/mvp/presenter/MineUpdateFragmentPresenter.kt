@@ -1,9 +1,8 @@
 package com.hrsoft.today.mvp.presenter
 
-import android.widget.Toast
 import com.hrsoft.today.R
 import com.hrsoft.today.mvp.contract.MineUpdateContract
-import com.hrsoft.today.mvp.model.MineUserModel
+import com.hrsoft.today.mvp.model.models.MineUserModel
 import com.hrsoft.today.mvp.model.helper.MineModelHelper
 import com.hrsoft.today.util.ToastUtil
 

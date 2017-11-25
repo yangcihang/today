@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.presenter
 
 import com.hrsoft.today.mvp.contract.ManageSubscribedContract
-import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.models.CalendarModel
 import com.hrsoft.today.mvp.model.helper.ManageModelHelper
 import com.hrsoft.today.util.ToastUtil
 

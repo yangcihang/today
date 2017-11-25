@@ -1,7 +1,5 @@
 package com.hrsoft.today.mvp.view.manage.adapter
 
-import android.animation.ObjectAnimator
-import android.animation.ValueAnimator
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +9,7 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseRecyclerAdapter
-import com.hrsoft.today.mvp.model.CalendarStateItemModel
+import com.hrsoft.today.mvp.model.models.CalendarStateItemModel
 import com.hrsoft.today.util.Utility
 
 /**

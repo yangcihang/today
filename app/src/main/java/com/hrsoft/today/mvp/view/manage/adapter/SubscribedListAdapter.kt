@@ -3,15 +3,12 @@ package com.hrsoft.today.mvp.view.manage.adapter
 import android.content.Context
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.hrsoft.today.App
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseRecyclerAdapter
-import com.hrsoft.today.mvp.model.CalendarModel
-import com.hrsoft.today.mvp.model.SimpleCalendarModel
+import com.hrsoft.today.mvp.model.models.CalendarModel
 
 /**
  * @author YangCihang.

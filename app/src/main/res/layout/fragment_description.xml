@@ -41,37 +41,14 @@
             android:layout_below="@id/edit_create_calendar_title"
             android:text="每日挑选宜的个数"/>
 
-        <RelativeLayout
-            android:layout_width="56dp"
+        <com.hrsoft.today.widget.AddSubView
+            android:id="@+id/pick_good"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/txt_create_calendar_good_title"
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@id/txt_create_calendar_good_title">
-
-            <ImageButton
-                android:id="@+id/img_good_sub"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:visibility="gone"/>
-
-            <TextView
-                android:id="@+id/txt_good_pick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="2"
-                android:textColor="@color/text_secondary"
-                android:textSize="16dp"/>
-
-            <ImageButton
-                android:id="@+id/img_good_add"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"/>
-        </RelativeLayout>
+        </com.hrsoft.today.widget.AddSubView>
 
 
         <TextView
@@ -82,40 +59,13 @@
             android:layout_below="@id/txt_create_calendar_good_title"
             android:text="每日挑选不宜个数"/>
 
-        <RelativeLayout
-            android:layout_width="56dp"
+        <com.hrsoft.today.widget.AddSubView
+            android:id="@+id/pick_bad"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@id/txt_create_calendar_bad_title">
-
-            <ImageButton
-                android:id="@+id/img_bad_sub"
-                android:layout_width="@dimen/len_tiny_img_width"
-                android:layout_height="@dimen/len_tiny_img_height"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/ic_sub"
-                android:padding="9dp"
-                android:visibility="gone"/>
-
-            <TextView
-                android:id="@+id/txt_bad_pick"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="2"
-                android:textColor="@color/text_secondary"
-                android:textSize="16dp"/>
-
-            <ImageButton
-                android:id="@+id/img_bad_add"
-                android:layout_width="@dimen/len_tiny_img_width"
-                android:layout_height="@dimen/len_tiny_img_height"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@drawable/ic_add"/>
-        </RelativeLayout>
+        </com.hrsoft.today.widget.AddSubView>
 
         <TextView
             android:id="@+id/txt_create_calendar_description"

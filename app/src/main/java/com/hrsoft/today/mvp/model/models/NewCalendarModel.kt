@@ -1,4 +1,4 @@
-package com.hrsoft.today.mvp.model
+package com.hrsoft.today.mvp.model.models
 
 import java.io.Serializable
 

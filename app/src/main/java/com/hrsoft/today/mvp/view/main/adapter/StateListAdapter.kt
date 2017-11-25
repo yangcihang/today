@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseRecyclerAdapter
-import com.hrsoft.today.mvp.model.CalendarStateModel
+import com.hrsoft.today.mvp.model.models.CalendarStateModel
 
 /**
  * @author YangCihang

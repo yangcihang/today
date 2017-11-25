@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.presenter
 
 import com.hrsoft.today.mvp.contract.SquareContract
-import com.hrsoft.today.mvp.model.SimpleCalendarModel
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
 import com.hrsoft.today.mvp.model.helper.SquareModelHelper
 
 /**

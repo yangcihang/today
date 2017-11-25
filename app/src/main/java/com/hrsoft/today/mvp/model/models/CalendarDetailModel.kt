@@ -1,8 +1,7 @@
-package com.hrsoft.today.mvp.model
+package com.hrsoft.today.mvp.model.models
 
 import android.os.Parcel
 import android.os.Parcelable
-import java.io.Serializable
 
 /**
  * @author abtion.
@@ -20,6 +19,7 @@ class CalendarDetailModel() : Parcelable {
     var picture = ""
     var goodPick = 0
     var badPick = 0
+
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readInt()

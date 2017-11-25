@@ -6,7 +6,7 @@ import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.base.RecyclerScrollListener
 import com.hrsoft.today.mvp.contract.SearchContract
-import com.hrsoft.today.mvp.model.SimpleCalendarModel
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.SearchActivityPresenter
 import com.hrsoft.today.mvp.view.detail.activity.CalendarDetailActivity
 import com.hrsoft.today.mvp.view.square.adapter.SearchListAdapter

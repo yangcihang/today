@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.contract
 
 import com.hrsoft.today.base.BaseContract
-import com.hrsoft.today.mvp.model.LoginRequestModel
+import com.hrsoft.today.mvp.model.models.LoginRequestModel
 
 /**
  * @author YangCihang.

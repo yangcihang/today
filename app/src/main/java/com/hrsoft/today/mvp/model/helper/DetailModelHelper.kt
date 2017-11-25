@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.model.helper
 
-import com.hrsoft.today.mvp.model.CalendarDetailModel
-import com.hrsoft.today.mvp.model.CommentModel
+import com.hrsoft.today.mvp.model.models.CalendarDetailModel
+import com.hrsoft.today.mvp.model.models.CommentModel
 import com.hrsoft.today.mvp.presenter.CommentFragmentPresenter
 import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
 import com.hrsoft.today.network.NetWork

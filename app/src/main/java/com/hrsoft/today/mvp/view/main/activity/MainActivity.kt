@@ -1,13 +1,9 @@
 package com.hrsoft.today.mvp.view.main.activity
 
 import android.content.Intent
-import android.net.Uri
 import android.support.v4.view.ViewPager
 import android.text.TextUtils
-import android.util.Log
 import android.view.Gravity
-import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.hrsoft.today.App
@@ -15,7 +11,7 @@ import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.contract.MainContract
-import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.models.CalendarModel
 import com.hrsoft.today.mvp.model.User
 import com.hrsoft.today.mvp.presenter.MainActivityPresenter
 import com.hrsoft.today.mvp.view.main.adapter.MainPagerAdapter
@@ -23,21 +19,17 @@ import com.hrsoft.today.mvp.view.manage.activity.ManageCalendarActivity
 import com.hrsoft.today.mvp.view.mine.activity.MineActivity
 import com.hrsoft.today.mvp.view.square.activity.SquareActivity
 import com.hrsoft.today.util.ToastUtil
-import com.hrsoft.today.util.Utility
-import jp.wasabeef.glide.transformations.BlurTransformation
 import jp.wasabeef.glide.transformations.CropCircleTransformation
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_navigation_head.view.*
 import kotlin.collections.ArrayList
 
 class MainActivity : NoBarActivity(), MainContract.View {
-
     /**presenter*/
     override var mPresenter: MainContract.Presenter? = MainActivityPresenter(this)
     /**adapter*/
     private var adapter: MainPagerAdapter = MainPagerAdapter(supportFragmentManager, User.userCalendarList)
-    private var headView: View? = null
-
+    private var signTxt: TextView? = null
     override fun initVariable() {
     }
 
@@ -111,6 +103,7 @@ class MainActivity : NoBarActivity(), MainContract.View {
             it.inflateHeaderView(R.layout.view_navigation_head).let {
                 it.findViewById<TextView>(R.id.txt_user_name).text = User.name
                 it.findViewById<TextView>(R.id.txt_user_sign).text = if (TextUtils.isEmpty(User.signature)) "您还没有设置签名" else User.signature
+                signTxt = it.findViewById(R.id.txt_user_sign)
                 Glide.with(it.context)
                         .load(User.avatar)
                         .error(R.drawable.ic_default_avatar)
@@ -132,6 +125,12 @@ class MainActivity : NoBarActivity(), MainContract.View {
     override fun onRestart() {
         super.onRestart()
         vp_main.currentItem = 0
+        signTxt?.text = if (TextUtils.isEmpty(User.signature)) "您还没有设置签名" else User.signature
+        Glide.with(this)
+                .load(User.avatar)
+                .error(R.drawable.ic_default_avatar)
+                .bitmapTransform(CropCircleTransformation(this))
+                .into(nv_menu_left.getHeaderView(0).img_drawer_user_avatar)
         mPresenter!!.requestCalendar()
     }
 

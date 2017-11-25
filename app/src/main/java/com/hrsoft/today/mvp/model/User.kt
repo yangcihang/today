@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import android.text.TextUtils
 import com.hrsoft.today.App
 import com.hrsoft.today.common.Config
+import com.hrsoft.today.mvp.model.models.CalendarModel
 import java.io.Serializable
 
 /**

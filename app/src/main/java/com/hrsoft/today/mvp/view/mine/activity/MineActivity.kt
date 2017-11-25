@@ -43,6 +43,7 @@ class MineActivity : NoBarActivity(), MineContract.View {
     override fun initView() {
         initUserInfo()
         initFrame()
+        img_back.setOnClickListener { this.finish() }
         txt_back.setOnClickListener { this.finish() }
         img_user_avatar.setOnClickListener {
             ImagePicker()
@@ -97,6 +98,7 @@ class MineActivity : NoBarActivity(), MineContract.View {
     override fun onPictureUploadSuccess(data: String) {
         ToastUtil.showToast(R.string.toast_update_avatar_success)
         User.avatar = data
+        User.saveUserInfo()
     }
 
     override fun onPictureUploadFailed() {
@@ -108,7 +110,11 @@ class MineActivity : NoBarActivity(), MineContract.View {
         if (requestCode == RCODE && data != null) {
             val resultList = data.getParcelableArrayListExtra<ImageBean>(ImagePicker.INTENT_RESULT_DATA)
             picturePath = resultList[0].imagePath
-            Glide.with(this).load(picturePath).placeholder(R.mipmap.ic_launcher).into(img_user_avatar)
+            Glide.with(this)
+                    .load(picturePath)
+                    .placeholder(R.mipmap.ic_launcher)
+                    .bitmapTransform(CropCircleTransformation(this))
+                    .into(img_user_avatar)
             if (!TextUtils.isEmpty(picturePath)) {
                 mPresenter?.upLoadPicture(picturePath)
             } else ToastUtil.showToast(R.string.toast_image_load_error)

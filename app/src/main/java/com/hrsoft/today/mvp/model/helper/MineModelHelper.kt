@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.model.helper
 
 import com.hrsoft.today.App
-import com.hrsoft.today.mvp.model.MineUserModel
+import com.hrsoft.today.mvp.model.models.MineUserModel
 import com.hrsoft.today.mvp.presenter.MineActivityPresenter
 import com.hrsoft.today.mvp.presenter.MineFragmentPresenter
 import com.hrsoft.today.mvp.presenter.MineUpdateFragmentPresenter

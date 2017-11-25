@@ -50,4 +50,8 @@ class AddSubView : RelativeLayout {
             }
         }
     }
+
+    fun setCurrentNum(number: Int) {
+        textChange(number)
+    }
 }

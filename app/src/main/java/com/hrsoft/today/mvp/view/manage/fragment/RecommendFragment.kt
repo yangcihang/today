@@ -1,10 +1,15 @@
 package com.hrsoft.today.mvp.view.manage.fragment
 
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
-import com.hrsoft.today.mvp.model.CalendarRecommendModel
+import com.hrsoft.today.common.Config
+import com.hrsoft.today.mvp.contract.CreateRecommendContract
+import com.hrsoft.today.mvp.model.models.CalendarRecommendModel
+import com.hrsoft.today.mvp.presenter.CreateRecommendFragmentPresenter
+import com.hrsoft.today.mvp.view.manage.activity.CreateCalendarActivity
 import com.hrsoft.today.mvp.view.manage.adapter.RecommendAddAdapter
 import com.hrsoft.today.mvp.view.manage.adapter.RecommendContentAdapter
 import com.hrsoft.today.util.ToastUtil
@@ -15,21 +20,38 @@ import kotlinx.android.synthetic.main.fragment_recommend.*
  * @since  17/11/6.
  * email yangcihang@hrsoft.net
  */
-class RecommendFragment : BaseFragment() {
+class RecommendFragment : BaseFragment(), CreateRecommendContract.View {
+    override var mPresenter: CreateRecommendContract.Presenter? = CreateRecommendFragmentPresenter(this)
     private lateinit var recommendAddAdapter: RecommendAddAdapter
     private lateinit var recommendContentAdapter: RecommendContentAdapter
-    private val miniNum = 2
+    private val miniNum = 1
     private val maxNum = 20
-    private var pickNum = 2
-    override fun getLayoutId(): Int {
-        return R.layout.fragment_recommend
+    private var pickNum = 1
+    private var calendarId = CreateCalendarActivity.DEFAULT_ID
+
+    companion object {
+        /**
+         * 静态启动
+         */
+        fun createFragment(id: Int): RecommendFragment {
+            val bundle = Bundle()
+            bundle.putInt(Config.KEY_CALENDAR, id)
+            return RecommendFragment().apply { arguments = bundle }
+        }
+
     }
 
     override fun initVariable() {
+        calendarId = arguments.getInt(Config.KEY_CALENDAR)
         recommendAddAdapter = RecommendAddAdapter(context)
         recommendContentAdapter = RecommendContentAdapter(context)
     }
 
+    override fun getLayoutId(): Int = R.layout.fragment_recommend
+
+    /**
+     * 初始化View
+     */
     override fun initView() {
         initRecycler()
         //初始化加减控件
@@ -42,6 +64,20 @@ class RecommendFragment : BaseFragment() {
         img_add_title.setOnClickListener {
             recommendAddAdapter.add("", recommendAddAdapter.dataList.size)
         }
+        initSaveView()
+    }
+
+    override fun loadData() {
+        if (calendarId != CreateCalendarActivity.DEFAULT_ID) {
+            showProgressDialog(R.string.dialog_wait)
+            mPresenter?.getRecommendDetail(calendarId)
+        }
+    }
+
+    /**
+     * 初始化保存按钮
+     */
+    private fun initSaveView() {
         //保存
         txt_state_save.setOnClickListener {
             when {
@@ -90,8 +126,40 @@ class RecommendFragment : BaseFragment() {
     /**
      * 获取recommendData
      */
-    fun getRecommendData(): List<CalendarRecommendModel> = recommendContentAdapter.dataList
-
-    override fun loadData() {
+    fun updateRecommendData() {
+        showProgressDialog(R.string.dialog_wait)
+        mPresenter?.updateRecommendModel((context as CreateCalendarActivity).calendarId.toInt(), recommendContentAdapter.dataList)
+        recommendContentAdapter.dataList
     }
+
+    /**
+     * 创建推荐项成功时回调
+     */
+    override fun onCreateRecommendSuccess() {
+        disMissProgressDialog()
+        ToastUtil.showToast("创建推荐页成功")
+        (context as CreateCalendarActivity).changeFragmentCallback?.invoke()
+    }
+
+    /**
+     * 创建推荐项失败时回调
+     */
+    override fun onCreateRecommendFailed() {
+        disMissProgressDialog()
+        ToastUtil.showToast("创建推荐页失败")
+    }
+
+    /**
+     * 获取到推荐详情时回调
+     */
+    override fun onRecommendDetailLoadSuccess(recommendList: List<CalendarRecommendModel>) {
+        disMissProgressDialog()
+        recommendContentAdapter.addAll(recommendList)
+    }
+
+    override fun onRecommendDetailLoadFailed() {
+        disMissProgressDialog()
+        ToastUtil.showToast("加载失败")
+    }
+
 }

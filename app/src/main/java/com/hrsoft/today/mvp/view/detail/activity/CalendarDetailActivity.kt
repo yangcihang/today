@@ -7,8 +7,8 @@ import com.hrsoft.today.R
 import com.hrsoft.today.base.NoBarActivity
 import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.contract.DetailContract
-import com.hrsoft.today.mvp.model.CalendarDetailModel
-import com.hrsoft.today.mvp.model.SimpleCalendarModel
+import com.hrsoft.today.mvp.model.models.CalendarDetailModel
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.DetailActivityPresenter
 import com.hrsoft.today.mvp.view.detail.adapter.DetailPagerAdapter
 import com.hrsoft.today.util.ToastUtil
@@ -128,8 +128,9 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
 
     override fun onSubscribeFailed() {
         Utility.runOnUiThread(Runnable {
-            isSubscribed = false
             ToastUtil.showToast(R.string.toast_subscribe_failed)
+            isSubscribed = false
+            img_subscribe.isSelected = false
         })
     }
 

@@ -11,9 +11,8 @@ import com.hrsoft.today.mvp.presenter.ManageSubscribedPresenter
 import com.hrsoft.today.mvp.view.manage.adapter.SubscribedListAdapter
 import kotlinx.android.synthetic.main.fragment_subscribed.*
 import android.support.v7.widget.GridLayoutManager
-import com.hrsoft.today.mvp.model.CalendarModel
+import com.hrsoft.today.mvp.model.models.CalendarModel
 import com.hrsoft.today.mvp.model.User
-import com.hrsoft.today.mvp.view.manage.activity.CreateCalendarActivity
 import com.hrsoft.today.util.ToastUtil
 import java.lang.reflect.Field
 import java.lang.reflect.Method
@@ -60,7 +59,6 @@ class SubscribedFragment : BaseFragment(), ManageSubscribedContract.View {
                         deletePos = pos
                     }
                 }
-                onEditClickedListener = { model -> CreateCalendarActivity.start(context, model) }
             }
         })
         refresh_subscribed.setOnRefreshListener {

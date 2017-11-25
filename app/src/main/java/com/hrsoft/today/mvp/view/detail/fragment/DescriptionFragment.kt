@@ -5,7 +5,7 @@ import android.text.TextUtils
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.common.Config
-import com.hrsoft.today.mvp.model.CalendarDetailModel
+import com.hrsoft.today.mvp.model.models.CalendarDetailModel
 import kotlinx.android.synthetic.main.fragment_calendar_description.*
 
 /**

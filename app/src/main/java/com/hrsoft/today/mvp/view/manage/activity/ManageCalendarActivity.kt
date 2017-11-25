@@ -1,6 +1,5 @@
 package com.hrsoft.today.mvp.view.manage.activity
 
-import android.content.Intent
 import com.hrsoft.today.R
 import com.hrsoft.today.base.ToolbarActivity
 import com.hrsoft.today.mvp.view.manage.adapter.ManagePagerAdapter
@@ -27,8 +26,6 @@ class ManageCalendarActivity : ToolbarActivity() {
     }
 
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_manage_calendar
-    }
+    override fun getLayoutId(): Int = R.layout.activity_manage_calendar
 
 }

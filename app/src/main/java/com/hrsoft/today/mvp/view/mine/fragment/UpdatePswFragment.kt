@@ -3,7 +3,7 @@ package com.hrsoft.today.mvp.view.mine.fragment
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.mvp.contract.MineUpdateContract
-import com.hrsoft.today.mvp.model.MineUserModel
+import com.hrsoft.today.mvp.model.models.MineUserModel
 import com.hrsoft.today.mvp.presenter.MineUpdateFragmentPresenter
 import com.hrsoft.today.util.ToastUtil
 import kotlinx.android.synthetic.main.fragment_update_psw.*

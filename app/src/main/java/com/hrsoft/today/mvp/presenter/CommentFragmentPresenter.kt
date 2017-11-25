@@ -1,11 +1,9 @@
 package com.hrsoft.today.mvp.presenter
 
 import android.text.TextUtils
-import android.widget.Toast
 import com.hrsoft.today.mvp.contract.CommentContract
-import com.hrsoft.today.mvp.model.CommentModel
+import com.hrsoft.today.mvp.model.models.CommentModel
 import com.hrsoft.today.mvp.model.helper.DetailModelHelper
-import com.hrsoft.today.util.ToastUtil
 
 /**
  * @author abtion.

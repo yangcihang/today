@@ -13,6 +13,7 @@ object Config {
     val MINI_CREATE_RECOMMEND_NUM = 2
 
     val KEY_CALENDAR = "calendar"
+    val KEY_START_TYPE = "startType"
     val KEY_SQUARE_CALENDAR = "squareCalendar"
     val KEY_USER_INFO = "userInfo"
     val KEY_CALENDAR_DETAIL = "calendarDetail"
