@@ -63,6 +63,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">bottom</item>
+        <item name="android:maxLines">1</item>
         <item name="android:textSize">@dimen/text_ternary</item>
         <item name="android:layout_marginLeft">@dimen/spacing_small</item>
         <item name="android:textColorHint">@color/text_ternary</item>
@@ -75,7 +76,7 @@
         <item name="android:textSize">@dimen/text_title</item>
         <item name="android:gravity">left</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_width">50dp</item>
+        <item name="android:layout_width">64dp</item>
     </style>
 
     <style name="LayoutAccount">
@@ -87,6 +88,7 @@
     </style>
     <!--账号页编辑格式-->
     <style name="EditAccount">
+        <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/text_white</item>
         <item name="android:textColorHint">@color/text_hint</item>
         <item name="android:background">@null</item>
@@ -98,15 +100,14 @@
     </style>
     <!--我的页面图片格式-->
     <style name="ImageMine">
-        <item name="android:layout_width">28dp</item>
+        <item name="android:layout_width">24dp</item>
         <item name="android:layout_gravity">center</item>
-        <item name="android:layout_height">28dp</item>
-        <item name="android:layout_marginStart">@dimen/spacing_small</item>
+        <item name="android:layout_height">24dp</item>
     </style>
 
     <style name="LayoutMine">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/mine_item_height</item>
+        <item name="android:layout_height">48dp</item>
     </style>
     <!--我的页面字体格式-->
     <style name="TextMine">
@@ -114,7 +115,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:textSize">@dimen/text_primary</item>
-        <item name="android:layout_marginStart">@dimen/spacing_small</item>
+        <item name="android:layout_marginStart">16dp</item>
         <item name="android:textColor">@color/text_primary</item>
     </style>
     <!--我的页面输入框格式-->

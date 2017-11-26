@@ -45,7 +45,11 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
         initToolbar()
         // 渲染页面数据
         isSubscribed = calendarModel.isSubscribed
-        img_subscribe.isSelected = isSubscribed
+        if (isSubscribed) {
+            txt_good_sum.setTextColor(resources.getColor(R.color.accent))
+        }
+        btn_subscribe.isSelected = isSubscribed
+        img_subscribe.setSelected(isSubscribed)
         txt_calendar_title.text = calendarModel.title
         Glide.with(this).load(calendarModel.picture)
                 .bitmapTransform(BlurTransformation(this, 14, 3))
@@ -53,7 +57,7 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
                 .error(R.mipmap.ic_launcher)
                 .into(img_calendar_bg)
         toolbar.setNavigationOnClickListener { finish() }
-        txt_subscribe.setOnClickListener {
+        btn_subscribe.setOnClickListener {
             if (!isSubscribed) {
                 mPresenter?.subscribeCalendar(calendarModel.id!!)
             } else {
@@ -123,6 +127,8 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
             ToastUtil.showToast(R.string.toast_subscribe_success)
             isSubscribed = true
             img_subscribe.isSelected = true
+            btn_subscribe.isSelected = true
+            txt_good_sum.setTextColor(resources.getColor(R.color.accent))
         })
     }
 
@@ -139,6 +145,8 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
             ToastUtil.showToast(R.string.toast_unsubscribe_success)
             isSubscribed = false
             img_subscribe.isSelected = false
+            btn_subscribe.isSelected = false
+            txt_good_sum.setTextColor(resources.getColor(R.color.white))
         })
     }
 

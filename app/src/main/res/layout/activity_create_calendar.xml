@@ -5,16 +5,20 @@
               android:orientation="vertical">
 
     <RelativeLayout
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:outlineProvider="background"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
 
         <ImageView
+            android:src="@drawable/ic_back_black"
             android:id="@+id/img_create_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/spacing_small"/>
+            android:layout_marginStart="16dp"/>
 
         <TextView
             android:id="@+id/txt_create_title"

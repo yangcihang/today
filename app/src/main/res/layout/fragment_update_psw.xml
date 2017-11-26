@@ -1,89 +1,107 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/spacing_large"
-    android:background="@color/white">
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/ll_sign"
-        style="@style/LayoutMine"
-        android:orientation="horizontal">
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp">
 
-        <ImageView
-            android:id="@+id/img_sign"
-            style="@style/ImageMine"
-            android:background="@drawable/ic_update_psw"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="8dp">
 
-        <EditText
-            android:id="@+id/edit_old_psw"
-            style="@style/EditMine"
-            android:hint="@string/hint_input_old_psw"/>
-    </LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_sign"
+                style="@style/LayoutMine"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_sign"
+                    style="@style/ImageMine"
+                    android:background="@drawable/ic_update_psw"/>
+
+                <EditText
+                    android:id="@+id/edit_old_psw"
+                    style="@style/EditMine"
+                    android:hint="@string/hint_input_old_psw"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_div_sign"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@id/ll_sign"
+                android:layout_marginStart="40dp"
+                android:background="@color/view_divide"/>
+
+            <LinearLayout
+                android:id="@+id/ll_psw"
+                style="@style/LayoutMine"
+                android:layout_below="@id/view_div_sign"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_psw"
+                    style="@style/ImageMine"
+                    android:background="@drawable/ic_update_psw"/>
+
+                <EditText
+                    android:id="@+id/edit_new_psw"
+                    style="@style/EditMine"
+                    android:hint="@string/hint_new_psw"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_div_psw"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_below="@id/ll_psw"
+                android:layout_marginStart="40dp"
+                android:background="@color/view_divide"/>
+
+            <LinearLayout
+                android:id="@+id/ll_confirm_psw"
+                style="@style/LayoutMine"
+                android:layout_below="@id/view_div_psw"
+                android:orientation="horizontal">
+
+                <ImageView
+                    style="@style/ImageMine"
+                    android:background="@drawable/ic_update_psw"/>
+
+                <EditText
+                    android:id="@+id/edit_confirm_psw"
+                    style="@style/EditMine"
+                    android:hint="@string/hint_confirm_psw"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     <View
-        android:id="@+id/view_div_sign"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/ll_sign"
-        android:layout_marginStart="32dp"
-        android:background="@color/view_divide"/>
-
-    <LinearLayout
-        android:id="@+id/ll_psw"
-        style="@style/LayoutMine"
-        android:layout_below="@id/view_div_sign"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/img_psw"
-            style="@style/ImageMine"
-            android:background="@drawable/ic_update_psw"/>
-
-        <EditText
-            android:id="@+id/edit_new_psw"
-            style="@style/EditMine"
-            android:hint="@string/hint_new_psw"/>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view_div_psw"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/ll_psw"
-        android:layout_marginStart="32dp"
-        android:background="@color/view_divide"/>
-
-    <LinearLayout
-        android:id="@+id/ll_confirm_psw"
-        style="@style/LayoutMine"
-        android:layout_below="@id/view_div_psw"
-        android:orientation="horizontal">
-
-        <ImageView
-            style="@style/ImageMine"
-            android:background="@drawable/ic_update_psw"/>
-
-        <EditText
-            android:id="@+id/edit_confirm_psw"
-            style="@style/EditMine"
-            android:hint="@string/hint_confirm_psw"/>
-    </LinearLayout>
-
-    <View
-        android:id="@+id/view_spacing"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/spacing_large"
-        android:layout_below="@id/ll_confirm_psw"
-        android:background="@color/bg_background"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
 
     <TextView
         android:id="@+id/txt_confirm"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/mine_item_height"
-        android:layout_below="@id/view_spacing"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_btn_exit"
+        android:elevation="4dp"
         android:gravity="center"
+        android:outlineProvider="background"
         android:text="@string/text_confirm"
-        android:textColor="@color/text_red"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_primary"/>
-</RelativeLayout>
+</LinearLayout>

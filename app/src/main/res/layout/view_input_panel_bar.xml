@@ -47,7 +47,7 @@
         android:layout_alignBottom="@id/edit_input_panel_toolbar_edit"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="@dimen/spacing_small"
-        android:background="@drawable/bg_shape_send_btn"
+        android:background="@drawable/bg_shape_send_btn_normal"
         android:gravity="center"
         android:text="@string/btn_send"
         android:textColor="@color/white"

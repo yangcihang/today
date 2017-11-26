@@ -2,18 +2,19 @@ package com.hrsoft.today.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.text.Editable
 import android.text.InputType
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
-import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
-import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.hrsoft.today.R
 import com.hrsoft.today.util.Utility
+import kotlinx.android.synthetic.main.view_input_panel_bar.view.*
 
 /**
  * @author YangCihang.
@@ -45,6 +46,22 @@ class InputPanel : RelativeLayout {
 
     private fun init() {
         inputPanelEdit = findViewById(R.id.edit_input_panel_toolbar_edit)
+        inputPanelEdit.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (inputPanelEdit.text.isNotEmpty()) {
+                    sendBtn.setBackgroundResource(R.drawable.bg_shape_send_btn_selected)
+                } else {
+                    sendBtn.setBackgroundResource(R.drawable.bg_shape_send_btn_normal)
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+        })
         sendBtn = findViewById(R.id.fl_send_or_input_plus)
         sendBtn.setOnClickListener {
             onSendListener?.invoke(inputPanelEdit.text.toString().trim())
@@ -109,6 +126,11 @@ class InputPanel : RelativeLayout {
             imm.hideSoftInputFromWindow(inputPanelEdit.windowToken, 0)
             inputPanelEdit.clearFocus()
         }
+    }
+
+    fun clearText() {
+        hideInputMethod()
+        edit_input_panel_toolbar_edit.setText("")
     }
 
 }

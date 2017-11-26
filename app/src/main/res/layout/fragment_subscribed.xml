@@ -15,15 +15,16 @@
             android:id="@+id/rec_subscribed_calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:paddingLeft="32dp"
-            android:paddingRight="32dp"
-            android:paddingStart="32dp">
+            android:paddingTop="4dp">
         </android.support.v7.widget.RecyclerView>
     </android.support.v4.widget.SwipeRefreshLayout>
 
 
     <TextView
+        android:outlineProvider="background"
+        android:elevation="4dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_btn_exit"
         android:id="@+id/txt_order"
         android:layout_width="match_parent"
         android:layout_height="48dp"
@@ -31,6 +32,6 @@
         android:layout_gravity="bottom"
         android:gravity="center"
         android:text="调整顺序"
-        android:textColor="@color/text_primary"
+        android:textColor="@color/white"
         android:textSize="@dimen/text_primary"/>
 </RelativeLayout>

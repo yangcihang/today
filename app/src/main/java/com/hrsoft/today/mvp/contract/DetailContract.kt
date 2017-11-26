@@ -21,7 +21,6 @@ interface DetailContract {
 
     interface Presenter : BaseContract.Presenter<View> {
         fun getCalendarInfo(calendarId: Int)
-
         fun onDetailLoaded(mData: CalendarDetailModel)
         fun onDetailLoadFailed()
         fun subscribeCalendar(id: Int)

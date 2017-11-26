@@ -34,7 +34,6 @@ class StateFragment : BaseFragment(), CreateStateContract.View {
             bundle.putInt(Config.KEY_CALENDAR, id)
             return StateFragment().apply { arguments = bundle }
         }
-
     }
 
     override fun initVariable() {

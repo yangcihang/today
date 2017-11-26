@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="72dp"
-                android:layout_height="wrap_content">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
 
     <ImageButton
         android:id="@+id/img_sub"
-        android:layout_width="@dimen/len_tiny_img_width"
-        android:layout_height="@dimen/len_tiny_img_height"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_centerVertical="true"
         android:background="@drawable/ic_sub"/>
 
     <TextView
+        android:layout_gravity="center_vertical"
         android:id="@+id/txt_num"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,10 +22,9 @@
 
     <ImageButton
         android:id="@+id/img_add"
-        android:layout_width="@dimen/len_tiny_img_width"
-        android:layout_height="@dimen/len_tiny_img_height"
-        android:layout_alignParentEnd="true"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/spacing_small"
         android:background="@drawable/ic_add"/>
-</RelativeLayout>
+</LinearLayout>

@@ -5,6 +5,9 @@
                 android:orientation="vertical">
 
     <android.support.design.widget.TabLayout
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:outlineProvider="background"
         android:id="@+id/tab_manage"
         android:layout_width="match_parent"
         android:layout_height="@dimen/len_tab_height">

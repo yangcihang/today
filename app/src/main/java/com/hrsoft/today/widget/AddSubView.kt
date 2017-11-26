@@ -31,7 +31,7 @@ class AddSubView : RelativeLayout {
         addImg = findViewById(R.id.img_add)
         subImg = findViewById(R.id.img_sub)
         numTxt = findViewById(R.id.txt_num)
-        subImg.visibility = View.GONE
+        subImg.visibility = View.INVISIBLE
         addImg.setOnClickListener { textChange(++pickNum) }
         subImg.setOnClickListener { textChange(--pickNum) }
     }
@@ -42,8 +42,8 @@ class AddSubView : RelativeLayout {
     private fun textChange(number: Int) {
         numTxt.text = number.toString()
         when (number) {
-            miniNum -> subImg.visibility = View.GONE
-            maxNum -> addImg.visibility = View.GONE
+            miniNum -> subImg.visibility = View.INVISIBLE
+            maxNum -> addImg.visibility = View.INVISIBLE
             else -> {
                 subImg.visibility = View.VISIBLE
                 addImg.visibility = View.VISIBLE

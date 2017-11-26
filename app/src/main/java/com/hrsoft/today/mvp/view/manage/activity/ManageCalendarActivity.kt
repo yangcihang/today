@@ -21,6 +21,7 @@ class ManageCalendarActivity : ToolbarActivity() {
     }
 
     override fun initView() {
+        toolbar.setNavigationIcon(R.drawable.ic_back_white)
         setActivityTitle(getString(R.string.text_manage_calendar))
         tab_manage.setupWithViewPager(vp_manage.apply { adapter = this@ManageCalendarActivity.adapter })
     }

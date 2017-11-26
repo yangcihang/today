@@ -87,47 +87,34 @@
                     android:textColor="@color/white"
                     android:textSize="16sp"/>
 
-                <ImageView
-                    android:id="@+id/ic_good"
-                    android:layout_width="@dimen/len_small_img_width"
-                    android:layout_height="@dimen/len_small_img_height"
+                <RelativeLayout
+                    android:gravity="center_vertical"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="4dp"
+                    android:paddingBottom="4dp"
+                    android:background="@drawable/bg_btn_subscribe_selector"
+                    android:id="@+id/btn_subscribe"
                     android:layout_alignBottom="@id/calendar_avatar"
                     android:layout_toEndOf="@id/calendar_avatar"
-                    android:src="@drawable/ic_good_white"/>
-
-                <TextView
-                    android:id="@+id/txt_good_sum"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/calendar_avatar"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_toEndOf="@+id/ic_good"
-                    android:gravity="center"
-                    android:shadowColor="@color/black"
-                    android:shadowRadius="2"
-                    android:text="0"/>
+                    android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/img_subscribe"
-                    android:layout_width="@dimen/len_small_img_width"
-                    android:layout_height="@dimen/len_small_img_height"
+                    <ImageView
+                        android:id="@+id/img_subscribe"
+                        android:layout_width="@dimen/len_small_img_width"
+                        android:layout_height="@dimen/len_small_img_height"
+                        android:background="@drawable/bg_subscribed_selector"/>
 
-                    android:layout_alignBottom="@id/calendar_avatar"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_toEndOf="@id/txt_good_sum"
-                    android:background="@drawable/bg_subscribed_selector"/>
-
-                <TextView
-                    android:id="@+id/txt_subscribe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/calendar_avatar"
-                    android:layout_marginStart="@dimen/spacing_small"
-                    android:layout_toEndOf="@id/img_subscribe"
-                    android:shadowColor="@color/black"
-                    android:shadowRadius="2"
-                    android:text="@string/text_subscribed"/>
-
+                    <TextView
+                        android:id="@+id/txt_good_sum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_small"
+                        android:layout_toEndOf="@+id/img_subscribe"
+                        android:gravity="center"
+                        android:text="0"/>
+                </RelativeLayout>
             </RelativeLayout>
 
             <android.support.v7.widget.Toolbar
@@ -150,7 +137,6 @@
                 android:layout_height="45dp"
                 android:layout_gravity="bottom"
                 app:tabMode="fixed"/>
-
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 

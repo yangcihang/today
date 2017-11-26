@@ -76,4 +76,5 @@
     <string name="text_confirm">确认</string>
     <string name="toast_old_psw_error">旧密码输入错误</string>
     <string name="dialog_input_user_sign">请输入签名(20字以内)</string>
+    <string name="dialog_finish_create">您还有未完成的创建，确定要退出吗？</string>
 </resources>

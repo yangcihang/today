@@ -1,6 +1,5 @@
 package com.hrsoft.today.mvp.view.manage.fragment
 
-import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
@@ -92,11 +91,15 @@ class UserCreatedFragment : BaseFragment(), ManageCreatedContract.View {
     }
 
     override fun loadData() {
+    }
+
+    override fun onResume() {
+        super.onResume()
         mPresenter?.requestCreatedCalendar()
     }
 
     override fun onCalendarLoadSuccess(dataList: List<SimpleCalendarModel>) {
-        listAdapter.addAll(dataList)
+        listAdapter.refreshData(dataList)
     }
 
     override fun onDeleteCalendarFailed() {

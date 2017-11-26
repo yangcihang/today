@@ -34,7 +34,7 @@ class CommentFragment : BaseFragment(), CommentContract.View {
          */
         fun createFragment(calendar: CalendarDetailModel?): CommentFragment {
             val bundle = Bundle()
-            bundle.putParcelable(Config.KEY_CALENDAR_DETAIL, calendar)
+            bundle.putSerializable(Config.KEY_CALENDAR_DETAIL, calendar)
             return CommentFragment().apply { arguments = bundle }
         }
     }
@@ -44,7 +44,7 @@ class CommentFragment : BaseFragment(), CommentContract.View {
     }
 
     override fun initVariable() {
-        calendarId = arguments.getParcelable<CalendarDetailModel>(Config.KEY_CALENDAR_DETAIL).id
+        calendarId = (arguments.getSerializable(Config.KEY_CALENDAR_DETAIL) as CalendarDetailModel).id
         commentAdapter = CommentAdapter(activity)
     }
 
@@ -91,6 +91,7 @@ class CommentFragment : BaseFragment(), CommentContract.View {
             })
             refreshData()
         }
+        input_panel.clearText()
         ToastUtil.showToast("评论成功")
     }
 

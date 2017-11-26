@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.mvp.model.models.CalendarDetailModel
 import com.hrsoft.today.mvp.view.detail.fragment.CommentFragment
-import com.hrsoft.today.mvp.view.detail.fragment.DescriptionFragment
+import com.hrsoft.today.mvp.view.detail.fragment.PreviewFragment
 
 /**
  * @author abtion.
@@ -16,14 +16,14 @@ import com.hrsoft.today.mvp.view.detail.fragment.DescriptionFragment
 class DetailPagerAdapter(fm: FragmentManager, calendarModel: CalendarDetailModel) : FragmentPagerAdapter(fm) {
 
 
-    private var titles = arrayListOf("描述", "评论")
-    private var currentFragment: BaseFragment = DescriptionFragment()
-    private var descriptionFragment: DescriptionFragment = DescriptionFragment.createFragment(calendarModel)
+    private var titles = arrayListOf("预览", "评论")
+    private var currentFragment: BaseFragment = PreviewFragment()
+    private var previewFragment: PreviewFragment = PreviewFragment.createFragment(calendarModel)
     private var commentFragment: CommentFragment = CommentFragment.createFragment(calendarModel)
 
     override fun getItem(position: Int): Fragment {
         when (position) {
-            0 -> currentFragment = descriptionFragment
+            0 -> currentFragment = previewFragment
             1 -> {
                 currentFragment = commentFragment
 

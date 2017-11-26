@@ -9,6 +9,7 @@ import com.hrsoft.today.common.Config
 import com.hrsoft.today.mvp.view.manage.fragment.CalendarDescriptionFragment
 import com.hrsoft.today.mvp.view.manage.fragment.RecommendFragment
 import com.hrsoft.today.mvp.view.manage.fragment.StateFragment
+import com.hrsoft.today.util.DialogUtils
 import com.hrsoft.today.util.FragmentUtil
 import kotlinx.android.synthetic.main.activity_create_calendar.*
 
@@ -30,7 +31,7 @@ class CreateCalendarActivity : NoBarActivity() {
     //当黄历修改或者创建后的状态的sum
     var stateSum = 0
     //失败时取消dialog
-    var onDialogDismissCallback = disMissProgressDialog()
+//    var onDialogDismissCallback = disMissProgressDialog()
 
     companion object {
         val DEFAULT_ID = -1
@@ -56,11 +57,23 @@ class CreateCalendarActivity : NoBarActivity() {
     }
 
     override fun initView() {
+        img_create_back.setOnClickListener { this.finish() }
         when (editType) {
             TYPE_EDIT_DESCRIPTION -> onEditDescription()
             TYPE_EDIT_STATE -> onEditState()
             TYPE_EDIT_RECOMMEND -> onEditRecommend()
-            else -> onCreateCalendar()
+            else -> {
+                onCreateCalendar()
+                img_create_back.setOnClickListener {
+                    DialogUtils(this)
+                            .setTitleText(getString(R.string.dialog_finish_create))
+                            .setCancelable(true)
+                            .setPositiveButton { this.finish() }
+                            .setNegativeButton {}
+                            .showAlertDialog()
+                }
+
+            }
         }
     }
 
@@ -121,7 +134,6 @@ class CreateCalendarActivity : NoBarActivity() {
     }
 
 
-    //TODO(以下统一整合)
     /**
      * 修改黄历信息的状态
      */

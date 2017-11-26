@@ -2,86 +2,159 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
-        android:paddingTop="40dp">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/img_create_calendar"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_centerHorizontal="true"
-            android:background="@mipmap/ic_launcher"/>
-
-        <TextView
-            android:id="@+id/txt_create_calendar_title"
-            style="@style/TextCreateTitle"
-            android:layout_below="@id/img_create_calendar"
-            android:text="@string/text_title_create_calendar"/>
-
-        <EditText
-            android:id="@+id/edit_create_calendar_title"
+        <android.support.v7.widget.CardView
+            android:layout_margin="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_create_calendar_title"
-            android:hint="@string/hint_create_calendar_title"
-            android:maxLength="20"
-            android:maxLines="1"/>
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/txt_create_calendar_good_title"
-            style="@style/TextCreateTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/edit_create_calendar_title"
-            android:text="每日挑选宜的个数"/>
+            <RelativeLayout
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.hrsoft.today.widget.AddSubView
-            android:id="@+id/pick_good"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/txt_create_calendar_good_title"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@id/txt_create_calendar_good_title">
-        </com.hrsoft.today.widget.AddSubView>
+                <ImageView
+                    android:id="@+id/img_create_calendar"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_centerInParent="true"
+                    android:background="@mipmap/ic_launcher"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
 
-
-        <TextView
-            android:id="@+id/txt_create_calendar_bad_title"
-            style="@style/TextCreateTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_create_calendar_good_title"
-            android:text="每日挑选不宜个数"/>
-
-        <com.hrsoft.today.widget.AddSubView
-            android:id="@+id/pick_bad"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@id/txt_create_calendar_bad_title">
-        </com.hrsoft.today.widget.AddSubView>
-
-        <TextView
-            android:id="@+id/txt_create_calendar_description"
-            style="@style/TextCreateTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_create_calendar_bad_title"
-            android:text="日历描述"/>
-
-        <EditText
-            android:id="@+id/edit_create_calendar_description"
+        <android.support.v7.widget.CardView
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_create_calendar_description"
-            android:hint="请输入日历的简介,500字以内"
-            android:textSize="@dimen/text_secondary"/>
+            android:layout_height="wrap_content">
 
-    </RelativeLayout>
+            <RelativeLayout
+                android:padding="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/ll_calendar_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txt_create_calendar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_title_create_calendar"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_primary"/>
+
+                    <EditText
+                        android:gravity="right"
+                        android:background="@null"
+                        android:id="@+id/edit_create_calendar_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:hint="@string/hint_create_calendar_title"
+                        android:maxLength="20"
+                        android:maxLines="1"/>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_below="@id/ll_calendar_title"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/view_divide"/>
+
+                <TextView
+                    android:layout_marginTop="32dp"
+                    android:id="@+id/txt_create_calendar_good_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ll_calendar_title"
+                    android:text="每日挑选宜的个数"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_primary"/>
+
+                <com.hrsoft.today.widget.AddSubView
+                    android:id="@+id/pick_good"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/txt_create_calendar_good_title"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/txt_create_calendar_good_title">
+                </com.hrsoft.today.widget.AddSubView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_below="@id/pick_good"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/view_divide"/>
+
+                <TextView
+                    android:layout_marginTop="32dp"
+                    android:id="@+id/txt_create_calendar_bad_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_create_calendar_good_title"
+                    android:text="每日挑选不宜个数"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_primary"/>
+
+                <com.hrsoft.today.widget.AddSubView
+                    android:id="@+id/pick_bad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignTop="@id/txt_create_calendar_bad_title">
+                </com.hrsoft.today.widget.AddSubView>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+            <RelativeLayout
+                android:background="@drawable/bg_btn_subscribe_selected"
+                android:padding="16dp"
+                android:layout_margin="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/txt_create_calendar_description"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_primary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="日历描述"/>
+
+                <EditText
+                    android:gravity="top"
+                    android:background="@null"
+                    android:id="@+id/edit_create_calendar_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/txt_create_calendar_description"
+                    android:hint="请输入日历的简介,500字以内"
+                    android:textSize="@dimen/text_secondary"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
 </ScrollView>
