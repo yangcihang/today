@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseRecyclerAdapter
 import com.hrsoft.today.mvp.model.models.CalendarRecommendModel
+import kotlinx.android.synthetic.main.item_recommend_content.view.*
 
 /**
  * @author YangCihang.
@@ -51,6 +52,10 @@ class RecommendContentAdapter(mContext: Context) : BaseRecyclerAdapter<CalendarR
             contentRec.let {
                 it.adapter = ContentListAdapter(mContext).apply { addAll(mData?.items!!) }
                 it.layoutManager = LinearLayoutManager(mContext)
+            }
+            itemView.img_recommend_icon_delete.setOnClickListener {
+                flagList.removeAt(position)
+                remove(mData!!)
             }
         }
     }

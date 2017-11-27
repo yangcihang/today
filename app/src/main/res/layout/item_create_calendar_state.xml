@@ -4,16 +4,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_small"
                 android:animateLayoutChanges="true"
-                android:paddingTop="8dp"
                 android:paddingEnd="@dimen/spacing_small"
-                android:paddingStart="@dimen/spacing_small">
+                android:paddingStart="@dimen/spacing_small"
+                android:paddingTop="8dp">
 
     <RelativeLayout
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
         android:id="@+id/rl_create_state_expand"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
 
         <TextView
             android:id="@+id/txt_title"
@@ -48,8 +48,8 @@
             android:layout_width="@dimen/len_small_img_width"
             android:layout_height="@dimen/len_small_img_height"
             android:layout_alignBottom="@id/txt_title"
-            android:layout_marginEnd="@dimen/spacing_small"
             android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/spacing_small"
             android:background="@drawable/ic_delete"/>
     </RelativeLayout>
 
@@ -97,6 +97,7 @@
                 android:layout_alignBottom="@id/txt_state_good_title"
                 android:layout_marginStart="@dimen/spacing_normal"
                 android:layout_toEndOf="@id/txt_state_good_title"
+                android:maxLines="1"
                 android:text="别想了总得写"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_secondary"/>
@@ -130,6 +131,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/spacing_normal"
                 android:layout_toEndOf="@id/txt_state_bad_title"
+                android:maxLines="1"
                 android:text="别想了总得写"
                 android:textColor="@color/text_secondary"
                 android:textSize="@dimen/text_secondary"/>

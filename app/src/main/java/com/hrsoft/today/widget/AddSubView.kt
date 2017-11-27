@@ -52,6 +52,7 @@ class AddSubView : RelativeLayout {
     }
 
     fun setCurrentNum(number: Int) {
+        pickNum = number
         textChange(number)
     }
 }

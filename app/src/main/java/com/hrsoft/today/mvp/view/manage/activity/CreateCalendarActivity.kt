@@ -2,6 +2,7 @@ package com.hrsoft.today.mvp.view.manage.activity
 
 import android.content.Context
 import android.content.Intent
+import android.view.KeyEvent
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseFragment
 import com.hrsoft.today.base.NoBarActivity
@@ -64,17 +65,21 @@ class CreateCalendarActivity : NoBarActivity() {
             TYPE_EDIT_RECOMMEND -> onEditRecommend()
             else -> {
                 onCreateCalendar()
-                img_create_back.setOnClickListener {
-                    DialogUtils(this)
-                            .setTitleText(getString(R.string.dialog_finish_create))
-                            .setCancelable(true)
-                            .setPositiveButton { this.finish() }
-                            .setNegativeButton {}
-                            .showAlertDialog()
-                }
-
+                img_create_back.setOnClickListener { showExitDialog() }
             }
         }
+    }
+
+    /**
+     * 展示退出创建的提示
+     */
+    private fun showExitDialog() {
+        DialogUtils(this)
+                .setTitleText(getString(R.string.dialog_finish_create))
+                .setCancelable(true)
+                .setPositiveButton { this.finish() }
+                .setNegativeButton {}
+                .showAlertDialog()
     }
 
     override fun loadData() {
@@ -174,6 +179,13 @@ class CreateCalendarActivity : NoBarActivity() {
                 this.finish()
             }
         }
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && editType == TYPE_CREATE) {
+            showExitDialog()
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
 }

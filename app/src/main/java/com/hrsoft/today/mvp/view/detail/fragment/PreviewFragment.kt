@@ -37,10 +37,10 @@ class PreviewFragment : BaseFragment() {
     }
 
     override fun initVariable() {
-        stateGoodAdapter = StateListAdapter(context, true)
-        stateBadAdapter = StateListAdapter(context, false)
-        recommendAdapter = RecommendListAdapter(context)
         calendarDetailModel = arguments.getSerializable(Config.KEY_CALENDAR_DETAIL) as CalendarDetailModel?
+        stateGoodAdapter = StateListAdapter(context, true).apply { refreshData(calendarDetailModel?.preview?.good!!) }
+        stateBadAdapter = StateListAdapter(context, false).apply { refreshData(calendarDetailModel?.preview?.bad!!) }
+        recommendAdapter = RecommendListAdapter(context).apply { refreshData(calendarDetailModel?.preview?.recommend!!) }
     }
 
     override fun initView() {

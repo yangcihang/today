@@ -38,6 +38,8 @@
     <dimen name="spacing_login">72dp</dimen>
 
     <!--img len-->
+    <dimen name="len_huge_img_height">240dp</dimen>
+    <dimen name="len_huge_img_width">240dp</dimen>
     <dimen name="len_large_img_height">136dp</dimen>
     <dimen name="len_large_img_width">136dp</dimen>
     <dimen name="len_middle_img_height">100dp</dimen>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,14 +11,14 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.CardView
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
 
             <RelativeLayout
-                android:padding="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="16dp">
 
                 <ImageView
                     android:id="@+id/img_create_calendar"
@@ -30,15 +30,15 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp">
 
             <RelativeLayout
-                android:padding="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:id="@+id/ll_calendar_title"
@@ -55,15 +55,16 @@
                         android:textSize="@dimen/text_primary"/>
 
                     <EditText
-                        android:gravity="right"
-                        android:background="@null"
                         android:id="@+id/edit_create_calendar_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
+                        android:background="@null"
+                        android:gravity="end"
                         android:hint="@string/hint_create_calendar_title"
                         android:maxLength="20"
-                        android:maxLines="1"/>
+                        android:maxLines="1"
+                        android:singleLine="true"/>
 
 
                 </LinearLayout>
@@ -76,11 +77,11 @@
                     android:background="@color/view_divide"/>
 
                 <TextView
-                    android:layout_marginTop="32dp"
                     android:id="@+id/txt_create_calendar_good_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/ll_calendar_title"
+                    android:layout_marginTop="32dp"
                     android:text="每日挑选宜的个数"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_primary"/>
@@ -102,11 +103,11 @@
                     android:background="@color/view_divide"/>
 
                 <TextView
-                    android:layout_marginTop="32dp"
                     android:id="@+id/txt_create_calendar_bad_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/txt_create_calendar_good_title"
+                    android:layout_marginTop="32dp"
                     android:text="每日挑选不宜个数"
                     android:textColor="@color/text_primary"
                     android:textSize="@dimen/text_primary"/>
@@ -125,32 +126,32 @@
 
 
         <android.support.v7.widget.CardView
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="200dp"
+            android:layout_margin="8dp">
 
             <RelativeLayout
-                android:background="@drawable/bg_btn_subscribe_selected"
-                android:padding="16dp"
-                android:layout_margin="16dp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_margin="16dp"
+                android:background="@drawable/bg_btn_subscribe_selected"
+                android:padding="16dp">
 
                 <TextView
                     android:id="@+id/txt_create_calendar_description"
-                    android:textColor="@color/text_primary"
-                    android:textSize="@dimen/text_primary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="日历描述"/>
+                    android:text="日历描述"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_primary"/>
 
                 <EditText
-                    android:gravity="top"
-                    android:background="@null"
                     android:id="@+id/edit_create_calendar_description"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_below="@id/txt_create_calendar_description"
+                    android:background="@null"
+                    android:gravity="top"
                     android:hint="请输入日历的简介,500字以内"
                     android:textSize="@dimen/text_secondary"/>
             </RelativeLayout>

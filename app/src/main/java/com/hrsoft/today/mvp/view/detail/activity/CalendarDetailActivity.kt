@@ -45,11 +45,6 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
         initToolbar()
         // 渲染页面数据
         isSubscribed = calendarModel.isSubscribed
-        if (isSubscribed) {
-            txt_good_sum.setTextColor(resources.getColor(R.color.accent))
-        }
-        btn_subscribe.isSelected = isSubscribed
-        img_subscribe.setSelected(isSubscribed)
         txt_calendar_title.text = calendarModel.title
         Glide.with(this).load(calendarModel.picture)
                 .bitmapTransform(BlurTransformation(this, 14, 3))
@@ -109,12 +104,18 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
      * 成功获取详情后的回调
      */
     override fun onDetailLoaded(mData: CalendarDetailModel) {
+        calendarModel.subscribed = mData.subscribed
+        isSubscribed = mData.isSubscribed
+        img_subscribe.isSelected = mData.isSubscribed
         txt_calendar_title.text = mData.title
         txt_user_name.text = mData.creatorName
-        txt_good_sum.text = mData.goodPick.toString()
+        txt_subscribed_sum.text = mData.subscribed.toString()
         Glide.with(this).load(mData.creatorAvatar).bitmapTransform(CropCircleTransformation(this)).into(img_user_avatar)
         Glide.with(this).load(mData.picture).into(calendar_avatar)
         initViewPager(mData)
+        calendar_avatar.setOnClickListener {
+            CalendarCoverActivity.start(this@CalendarDetailActivity, mData)
+        }
     }
 
 
@@ -123,39 +124,36 @@ class CalendarDetailActivity : NoBarActivity(), DetailContract.View {
     }
 
     override fun onSubscribeSuccess() {
-        Utility.runOnUiThread(Runnable {
-            ToastUtil.showToast(R.string.toast_subscribe_success)
-            isSubscribed = true
-            img_subscribe.isSelected = true
-            btn_subscribe.isSelected = true
-            txt_good_sum.setTextColor(resources.getColor(R.color.accent))
-        })
+        onSubscribed(true)
+        calendarModel.subscribed = calendarModel.subscribed!! + 1
+        txt_subscribed_sum.text = calendarModel.subscribed?.toString()
+        ToastUtil.showToast(R.string.toast_subscribe_success)
     }
 
     override fun onSubscribeFailed() {
-        Utility.runOnUiThread(Runnable {
-            ToastUtil.showToast(R.string.toast_subscribe_failed)
-            isSubscribed = false
-            img_subscribe.isSelected = false
-        })
+        ToastUtil.showToast(R.string.toast_subscribe_failed)
     }
 
     override fun onUnsubscribeSuccess() {
-        Utility.runOnUiThread(Runnable {
-            ToastUtil.showToast(R.string.toast_unsubscribe_success)
-            isSubscribed = false
-            img_subscribe.isSelected = false
-            btn_subscribe.isSelected = false
-            txt_good_sum.setTextColor(resources.getColor(R.color.white))
-        })
+        calendarModel.subscribed = calendarModel.subscribed!! - 1
+        txt_subscribed_sum.text = calendarModel.subscribed?.toString()
+        onSubscribed(false)
+        ToastUtil.showToast(R.string.toast_unsubscribe_success)
     }
 
     override fun onUnsubscribeFailed() {
-        Utility.runOnUiThread(Runnable {
-            ToastUtil.showToast(R.string.toast_unsubscribe_failed)
-            isSubscribed = true
-            img_subscribe.isSelected = true
-        })
+        ToastUtil.showToast(R.string.toast_unsubscribe_failed)
+    }
+
+    /**
+     * 当订阅时改变图标及文字颜色
+     */
+    private fun onSubscribed(isSubscribed: Boolean) {
+        this.isSubscribed = isSubscribed
+        btn_subscribe.isSelected = isSubscribed
+        img_subscribe.isSelected = isSubscribed
+        txt_subscribed_sum.setTextColor(if (isSubscribed) resources.getColor(R.color.accent) else resources.getColor(R
+                .color.white))
     }
 
     override fun onDestroy() {

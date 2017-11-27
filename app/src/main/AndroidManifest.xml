@@ -23,6 +23,7 @@
         <activity android:name=".mvp.view.manage.activity.ManageCalendarActivity"/>
         <activity android:name=".mvp.view.manage.activity.CreateCalendarActivity"/>
         <activity android:name=".mvp.view.detail.activity.CalendarDetailActivity"/>
+        <activity android:name=".mvp.view.detail.activity.CalendarCoverActivity"/>
         <activity android:name=".mvp.view.account.activity.AccountActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

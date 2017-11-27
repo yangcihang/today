@@ -13,6 +13,8 @@ import kotlinx.android.synthetic.main.fragment_subscribed.*
 import android.support.v7.widget.GridLayoutManager
 import com.hrsoft.today.mvp.model.models.CalendarModel
 import com.hrsoft.today.mvp.model.User
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
+import com.hrsoft.today.mvp.view.detail.activity.CalendarDetailActivity
 import com.hrsoft.today.util.ToastUtil
 import java.lang.reflect.Field
 import java.lang.reflect.Method
@@ -58,6 +60,13 @@ class SubscribedFragment : BaseFragment(), ManageSubscribedContract.View {
                         mPresenter?.unSubscribeCalendar(model.calendarId!!)
                         deletePos = pos
                     }
+                }
+                onClickedListener = { model, _ ->
+                    CalendarDetailActivity.start(context,
+                            SimpleCalendarModel(id = model.calendarId
+                                    , title = model.calendarName
+                                    , picture = model.calendarPicture
+                                    , isSubscribed = true))
                 }
             }
         })

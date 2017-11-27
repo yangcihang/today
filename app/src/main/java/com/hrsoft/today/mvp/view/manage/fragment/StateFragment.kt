@@ -76,6 +76,9 @@ class StateFragment : BaseFragment(), CreateStateContract.View {
             }
             ToastUtil.showToast(R.string.toast_save_success)
             adapter.add(CalendarStateItemModel(name = titleContent, good = goodContent, bad = badContent))
+            edit_state_title.setText("")
+            edit_state_good.setText("")
+            edit_state_bad.setText("")
         }
     }
 

@@ -12,9 +12,4 @@ class CalendarRecommendModel(var name: String? = "",
                              var items: List<String> = mutableListOf(),
                              var item: String? = "",
                              var pickCount: Int) : Serializable {
-    fun setItem() {
-        for (i in items) {
-            item = item + i + " "
-        }
-    }
 }

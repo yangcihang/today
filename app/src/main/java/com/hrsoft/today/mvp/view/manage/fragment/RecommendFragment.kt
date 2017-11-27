@@ -26,7 +26,6 @@ class RecommendFragment : BaseFragment(), CreateRecommendContract.View {
     private lateinit var recommendContentAdapter: RecommendContentAdapter
     private val miniNum = 1
     private val maxNum = 20
-    private var pickNum = 1
     private var calendarId = CreateCalendarActivity.DEFAULT_ID
 
     companion object {
@@ -58,8 +57,8 @@ class RecommendFragment : BaseFragment(), CreateRecommendContract.View {
         pick_recommend.let {
             it.miniNum = miniNum
             it.maxNum = maxNum
-            it.pickNum = pickNum
         }
+        pick_recommend.setCurrentNum(1)
         //添加
         img_add_title.setOnClickListener {
             recommendAddAdapter.add("", recommendAddAdapter.dataList.size)
@@ -99,9 +98,20 @@ class RecommendFragment : BaseFragment(), CreateRecommendContract.View {
                     recommendContentList.addAll(recommendAddAdapter.dataList)
                     recommendContentAdapter.add(CalendarRecommendModel(edit_recommend_name.text.toString().trim()
                             , recommendContentList, pickCount = pick_recommend.pickNum).apply { setItem() })
+                    recommendAddAdapter.clear()
+                    edit_recommend_name.setText("")
                 }
                 else -> ToastUtil.showToast(R.string.toast_recommend_content_num_error)
             }
+        }
+    }
+
+    /**
+     * 扩展setItem方法
+     */
+    private fun CalendarRecommendModel.setItem() {
+        for (i in items) {
+            item = item + i + " "
         }
     }
 

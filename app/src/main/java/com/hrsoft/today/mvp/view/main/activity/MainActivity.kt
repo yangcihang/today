@@ -4,6 +4,8 @@ import android.content.Intent
 import android.support.v4.view.ViewPager
 import android.text.TextUtils
 import android.view.Gravity
+import android.view.KeyEvent
+import android.view.View
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.hrsoft.today.App
@@ -30,11 +32,16 @@ class MainActivity : NoBarActivity(), MainContract.View {
     /**adapter*/
     private var adapter: MainPagerAdapter = MainPagerAdapter(supportFragmentManager, User.userCalendarList)
     private var signTxt: TextView? = null
+    /**再次点击返回的延迟时间*/
+    private val backTime = 2000
+    private var preTimeMillis: Long = 0
+
     override fun initVariable() {
     }
 
     override fun initView() {
         initNavigation()
+        txt_calendar_title.isSelected = true
         img_drawer_menu.setOnClickListener { drawer_main.openDrawer(Gravity.START) }
     }
 
@@ -60,16 +67,10 @@ class MainActivity : NoBarActivity(), MainContract.View {
         return R.layout.activity_main
     }
 
-
     /**
      * 数据获取成功时回调
      */
     override fun onCalendarLoadSuccess(calendarList: List<CalendarModel>) {
-        if (calendarList.isEmpty()) {
-            ToastUtil.showToast(R.string.toast_calendar_empty)
-            startActivity(Intent(this, SquareActivity::class.java))
-            return
-        }
         User.userCalendarList = calendarList as MutableList<CalendarModel>
         App.instance.getCacheUtil().putSerializableObj(Config.KEY_CALENDAR, User.userCalendarList as ArrayList)
 //        逻辑得改
@@ -84,8 +85,15 @@ class MainActivity : NoBarActivity(), MainContract.View {
 //        }
         adapter.dataList = calendarList
         adapter.notifyDataSetChanged()
-
-        txt_calendar_title.text = User.userCalendarList[0].calendarName ?: "默认title"
+        if (!User.userCalendarList.isEmpty()) {
+            vp_main.visibility = View.VISIBLE
+            fl_calendar_empty.visibility = View.GONE
+            txt_calendar_title.text = User.userCalendarList[0].calendarName ?: "默认title"
+        } else {
+            btn_to_subscribed.setOnClickListener { startActivity(Intent(this, SquareActivity::class.java)) }
+            fl_calendar_empty.visibility = View.VISIBLE
+            vp_main.visibility = View.GONE
+        }
     }
 
     /**
@@ -137,5 +145,21 @@ class MainActivity : NoBarActivity(), MainContract.View {
     override fun onDestroy() {
         super.onDestroy()
         mPresenter?.onDetach()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (drawer_main.isDrawerOpen(Gravity.START)) {
+                drawer_main.closeDrawers()
+            } else {
+                if (System.currentTimeMillis() - preTimeMillis >= backTime) {
+                    preTimeMillis = System.currentTimeMillis()
+                    ToastUtil.showToast((R.string.toast_clicked_return))
+                } else {
+                    App.instance.exitApp()
+                }
+            }
+            false
+        } else super.onKeyDown(keyCode, event)
     }
 }

@@ -107,7 +107,7 @@
                         android:background="@drawable/bg_subscribed_selector"/>
 
                     <TextView
-                        android:id="@+id/txt_good_sum"
+                        android:id="@+id/txt_subscribed_sum"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_small"
