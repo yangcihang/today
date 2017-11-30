@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_primary"
+        android:textColor="@color/text_primary"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:text="请选择您要修改的项目"/>
+
+    <TextView
+        android:layout_marginTop="@dimen/spacing_huge"
+        android:id="@+id/txt_dialog_edit_description"
+        style="@style/TextDialog"
+        android:text="修改黄历信息"/>
+
+    <TextView
+        android:id="@+id/txt_dialog_edit_state"
+        style="@style/TextDialog"
+        android:text="修改黄历好坏信息"/>
+
+    <TextView
+        android:id="@+id/txt_dialog_edit_recommend"
+        style="@style/TextDialog"
+        android:text="修改黄历推荐信息"/>
+</LinearLayout>

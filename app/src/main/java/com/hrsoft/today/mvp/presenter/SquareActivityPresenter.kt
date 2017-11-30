@@ -1,7 +1,7 @@
 package com.hrsoft.today.mvp.presenter
 
 import com.hrsoft.today.mvp.contract.SquareContract
-import com.hrsoft.today.mvp.model.SquareCalendarModel
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
 import com.hrsoft.today.mvp.model.helper.SquareModelHelper
 
 /**
@@ -22,11 +22,11 @@ class SquareActivityPresenter(override var mView: SquareContract.View?) : Square
         SquareModelHelper.requestAllCalendar(page, this)
     }
 
-    fun onRecommendCalendarLoadSuccess(calendarList: List<SquareCalendarModel>) {
+    fun onRecommendCalendarLoadSuccess(calendarList: List<SimpleCalendarModel>) {
         mView?.onRecommendCalendarLoadSuccess(calendarList)
     }
 
-    fun onAllCalendarLoadSuccess(calendarList: List<SquareCalendarModel>) {
+    fun onAllCalendarLoadSuccess(calendarList: List<SimpleCalendarModel>) {
         if (calendarList.isEmpty()) mView?.scrollToLastPage()
         mView?.onAllCalendarLoadSuccess(calendarList)
     }

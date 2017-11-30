@@ -7,7 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseRecyclerAdapter
-import com.hrsoft.today.mvp.model.CalendarRecommendModel
+import com.hrsoft.today.mvp.model.models.CalendarRecommendModel
 
 /**
  * @author YangCihang
@@ -20,9 +20,9 @@ class RecommendListAdapter(mContext: Context) : BaseRecyclerAdapter<CalendarReco
     }
 
     inner class ItemHolder(itemView: View) : BaseViewHolder<CalendarRecommendModel>(itemView) {
-        var flagIcon: ImageView = itemView.findViewById(R.id.img_recommend_flag_icon)
-        var titleTxt: TextView = itemView.findViewById(R.id.txt_calendar_recommend_title)
-        var descriptionTxt: TextView = itemView.findViewById(R.id.txt_calendar_recommend_description)
+        private var flagIcon: ImageView = itemView.findViewById(R.id.img_recommend_flag_icon)
+        private var titleTxt: TextView = itemView.findViewById(R.id.txt_calendar_recommend_title)
+        private var descriptionTxt: TextView = itemView.findViewById(R.id.txt_calendar_recommend_description)
         override fun onBind(position: Int) {
             flagIcon.setBackgroundColor(mContext.resources.getColor(R.color.text_main_recommend_title))
             titleTxt.text = mData?.name

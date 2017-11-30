@@ -1,6 +1,6 @@
 package com.hrsoft.today.mvp.model.helper
 
-import com.hrsoft.today.mvp.model.SquareCalendarModel
+import com.hrsoft.today.mvp.model.models.SimpleCalendarModel
 import com.hrsoft.today.mvp.presenter.SearchActivityPresenter
 import com.hrsoft.today.network.NetWork
 import com.hrsoft.today.network.RspCallback
@@ -11,10 +11,10 @@ import com.hrsoft.today.network.RspCallback
  * email yangcihang@hrsoft.net
  */
 object SearchModelHelper {
-    fun requestSearchModelList(content: String, callback: SearchActivityPresenter) {
-        NetWork.getService().requestSearchModelList(content).enqueue(object : RspCallback<List<SquareCalendarModel>>() {
-            override fun onSuccess(data: List<SquareCalendarModel>) {
-                callback.onSearchModelListLoadSuccess(data)
+    fun requestSearchModelList(content: String,page:Int, callback: SearchActivityPresenter) {
+        NetWork.getService().requestSearchModelList(content,page).enqueue(object : RspCallback<List<SimpleCalendarModel>>() {
+            override fun onSuccess(data: List<SimpleCalendarModel>?) {
+                callback.onSearchModelListLoadSuccess(data!!)
             }
 
             override fun onFailed() {

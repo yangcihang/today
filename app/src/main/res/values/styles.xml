@@ -15,9 +15,9 @@
 
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <!--toolbar style-->
     <style name="toolbar" parent="@style/ThemeOverlay.AppCompat.ActionBar">
@@ -44,10 +44,103 @@
         <item name="android:color">@color/text_primary</item>
     </style>
 
+    <style name="TextCreateTitle">
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/text_primary</item>
+        <item name="android:color">@color/text_primary</item>
+    </style>
+    <!--一般小图标的大小-->
     <style name="ImageIcon">
         <item name="android:layout_width">4dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
+    </style>
+    <!--EditText普通的提示文字格式-->
+    <style name="TextHint">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textSize">@dimen/text_ternary</item>
+        <item name="android:layout_marginLeft">@dimen/spacing_small</item>
+        <item name="android:textColorHint">@color/text_ternary</item>
+    </style>
+
+    <!--创建黄历状态页面TextTitle-->
+    <style name="TextStateTitle">
+        <item name="android:layout_marginLeft">@dimen/spacing_small</item>
+        <item name="android:color">@color/text_primary</item>
+        <item name="android:textSize">@dimen/text_title</item>
+        <item name="android:gravity">left</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">64dp</item>
+    </style>
+
+    <style name="LayoutAccount">
+        <item name="android:layout_height">@dimen/len_account_tab_height</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:paddingLeft">@dimen/spacing_normal</item>
+        <item name="android:background">@drawable/bg_account_edit_normal</item>
+    </style>
+    <!--账号页编辑格式-->
+    <style name="EditAccount">
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_marginStart">@dimen/spacing_small</item>
+        <item name="android:textSize">@dimen/text_ternary</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <!--我的页面图片格式-->
+    <style name="ImageMine">
+        <item name="android:layout_width">24dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_height">24dp</item>
+    </style>
+
+    <style name="LayoutMine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+    </style>
+    <!--我的页面字体格式-->
+    <style name="TextMine">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">@dimen/text_primary</item>
+        <item name="android:layout_marginStart">16dp</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+    <!--我的页面输入框格式-->
+    <style name="EditMine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:textSize">@dimen/text_primary</item>
+        <item name="android:lines">1</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:background">@null</item>
+        <item name="android:layout_marginStart">@dimen/spacing_small</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textColorHint">@color/text_secondary</item>
+    </style>
+
+    <style name="TextDialog">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginBottom">@dimen/spacing_normal</item>
+        <item name="android:textSize">@dimen/text_secondary</item>
+        <item name="android:textColor">@color/text_secondary</item>
     </style>
 </resources>

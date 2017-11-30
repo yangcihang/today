@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="200dp"
-              android:orientation="vertical">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:background="@color/primary_dark"
+                android:padding="@dimen/spacing_large">
 
     <ImageView
-        android:id="@+id/iv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_launcher_background"/>
-</LinearLayout>
+        android:id="@+id/img_drawer_user_avatar"
+        android:layout_width="@dimen/len_normal_img_width"
+        android:layout_height="@dimen/len_normal_img_height"
+        android:layout_above="@id/txt_user_name"/>
+
+    <TextView
+        android:id="@+id/txt_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txt_user_sign"
+        android:layout_marginBottom="@dimen/spacing_small"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:text="我是刘明"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_primary"/>
+
+    <TextView
+        android:id="@+id/txt_user_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="我是一个牛逼的刘明"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/text_secondary"/>
+</RelativeLayout>

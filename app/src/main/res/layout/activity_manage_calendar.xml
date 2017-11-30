@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+    <android.support.design.widget.TabLayout
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:outlineProvider="background"
+        android:id="@+id/tab_manage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/len_tab_height">
+
+    </android.support.design.widget.TabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_manage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tab_manage">
+
+    </android.support.v4.view.ViewPager>
+</RelativeLayout>

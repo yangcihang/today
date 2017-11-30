@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:paddingEnd="2dp"
               android:paddingLeft="2dp"
               android:paddingRight="2dp"
-              android:paddingEnd="2dp"
-              android:orientation="vertical"
               android:paddingStart="2dp">
 
     <ImageView
         android:id="@+id/img_square_calendar"
-        android:layout_width="@dimen/len_square_item_width"
-        android:layout_height="@dimen/len_square_item_height"
+        android:layout_width="@dimen/len_large_img_width"
+        android:layout_height="@dimen/len_large_img_height"
         android:layout_gravity="center"
         android:background="@drawable/ic_launcher_background"
         android:scaleType="fitXY"/>

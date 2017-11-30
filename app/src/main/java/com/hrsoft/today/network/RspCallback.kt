@@ -13,14 +13,16 @@ import java.net.ConnectException
  * email yangcihang@hrsoft.net
  */
 abstract class RspCallback<T> : Callback<RspModel<T>> {
-    abstract fun onSuccess(data: T)
+    abstract fun onSuccess(data: T?)
     abstract fun onFailed()
     override fun onResponse(call: Call<RspModel<T>>?, response: Response<RspModel<T>>) {
         if (response.code() <= 400) {
             if (response.body()!!.code == 0) {
-                response.body()!!.data?.let { onSuccess(it) }
+                onSuccess(response.body()!!.data)
             } else {
+                response.body().message?.let { ToastUtil.showToast(it) }
                 GlobalAPIErrorHandler.handle(response.body()!!.code)
+                onFailed()
             }
         } else {
             GlobalAPIErrorHandler.handle(response.code())

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+
+                <ImageView
+                    android:id="@+id/img_name_title"
+                    android:layout_width="@dimen/len_small_img_width"
+                    android:layout_height="@dimen/len_small_img_height"
+                    />
+
+                <TextView
+                    android:id="@+id/txt_name_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/img_name_title"
+                    android:layout_marginStart="8dp"
+                    android:layout_toRightOf="@id/img_name_title"
+                    android:text="标签名称"
+                    android:textColor="@color/text_primary"
+                    android:textSize="@dimen/text_primary"/>
+
+                <EditText
+                    android:id="@+id/edit_recommend_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@id/img_name_title"
+                    android:layout_marginStart="@dimen/spacing_small"
+                    android:layout_toEndOf="@id/txt_name_title"
+                    android:background="@null"
+                    android:gravity="right|bottom"
+                    android:hint="例：今天吃什么？(10个字以内)"
+                    android:maxLength="10"
+                    android:maxLines="1"
+                    android:textSize="@dimen/text_primary"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_below="@id/img_name_title"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@id/img_name_title"
+                    android:background="@color/view_divide"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_tags_num"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/img_name_title"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/img_name_num"
+                        android:layout_width="@dimen/len_small_img_width"
+                        android:layout_height="24dp"/>
+
+                    <TextView
+                        android:id="@+id/txt_name_num_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/text_recommend_num_title"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_primary"/>
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <com.hrsoft.today.widget.AddSubView
+                        android:id="@+id/pick_recommend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_normal">
+                    </com.hrsoft.today.widget.AddSubView>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_below="@id/ll_tags_num"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_toRightOf="@id/img_name_title"
+                    android:background="@color/view_divide"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rec_recommend_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ll_tags_num"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:layout_toEndOf="@id/img_name_title">
+                </android.support.v7.widget.RecyclerView>
+
+                <ImageView
+                    android:id="@+id/img_add_title"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignBottom="@id/txt_add_title"
+                    android:layout_alignTop="@id/txt_add_title"
+                    android:layout_below="@id/rec_recommend_add"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_add"/>
+
+                <TextView
+                    android:id="@+id/txt_add_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/rec_recommend_add"
+                    android:layout_marginLeft="@dimen/spacing_small"
+                    android:layout_marginTop="@dimen/spacing_normal"
+                    android:layout_toEndOf="@id/img_add_title"
+                    android:text="点击增加标签项"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="@dimen/text_ternary"/>
+
+                <TextView
+                    android:id="@+id/txt_state_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/rec_recommend_add"
+                    android:layout_marginEnd="@dimen/spacing_normal"
+                    android:layout_marginTop="@dimen/spacing_large"
+                    android:background="@drawable/bg_btn_subscribe_selected"
+                    android:paddingBottom="8dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:paddingTop="8dp"
+                    android:text="保存"
+                    android:textColor="@color/accent"/>
+
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/ll_expand_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/gray"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/spacing_normal"
+                        android:layout_weight="1"
+                        android:gravity="start|center"
+                        android:text="创建的标签"
+                        android:textColor="@color/text_primary"
+                        android:textSize="@dimen/text_title"/>
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/spacing_small"
+                        android:background="@drawable/bg_arrow_selector"/>
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rec_recommend_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/ll_expand_layout"
+                    android:layout_marginTop="8dp">
+                </android.support.v7.widget.RecyclerView>
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

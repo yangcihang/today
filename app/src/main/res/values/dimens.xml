@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--text size-->
     <dimen name="text_title">20sp</dimen>
     <dimen name="text_primary">18sp</dimen>
     <dimen name="text_secondary">16sp</dimen>
@@ -13,9 +14,52 @@
     <dimen name="margin_bottom_calendar">2dp</dimen>
     <dimen name="len_square_title">200dp</dimen>
 
-    <dimen name="len_square_item_height">136dp</dimen>
-    <dimen name="len_square_item_width">136dp</dimen>
-    <dimen name="len_search_item_height">100dp</dimen>
-    <dimen name="len_search_item_width">100dp</dimen>
     <dimen name="margin_top_right">15dp</dimen>
+    <dimen name="margin_search_img_right">5dp</dimen>
+    <dimen name="margin_search_img_top">8dp</dimen>
+    <dimen name="margin_search_img_left">5dp</dimen>
+
+    <!--fab size-->
+    <dimen name="len_fab_width">56dp</dimen>
+    <dimen name="len_fab_height">56dp</dimen>
+
+    <dimen name="len_tab_height">48dp</dimen>
+
+    <!--account size-->
+    <dimen name="len_account_tab_height">48dp</dimen>
+    <dimen name="len_account_button_height">48dp</dimen>
+
+    <!--spacing between two view-->
+    <dimen name="spacing_huge">24dp</dimen>
+    <dimen name="spacing_large">18dp</dimen>
+    <dimen name="spacing_normal">16dp</dimen>
+    <dimen name="spacing_small">10dp</dimen>
+    <dimen name="spacing_tiny">4dp</dimen>
+    <dimen name="spacing_login">72dp</dimen>
+
+    <!--img len-->
+    <dimen name="len_huge_img_height">240dp</dimen>
+    <dimen name="len_huge_img_width">240dp</dimen>
+    <dimen name="len_large_img_height">136dp</dimen>
+    <dimen name="len_large_img_width">136dp</dimen>
+    <dimen name="len_middle_img_height">100dp</dimen>
+    <dimen name="len_middle_img_width">100dp</dimen>
+    <dimen name="len_normal_img_width">56dp</dimen>
+    <dimen name="len_normal_img_height">56dp</dimen>
+    <dimen name="len_small_img_height">20dp</dimen>
+    <dimen name="len_small_img_width">24dp</dimen>
+    <dimen name="len_tiny_img_height">16dp</dimen>
+    <dimen name="len_tiny_img_width">16dp</dimen>
+    <dimen name="len_btn_state_save_width">56dp</dimen>
+    <dimen name="len_btn_state_save_height">32dp</dimen>
+
+    <!--dialog的参数-->
+    <integer name="dialog_button_txt_size">14</integer>
+    <integer name="dialog_title_txt_size">22</integer>
+    <integer name="dialog_input_hint_txt_size">16</integer>
+    <integer name="dialog_margin_abroad">14</integer>
+    <integer name="dialog_margin_top">14</integer>
+
+    <dimen name="input_panel_img_size">38dp</dimen>
+    <dimen name="mine_item_height">56dp</dimen>
 </resources>

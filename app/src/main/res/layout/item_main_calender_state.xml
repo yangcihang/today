@@ -11,7 +11,7 @@
         android:layout_alignTop="@id/txt_calendar_state_title"
         android:layout_marginLeft="@dimen/margin_left_calendar"
         android:layout_marginStart="@dimen/margin_left_calendar"
-        android:background="@color/view_good_vertical_icon"/>
+        android:background="@color/green"/>
 
     <TextView
         android:id="@+id/txt_calendar_state_title"

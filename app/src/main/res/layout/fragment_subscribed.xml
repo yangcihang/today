@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refresh_subscribed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/txt_order">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rec_subscribed_calendar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="4dp">
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
+    <TextView
+        android:outlineProvider="background"
+        android:elevation="4dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/bg_btn_exit"
+        android:id="@+id/txt_order"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:text="调整顺序"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_primary"/>
+</RelativeLayout>

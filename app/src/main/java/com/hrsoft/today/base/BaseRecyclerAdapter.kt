@@ -4,6 +4,7 @@ import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
+import com.hrsoft.today.util.Utility
 
 /**
  * @author YangCihang
@@ -31,14 +32,28 @@ abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
     /**
      * 刷新数据源
      */
-    fun refreshData() = notifyDataSetChanged()
+    fun refreshData() {
+        notifyDataSetChanged()
+    }
+
 
     /**
      * 添加数据源
      */
-    fun add(data: Data) {
+    open fun add(data: Data) {
         this.dataList.add(data)
         refreshData()
+    }
+
+    /**
+     * 带动画的添加
+     */
+    fun add(data: Data, position: Int) {
+        this.dataList.add(data)
+        notifyItemInserted(position)
+        Utility.runOnUiThread(Runnable {
+            refreshData()
+        }, 500)
     }
 
     /**
@@ -49,10 +64,18 @@ abstract class BaseRecyclerAdapter<Data>(var mContext: Context)
         refreshData()
     }
 
+    fun remove(pos: Int) {
+        dataList.removeAt(pos)
+        notifyItemRemoved(pos)
+        Utility.runOnUiThread(Runnable {
+            refreshData()
+        }, 500)
+    }
+
     /**
      * 添加多条数据
      */
-    fun addAll(data: Collection<Data>) {
+    open fun addAll(data: Collection<Data>) {
         this.dataList.addAll(data)
         refreshData()
     }

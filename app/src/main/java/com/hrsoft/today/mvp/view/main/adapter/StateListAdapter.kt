@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.hrsoft.today.R
 import com.hrsoft.today.base.BaseRecyclerAdapter
-import com.hrsoft.today.mvp.model.CalendarStateModel
+import com.hrsoft.today.mvp.model.models.CalendarStateModel
 
 /**
  * @author YangCihang
@@ -27,8 +27,8 @@ class StateListAdapter(mContext: Context, var isGood: Boolean) : BaseRecyclerAda
         override fun onBind(position: Int) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                 flagIcon.background =
-                        if (isGood) mContext.resources.getDrawable(R.color.view_good_vertical_icon)
-                        else mContext.resources.getDrawable(R.color.view_bad_vertical_icon)
+                        if (isGood) mContext.resources.getDrawable(R.color.green)
+                        else mContext.resources.getDrawable(R.color.red)
             }
             titleTxt.text = mData?.title
             descriptionTxt.text = mData?.description
